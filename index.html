@@ -25,7 +25,6 @@
           colors: {
             ivory: '#FAF8F5',
             cashmere: '#F3EFEA',
-            sage: '#5B6B5D',
             rosegold: '#C48B7F',
             softgold: '#D4B382',
             charcoal: '#222222',
@@ -61,16 +60,17 @@
   <!-- Minimalist Navigation Bar -->
   <nav class="fixed top-0 inset-x-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-softgold/20 py-4 px-6">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
-      <a href="#home" class="font-script text-3xl text-sage">K &amp; B</a>
+      <a href="#home" class="font-script text-3xl text-rosegold">K &amp; B</a>
       <div class="hidden md:flex gap-8 text-[11px] font-sans font-medium tracking-widest uppercase text-softgray">
-        <a href="#story" class="hover:text-sage transition-colors">Our Story</a>
-        <a href="#schedule" class="hover:text-sage transition-colors">Program</a>
-        <a href="#registry" class="hover:text-sage transition-colors font-semibold text-rosegold">Gifts &amp; Whish</a>
-        <a href="#venue" class="hover:text-sage transition-colors">Venue</a>
-        <a href="#guestbook" class="hover:text-sage transition-colors">Guestbook</a>
-        <a href="#rsvp" class="hover:text-sage transition-colors text-sage font-semibold">RSVP</a>
+        <a href="#story" class="hover:text-rosegold transition-colors">Our Story</a>
+        <a href="#countdown-section" class="hover:text-rosegold transition-colors">Countdown</a>
+        <a href="#schedule" class="hover:text-rosegold transition-colors">Program</a>
+        <a href="#registry" class="hover:text-rosegold transition-colors font-semibold text-rosegold">Gifts &amp; Whish</a>
+        <a href="#venue" class="hover:text-rosegold transition-colors">Venue</a>
+        <a href="#guestbook" class="hover:text-rosegold transition-colors">Guestbook</a>
+        <a href="#rsvp" class="hover:text-rosegold transition-colors text-rosegold font-semibold">RSVP</a>
       </div>
-      <a href="#rsvp" class="md:hidden bg-sage text-white text-[10px] font-sans tracking-widest uppercase px-4 py-2 rounded-full">
+      <a href="#rsvp" class="md:hidden bg-rosegold text-white text-[10px] font-sans tracking-widest uppercase px-4 py-2 rounded-full shadow-sm">
         RSVP
       </a>
     </div>
@@ -79,26 +79,24 @@
   <!-- HERO SECTION -->
   <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-28 pb-16 px-4">
     <div class="max-w-3xl mx-auto space-y-6">
-      
-
 
       <p class="font-sans text-xs tracking-widest uppercase text-softgray font-medium">Together with their families</p>
       
       <!-- Script Names -->
-      <h1 class="font-script text-7xl sm:text-9xl text-sage font-normal leading-tight">
+      <h1 class="font-script text-7xl sm:text-9xl text-charcoal font-normal leading-tight">
         Kinda <span class="text-rosegold">&amp;</span> Bilal
       </h1>
 
       <p class="font-serif italic text-2xl sm:text-3xl text-charcoal font-light">
-        Saturday, September 25, 2027
+        Wednesday, July 7, 2027
       </p>
       <p class="font-sans text-xs tracking-widest uppercase text-softgray">Koura &amp; Tripoli, Lebanon</p>
 
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#rsvp" class="w-full sm:w-auto bg-sage hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase px-8 py-4 rounded-full shadow-md transition-all duration-300">
+        <a href="#rsvp" class="w-full sm:w-auto bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase px-8 py-4 rounded-full shadow-md transition-all duration-300 font-medium">
           Respond To Invitation
         </a>
-        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white hover:bg-cashmere text-charcoal border border-softgold/40 text-xs font-sans tracking-widest uppercase px-7 py-4 rounded-full shadow-sm transition-all">
+        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white hover:bg-cashmere text-charcoal border border-softgold/40 text-xs font-sans tracking-widest uppercase px-7 py-4 rounded-full shadow-sm transition-all font-medium">
           📅 Save To Calendar
         </button>
       </div>
@@ -113,7 +111,7 @@
       <div class="rounded-t-full bg-cashmere p-4 shadow-sm border border-softgold/30 text-center space-y-4 max-w-xs mx-auto w-full">
         <div class="rounded-t-full bg-ivory h-80 flex flex-col items-center justify-center p-6 text-center space-y-2 border border-softgold/20">
           <span class="text-4xl text-rosegold">💍</span>
-          <p class="font-script text-3xl text-sage">Kinda &amp; Bilal</p>
+          <p class="font-script text-3xl text-rosegold">Kinda &amp; Bilal</p>
           <span class="text-[10px] text-softgray font-sans uppercase tracking-widest">Portrait</span>
         </div>
       </div>
@@ -134,79 +132,79 @@
     </div>
   </section>
 
-<!-- ELEGANT INTERACTIVE COUNTDOWN TIMER -->
-<section id="countdown-section" class="py-20 px-4">
-  <div class="max-w-3xl mx-auto bg-white/90 backdrop-blur-lg rounded-2xl p-8 sm:p-12 text-center space-y-8 relative overflow-hidden shadow-xl border border-softgold/30">
-    
-    <!-- Ambient Subtle Radial Glows -->
-    <div class="absolute -top-16 -left-16 w-36 h-36 bg-rosegold/10 rounded-full blur-2xl pointer-events-none"></div>
-    <div class="absolute -bottom-16 -right-16 w-36 h-36 bg-softgold/15 rounded-full blur-2xl pointer-events-none"></div>
-
-    <!-- Live Badge & Section Title -->
-    <div class="space-y-3 relative z-10">
-      <div class="inline-flex items-center gap-2 bg-cashmere/90 border border-softgold/30 px-3.5 py-1 rounded-full shadow-sm">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rosegold opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-rosegold"></span>
-        </span>
-        <span class="font-sans text-[10px] tracking-widest uppercase text-charcoal font-semibold">Counting Down</span>
-      </div>
-
-      <h3 class="font-serif text-3xl sm:text-4xl text-charcoal tracking-wide">Until We Say "I Do"</h3>
-      <p class="font-serif italic text-sm text-slate-600 max-w-md mx-auto">July 7, 2027 • Every second brings us closer to forever</p>
-    </div>
-    
-    <!-- Interactive Grid of Time Units -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+  <!-- ELEGANT INTERACTIVE COUNTDOWN TIMER -->
+  <section id="countdown-section" class="py-20 px-4">
+    <div class="max-w-3xl mx-auto bg-white/90 backdrop-blur-lg rounded-2xl p-8 sm:p-12 text-center space-y-8 relative overflow-hidden shadow-xl border border-softgold/30">
       
-      <!-- DAYS -->
-      <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-        <div class="overflow-hidden">
-          <span id="cd-days" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
-            00
-          </span>
-        </div>
-        <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
-        <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Days</span>
-      </div>
+      <!-- Ambient Subtle Radial Glows -->
+      <div class="absolute -top-16 -left-16 w-36 h-36 bg-rosegold/10 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -right-16 w-36 h-36 bg-softgold/15 rounded-full blur-2xl pointer-events-none"></div>
 
-      <!-- HOURS -->
-      <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-        <div class="overflow-hidden">
-          <span id="cd-hours" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
-            00
+      <!-- Live Badge & Section Title -->
+      <div class="space-y-3 relative z-10">
+        <div class="inline-flex items-center gap-2 bg-cashmere/90 border border-softgold/30 px-3.5 py-1 rounded-full shadow-sm">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rosegold opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-rosegold"></span>
           </span>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-charcoal font-semibold">Counting Down</span>
         </div>
-        <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
-        <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Hours</span>
-      </div>
 
-      <!-- MINUTES -->
-      <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-        <div class="overflow-hidden">
-          <span id="cd-mins" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
-            00
-          </span>
-        </div>
-        <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
-        <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Minutes</span>
+        <h3 class="font-serif text-3xl sm:text-4xl text-charcoal tracking-wide">Until We Say "I Do"</h3>
+        <p class="font-serif italic text-sm text-slate-600 max-w-md mx-auto">July 7, 2027 • Every second brings us closer to forever</p>
       </div>
-
-      <!-- SECONDS -->
-      <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-        <div class="overflow-hidden">
-          <span id="cd-secs" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
-            00
-          </span>
+      
+      <!-- Interactive Grid of Time Units -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+        
+        <!-- DAYS -->
+        <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          <div class="overflow-hidden">
+            <span id="cd-days" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+              00
+            </span>
+          </div>
+          <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Days</span>
         </div>
-        <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
-        <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Seconds</span>
+
+        <!-- HOURS -->
+        <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          <div class="overflow-hidden">
+            <span id="cd-hours" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+              00
+            </span>
+          </div>
+          <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Hours</span>
+        </div>
+
+        <!-- MINUTES -->
+        <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          <div class="overflow-hidden">
+            <span id="cd-mins" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+              00
+            </span>
+          </div>
+          <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Minutes</span>
+        </div>
+
+        <!-- SECONDS -->
+        <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          <div class="overflow-hidden">
+            <span id="cd-secs" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+              00
+            </span>
+          </div>
+          <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Seconds</span>
+        </div>
+
       </div>
 
     </div>
-
-  </div>
-</section>
+  </section>
 
   <!-- PROGRAM OF THE DAY -->
   <section id="schedule" class="py-20 px-4 bg-white border-y border-softgold/20">
@@ -221,11 +219,11 @@
           <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-softgold"></div>
           <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">6:00 PM</span>
           <h3 class="font-serif text-xl text-charcoal mt-0.5">Welcome Cocktails</h3>
-          <p class="text-xs text-softgray font-light mt-0.5">Refreshement &amp; musical ambiance as guests arrive.</p>
+          <p class="text-xs text-softgray font-light mt-0.5">Refreshment &amp; musical ambiance as guests arrive.</p>
         </div>
 
         <div class="relative">
-          <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-sage"></div>
+          <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-rosegold"></div>
           <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">7:00 PM</span>
           <h3 class="font-serif text-xl text-charcoal mt-0.5">Marriage Ceremony</h3>
           <p class="text-xs text-softgray font-light mt-0.5">Exchange of vows and rings.</p>
@@ -252,103 +250,88 @@
   <section id="registry" class="py-20 px-4">
     <div class="max-w-2xl mx-auto luxury-card rounded-2xl p-8 sm:p-12 text-center space-y-8">
       
+      <!-- Section Header -->
       <div class="space-y-2">
-        <span class="text-3xl text-rosegold">🎁</span>
+        <span class="text-3xl text-rosegold">✨</span>
         <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Registry &amp; Blessings</p>
         <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Gift Registry &amp; Whish Money</h2>
         <div class="w-12 h-0.5 bg-softgold/50 mx-auto"></div>
       </div>
 
-      <p class="font-serif italic text-lg text-slate-700 leading-relaxed max-w-lg mx-auto">
-        "Your presence and warm wishes on our wedding day are the greatest gifts of all. Should you wish to honor us with a gift, a contribution towards our new home and honeymoon fund would be deeply appreciated."
+      <!-- Gentle Etiquette Message -->
+      <p class="font-serif italic text-lg sm:text-xl text-slate-700 leading-relaxed max-w-lg mx-auto">
+        "Your presence and warm blessings on our wedding day are the greatest gifts of all. Should you wish to honor us with a gift, a contribution towards our new home and honeymoon fund would be deeply cherished."
       </p>
 
-  <!-- ELEGANT GIFT REGISTRY & WHISH MONEY -->
-<section id="registry" class="py-20 px-4">
-  <div class="max-w-2xl mx-auto luxury-card rounded-2xl p-8 sm:p-12 text-center space-y-8">
-    
-    <!-- Section Header -->
-    <div class="space-y-2">
-      <span class="text-3xl text-rosegold">✨</span>
-      <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Registry &amp; Blessings</p>
-      <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Gift Registry &amp; Whish Money</h2>
-      <div class="w-12 h-0.5 bg-softgold/50 mx-auto"></div>
-    </div>
-
-    <!-- Gentle Etiquette Message -->
-    <p class="font-serif italic text-lg sm:text-xl text-slate-700 leading-relaxed max-w-lg mx-auto">
-      "Your presence and warm blessings on our wedding day are the greatest gifts of all. Should you wish to honor us with a gift, a contribution towards our new home and honeymoon fund would be deeply cherished."
-    </p>
-
-    <!-- Whish Money Card Box -->
-    <div class="bg-cashmere/80 border border-softgold/30 rounded-2xl p-6 sm:p-8 text-left space-y-6 shadow-sm relative overflow-hidden">
-      
-      <!-- Card Top Header -->
-      <div class="flex items-center justify-between border-b border-softgold/20 pb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-[#E2231A] text-white flex items-center justify-center font-bold text-sm tracking-tighter shadow-sm">
-            W
-          </div>
-          <div>
-            <h4 class="font-serif text-lg text-charcoal font-semibold">Whish Money Transfer</h4>
-            <p class="text-[11px] text-softgray font-light">Transfer via Whish Money App or any official agent</p>
-          </div>
-        </div>
-        <span class="bg-white text-rosegold text-[9px] font-sans tracking-widest px-3 py-1 rounded-full border border-softgold/30 uppercase font-semibold">
-          Lebanon
-        </span>
-      </div>
-
-      <!-- Account Details Grid -->
-      <div class="grid sm:grid-cols-2 gap-4 text-xs font-sans">
+      <!-- Whish Money Card Box -->
+      <div class="bg-cashmere/80 border border-softgold/30 rounded-2xl p-6 sm:p-8 text-left space-y-6 shadow-sm relative overflow-hidden">
         
-        <!-- Whish Number Card -->
-        <div class="bg-white p-4 rounded-xl border border-softgold/25 space-y-1 shadow-sm">
-          <span class="text-softgray uppercase text-[9px] tracking-widest block font-medium">Whish Transfer Mobile</span>
-          <span id="whish-number" class="font-mono text-base font-bold text-charcoal block tracking-wider">+961 81 550 569</span>
-          <span class="text-softgray text-[10px] block font-light">Recipient: Kinda Alawa / Bilal Obeid</span>
+        <!-- Card Top Header -->
+        <div class="flex items-center justify-between border-b border-softgold/20 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#E2231A] text-white flex items-center justify-center font-bold text-sm tracking-tighter shadow-sm">
+              W
+            </div>
+            <div>
+              <h4 class="font-serif text-lg text-charcoal font-semibold">Whish Money Transfer</h4>
+              <p class="text-[11px] text-softgray font-light">Transfer via Whish Money App or any official agent</p>
+            </div>
+          </div>
+          <span class="bg-white text-rosegold text-[9px] font-sans tracking-widest px-3 py-1 rounded-full border border-softgold/30 uppercase font-semibold">
+            Lebanon
+          </span>
         </div>
 
-        <!-- Copy Action Card -->
-        <div class="bg-white p-4 rounded-xl border border-softgold/25 flex flex-col justify-between shadow-sm">
-          <span class="text-softgray uppercase text-[9px] tracking-widest block font-medium">Instant Action</span>
-          <button onclick="copyWhishNumber()" id="copy-btn" class="bg-charcoal hover:bg-rosegold text-white text-[10px] font-sans tracking-widest uppercase py-2.5 px-3 rounded-lg transition-all w-full mt-2 font-medium">
-            📋 Copy Mobile Number
-          </button>
+        <!-- Account Details Grid -->
+        <div class="grid sm:grid-cols-2 gap-4 text-xs font-sans">
+          
+          <!-- Whish Number Card -->
+          <div class="bg-white p-4 rounded-xl border border-softgold/25 space-y-1 shadow-sm">
+            <span class="text-softgray uppercase text-[9px] tracking-widest block font-medium">Whish Transfer Mobile</span>
+            <span id="whish-number" class="font-mono text-base font-bold text-charcoal block tracking-wider">+961 81 550 569</span>
+            <span class="text-softgray text-[10px] block font-light">Recipient: Kinda Alawa / Bilal Obeid</span>
+          </div>
+
+          <!-- Copy Action Card -->
+          <div class="bg-white p-4 rounded-xl border border-softgold/25 flex flex-col justify-between shadow-sm">
+            <span class="text-softgray uppercase text-[9px] tracking-widest block font-medium">Instant Action</span>
+            <button onclick="copyWhishNumber()" id="copy-btn" class="bg-charcoal hover:bg-rosegold text-white text-[10px] font-sans tracking-widest uppercase py-2.5 px-3 rounded-lg transition-all w-full mt-2 font-medium">
+              📋 Copy Mobile Number
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Elegantly Styled WhatsApp Confirmation Button -->
+        <div class="pt-1">
+          <a href="https://wa.me/96181550569?text=Hello%20Kinda%20%26%20Bilal,%20I%20have%20sent%20a%20wedding%20gift%20via%20Whish%20Money!" 
+             target="_blank" 
+             class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 px-4 rounded-xl flex items-center justify-center gap-2.5 transition-all shadow-sm font-medium">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+            </svg>
+            Send Transfer Note on WhatsApp
+          </a>
         </div>
 
       </div>
 
-      <!-- Elegantly Styled WhatsApp Confirmation Button (No Harsh Green) -->
-      <div class="pt-1">
-        <a href="https://wa.me/96181550569?text=Hello%20Kinda%20%26%20Bilal,%20I%20have%20sent%20a%20wedding%20gift%20via%20Whish%20Money!" 
-           target="_blank" 
-           class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 px-4 rounded-xl flex items-center justify-center gap-2.5 transition-all shadow-sm font-medium">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
-          </svg>
-          Send Transfer Note on WhatsApp
-        </a>
-      </div>
+      <!-- Soft Note -->
+      <p class="text-[11px] text-softgray font-light">
+        For international gifts or bank transfer options, feel free to reach out to us directly.
+      </p>
 
     </div>
-
-    <!-- Soft Note -->
-    <p class="text-[11px] text-softgray font-light">
-      For international gifts or bank transfer options, feel free to reach out to us directly.
-    </p>
-
-  </div>
-</section>
+  </section>
 
   <!-- DRESS CODE -->
   <section class="py-16 px-4 bg-white border-y border-softgold/20 text-center">
     <div class="max-w-xl mx-auto space-y-4">
       <span class="text-3xl text-rosegold">✨</span>
       <h2 class="font-serif text-3xl text-charcoal">Dress Code</h2>
-      <p class="font-serif italic text-xl text-sage">Formal Evening Attire / Black Tie Optional</p>
+      <p class="font-serif italic text-xl text-rosegold">Formal Evening Attire / Black Tie Optional</p>
       <p class="text-xs text-softgray font-light leading-relaxed">
-        Soft neutral tones, champagne, sage, terracotta, and classic black suits are warmly encouraged.
+        Soft neutral tones, champagne, blush, terracotta, and classic tuxedo or dark suits are warmly encouraged.
       </p>
     </div>
   </section>
@@ -369,7 +352,7 @@
             North Lebanon. Valet parking service and hostess greeting will be available upon arrival.
           </p>
           <div class="pt-2">
-            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-sage hover:bg-charcoal text-white text-[11px] font-sans tracking-widest uppercase px-5 py-3 rounded-lg transition-all">
+            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-rosegold hover:bg-charcoal text-white text-[11px] font-sans tracking-widest uppercase px-5 py-3 rounded-lg transition-all font-medium">
               📍 Open Google Maps
             </a>
           </div>
@@ -396,14 +379,14 @@
       <div id="wishes-list" class="space-y-3 max-h-52 overflow-y-auto text-left pr-1">
         <div class="bg-cashmere p-3.5 rounded-lg border border-softgold/20 text-xs space-y-1">
           <p class="font-serif italic text-slate-700 text-sm">"Wishing you a lifetime filled with love, prosperity, and happiness!"</p>
-          <span class="font-sans text-sage font-semibold block text-[10px] uppercase">— The Salem Family</span>
+          <span class="font-sans text-rosegold font-semibold block text-[10px] uppercase">— The Salem Family</span>
         </div>
       </div>
 
       <form id="guestbook-form" onsubmit="addWish(event)" class="space-y-3 text-left">
-        <input type="text" id="wishAuthor" required placeholder="Your Name" class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-sage">
-        <textarea id="wishMessage" required rows="2" placeholder="Write your warm wish..." class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-sage"></textarea>
-        <button type="submit" class="w-full bg-sage hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3 rounded-lg transition-all font-medium">
+        <input type="text" id="wishAuthor" required placeholder="Your Name" class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+        <textarea id="wishMessage" required rows="2" placeholder="Write your warm wish..." class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold"></textarea>
+        <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3 rounded-lg transition-all font-medium">
           Send Wish ✨
         </button>
       </form>
@@ -416,7 +399,7 @@
       <div class="space-y-1">
         <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">R.S.V.P</p>
         <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Confirm Your Attendance</h2>
-        <p class="font-sans text-[10px] tracking-widest uppercase text-softgray">Kindly respond by August 25, 2027</p>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-softgray">Kindly respond by June 15, 2027</p>
       </div>
 
       <div id="rsvp-success" class="hidden bg-cashmere border border-softgold/30 rounded-xl p-6 space-y-2">
@@ -428,13 +411,13 @@
       <form id="rsvp-form" onsubmit="handleRsvp(event)" class="space-y-4 text-left">
         <div>
           <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Full Name *</label>
-          <input type="text" id="guestName" required placeholder="e.g. Dr. Maya Kassir" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-sage">
+          <input type="text" id="guestName" required placeholder="e.g. Dr. Maya Kassir" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Attendance</label>
-            <select id="attendance" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-sage">
+            <select id="attendance" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
               <option value="true">Joyfully Accepts</option>
               <option value="false">Regretfully Declines</option>
             </select>
@@ -442,7 +425,7 @@
 
           <div>
             <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Number of Guests</label>
-            <select id="guestCount" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-sage">
+            <select id="guestCount" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
               <option value="1">1 Guest</option>
               <option value="2">2 Guests (+1)</option>
               <option value="3">3 Guests</option>
@@ -450,7 +433,7 @@
           </div>
         </div>
 
-        <button type="submit" class="w-full bg-sage hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 rounded-lg transition-all font-medium mt-2">
+        <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 rounded-lg transition-all font-medium mt-2">
           Submit Response
         </button>
       </form>
@@ -459,13 +442,14 @@
 
   <!-- FOOTER -->
   <footer class="py-10 text-center space-y-2 text-xs text-softgray font-light border-t border-softgold/20">
-    <div class="font-script text-3xl text-sage">Kinda &amp; Bilal</div>
-    <p class="font-sans text-[10px] tracking-widest uppercase">September 25, 2027 • Koura &amp; Tripoli, Lebanon</p>
+    <div class="font-script text-3xl text-rosegold">Kinda &amp; Bilal</div>
+    <p class="font-sans text-[10px] tracking-widest uppercase">July 7, 2027 • Koura &amp; Tripoli, Lebanon</p>
   </footer>
 
   <script>
-    // Live Countdown
-    const targetDate = new Date('2027-09-25T18:00:00').getTime();
+    // Synchronized Live Countdown Target Date: July 7, 2027
+    const targetDate = new Date('July 7, 2027 18:00:00').getTime();
+
     function updateCountdown() {
       const now = new Date().getTime();
       const diff = targetDate - now;
@@ -475,6 +459,11 @@
         document.getElementById('cd-hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
         document.getElementById('cd-mins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         document.getElementById('cd-secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+      } else {
+        document.getElementById('cd-days').innerText = "00";
+        document.getElementById('cd-hours').innerText = "00";
+        document.getElementById('cd-mins').innerText = "00";
+        document.getElementById('cd-secs').innerText = "00";
       }
     }
     setInterval(updateCountdown, 1000);
@@ -488,10 +477,11 @@
       const icon = document.getElementById('audio-icon');
 
       if (!isPlaying) {
-        audio.play();
-        text.innerText = "Pause Music";
-        icon.innerText = "⏸️";
-        isPlaying = true;
+        audio.play().then(() => {
+          text.innerText = "Pause Music";
+          icon.innerText = "⏸️";
+          isPlaying = true;
+        }).catch(err => console.log("Audio play blocked by browser policy", err));
       } else {
         audio.pause();
         text.innerText = "Play Music";
@@ -500,19 +490,22 @@
       }
     }
 
-    // Whish Number Copy
+    // Copy Whish Number Action
     function copyWhishNumber() {
       navigator.clipboard.writeText("+96181550569");
       const btn = document.getElementById('copy-btn');
       btn.innerText = "✓ Copied!";
-      btn.classList.replace('bg-sage', 'bg-charcoal');
+      btn.classList.add('bg-rosegold');
+      btn.classList.remove('bg-charcoal');
+
       setTimeout(() => {
-        btn.innerText = "📋 Copy Whish Number";
-        btn.classList.replace('bg-charcoal', 'bg-sage');
+        btn.innerText = "📋 Copy Mobile Number";
+        btn.classList.add('bg-charcoal');
+        btn.classList.remove('bg-rosegold');
       }, 3000);
     }
 
-    // Guestbook Wish
+    // Guestbook Wish Submission
     function addWish(e) {
       e.preventDefault();
       const author = document.getElementById('wishAuthor').value;
@@ -522,13 +515,13 @@
         const list = document.getElementById('wishes-list');
         const card = document.createElement('div');
         card.className = "bg-cashmere p-3.5 rounded-lg border border-softgold/20 text-xs space-y-1";
-        card.innerHTML = `<p class="font-serif italic text-slate-700 text-sm">"${message}"</p><span class="font-sans text-sage font-semibold block text-[10px] uppercase">— ${author}</span>`;
+        card.innerHTML = `<p class="font-serif italic text-slate-700 text-sm">"${message}"</p><span class="font-sans text-rosegold font-semibold block text-[10px] uppercase">— ${author}</span>`;
         list.prepend(card);
         document.getElementById('guestbook-form').reset();
       }
     }
 
-    // RSVP
+    // RSVP Submission
     function handleRsvp(e) {
       e.preventDefault();
       const name = document.getElementById('guestName').value;
@@ -539,12 +532,12 @@
       }
     }
 
-    // Add To Calendar
+    // Save Date To Google Calendar
     function addToCalendar() {
-      const title = encodeURIComponent("Kinda & Bilal's Wedding");
+      const title = encodeURIComponent("Kinda & Bilal's Wedding Celebration");
       const details = encodeURIComponent("Wedding celebration for Kinda Salem Alawa & Bilal Riad Obeid.");
       const location = encodeURIComponent("Koura & Tripoli, Lebanon");
-      window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20270925T150000Z/20270925T230000Z&details=${details}&location=${location}`, '_blank');
+      window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20270707T150000Z/20270707T230000Z&details=${details}&location=${location}`, '_blank');
     }
   </script>
 </body>
