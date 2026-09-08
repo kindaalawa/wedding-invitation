@@ -8,10 +8,10 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Great Vibes (Script Font) + Cinzel (Classic Serif) + Cormorant Garamond + Montserrat -->
+  <!-- Google Fonts: Great Vibes (Script) + Cinzel (Classic Serif) + Cormorant Garamond + Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
@@ -24,11 +24,13 @@
             sans: ['"Montserrat"', 'sans-serif'],
           },
           colors: {
-            deepolive: '#3B4D3C',
-            terracotta: '#C86D51',
-            darkgold: '#997A15',
-            champagne: '#FAF8F5',
-            charcoal: '#222222'
+            deepolive: '#2C3E2E',
+            terracotta: '#B85B3F',
+            gold: '#C5A059',
+            lightgold: '#E5C983',
+            darkgold: '#8C6F2D',
+            champagne: '#FAF7F2',
+            charcoal: '#1A1A1A'
           }
         }
       }
@@ -36,67 +38,67 @@
   </script>
 
   <style>
-    .tracking-luxury {
-      letter-spacing: 0.25em;
-    }
+    .tracking-ultra { letter-spacing: 0.3em; }
     .gold-gradient-text {
-      background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+      background: linear-gradient(135deg, #8C6F2D 0%, #E5C983 30%, #C5A059 60%, #8C6F2D 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(25px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
     }
-    @keyframes floatGold {
+    @keyframes floatParticle {
       0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-      50% { opacity: 0.5; }
+      50% { opacity: 0.6; }
       100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
     }
-    .gold-particle {
+    .gold-dust {
       position: fixed;
       pointer-events: none;
-      background: radial-gradient(circle, #D4AF37 0%, rgba(212,175,55,0) 70%);
+      background: radial-gradient(circle, #C5A059 0%, rgba(197,160,89,0) 70%);
       border-radius: 50%;
-      animation: floatGold 14s infinite linear;
+      animation: floatParticle 16s infinite linear;
     }
   </style>
 </head>
-<body class="bg-champagne text-charcoal font-sans antialiased selection:bg-terracotta selection:text-white relative overflow-x-hidden">
+<body class="bg-champagne text-charcoal font-sans antialiased selection:bg-gold selection:text-white relative overflow-x-hidden">
 
-  <!-- Floating Gold Dust Particles -->
+  <!-- Ambient Gold Dust Floating Particles -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="gold-particle w-2 h-2 left-[12%]" style="animation-duration: 16s; animation-delay: 0s;"></div>
-    <div class="gold-particle w-3 h-3 left-[28%]" style="animation-duration: 20s; animation-delay: 3s;"></div>
-    <div class="gold-particle w-1.5 h-1.5 left-[55%]" style="animation-duration: 12s; animation-delay: 1s;"></div>
-    <div class="gold-particle w-2.5 h-2.5 left-[80%]" style="animation-duration: 18s; animation-delay: 4s;"></div>
+    <div class="gold-dust w-2 h-2 left-[10%]" style="animation-duration: 18s; animation-delay: 0s;"></div>
+    <div class="gold-dust w-3 h-3 left-[25%]" style="animation-duration: 22s; animation-delay: 2s;"></div>
+    <div class="gold-dust w-1.5 h-1.5 left-[50%]" style="animation-duration: 14s; animation-delay: 1s;"></div>
+    <div class="gold-dust w-2.5 h-2.5 left-[75%]" style="animation-duration: 20s; animation-delay: 4s;"></div>
+    <div class="gold-dust w-2 h-2 left-[90%]" style="animation-duration: 16s; animation-delay: 3s;"></div>
   </div>
 
-  <!-- Music Toggle Floating Button -->
+  <!-- Music Floating Controls -->
   <div class="fixed bottom-6 right-6 z-50">
-    <button onclick="toggleMusic()" class="bg-white/90 border border-terracotta/30 shadow-xl p-3.5 rounded-full flex items-center gap-2 hover:scale-105 transition-all group text-xs font-cinzel text-charcoal">
-      <span id="music-icon" class="text-base">🎵</span>
-      <span id="music-text" class="hidden sm:inline tracking-luxury font-medium text-[10px] uppercase">Play Music</span>
+    <button onclick="toggleMusic()" class="bg-white/95 border border-gold/40 shadow-2xl p-4 rounded-full flex items-center gap-3 hover:scale-105 transition-all group text-xs font-cinzel text-charcoal">
+      <span id="music-icon" class="text-lg">🎼</span>
+      <span id="music-text" class="hidden sm:inline tracking-ultra font-semibold text-[10px] uppercase">Play Romantic Symphony</span>
     </button>
-    <audio id="wedding-audio" loop>
+    <audio id="wedding-audio" loop preload="none">
       <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116327.mp3" type="audio/mpeg">
     </audio>
   </div>
 
-  <!-- Sticky Luxury Navigation -->
-  <nav class="fixed top-0 inset-x-0 z-40 bg-champagne/90 backdrop-blur-md border-b border-terracotta/20 py-4 px-6 transition-all duration-300">
+  <!-- Sticky Luxury Navigation Bar -->
+  <nav class="fixed top-0 inset-x-0 z-40 bg-champagne/90 backdrop-blur-md border-b border-gold/20 py-4 px-6 transition-all duration-300">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <a href="#home" class="font-script text-3xl font-normal text-deepolive">K &amp; B</a>
-      <div class="hidden md:flex gap-8 text-[11px] font-cinzel font-medium tracking-luxury uppercase text-charcoal/80">
-        <a href="#story" class="hover:text-terracotta transition-colors">Our Story</a>
-        <a href="#schedule" class="hover:text-terracotta transition-colors">Schedule</a>
-        <a href="#attire" class="hover:text-terracotta transition-colors">Dress Code</a>
-        <a href="#venue" class="hover:text-terracotta transition-colors">Venue</a>
-        <a href="#guestbook" class="hover:text-terracotta transition-colors">Guestbook</a>
-        <a href="#rsvp" class="hover:text-terracotta transition-colors font-semibold text-terracotta">RSVP</a>
+      <div class="hidden lg:flex gap-8 text-[10px] font-cinzel font-semibold tracking-ultra uppercase text-charcoal/80">
+        <a href="#story" class="hover:text-gold transition-colors">Our Story</a>
+        <a href="#schedule" class="hover:text-gold transition-colors">Schedule</a>
+        <a href="#attire" class="hover:text-gold transition-colors">Dress Code</a>
+        <a href="#registry" class="hover:text-gold transition-colors text-darkgold font-bold">Gift Registry</a>
+        <a href="#venue" class="hover:text-gold transition-colors">Venue</a>
+        <a href="#guestbook" class="hover:text-gold transition-colors">Guestbook</a>
+        <a href="#rsvp" class="hover:text-gold transition-colors text-terracotta">RSVP</a>
       </div>
-      <a href="#rsvp" class="md:hidden bg-terracotta text-white text-[9px] font-cinzel tracking-luxury uppercase px-4 py-2 rounded-full">
+      <a href="#rsvp" class="lg:hidden bg-deepolive text-white text-[9px] font-cinzel tracking-ultra uppercase px-4 py-2 rounded-full">
         RSVP
       </a>
     </div>
@@ -106,36 +108,36 @@
   <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-28 pb-16 px-4 relative overflow-hidden">
     <div class="max-w-4xl mx-auto space-y-6 relative z-10">
       
-      <!-- Classic Monogram Seal -->
-      <div class="w-20 h-20 mx-auto rounded-full border border-terracotta/40 flex items-center justify-center p-1 bg-white/50 shadow-sm">
-        <div class="w-full h-full rounded-full border border-terracotta/80 flex items-center justify-center font-script text-2xl text-deepolive font-normal">
+      <!-- Monogram Emblem -->
+      <div class="w-24 h-24 mx-auto rounded-full border-2 border-gold/40 flex items-center justify-center p-1.5 bg-white/60 shadow-lg">
+        <div class="w-full h-full rounded-full border border-gold flex items-center justify-center font-script text-3xl text-deepolive font-normal">
           K &amp; B
         </div>
       </div>
 
-      <p class="font-cinzel text-xs sm:text-sm tracking-luxury uppercase text-terracotta font-semibold">Together With Their Families</p>
+      <p class="font-cinzel text-xs sm:text-sm tracking-ultra uppercase text-darkgold font-bold">Together With Their Honor Families</p>
       
-      <!-- YOUR SCRIPT FONT HEADING -->
-      <h1 class="font-script text-6xl sm:text-8xl text-deepolive font-normal leading-tight">
+      <!-- Script Main Title -->
+      <h1 class="font-script text-6xl sm:text-8xl md:text-9xl text-deepolive font-normal leading-tight">
         Kinda <span class="text-terracotta">&amp;</span> Bilal
       </h1>
 
       <div class="flex items-center justify-center gap-4 my-2">
-        <div class="w-16 h-px bg-gradient-to-r from-transparent to-terracotta"></div>
-        <span class="text-terracotta text-sm">✦</span>
-        <div class="w-16 h-px bg-gradient-to-l from-transparent to-terracotta"></div>
+        <div class="w-20 h-px bg-gradient-to-r from-transparent to-gold"></div>
+        <span class="text-gold text-base">✦</span>
+        <div class="w-20 h-px bg-gradient-to-l from-transparent to-gold"></div>
       </div>
 
       <p class="font-serif italic text-2xl sm:text-4xl text-slate-800">
         Saturday, September 25, 2027
       </p>
-      <p class="font-cinzel text-xs tracking-luxury uppercase text-slate-500">Koura &amp; Tripoli, Lebanon</p>
+      <p class="font-cinzel text-xs tracking-ultra uppercase text-slate-500">Koura &amp; Tripoli, Lebanon</p>
 
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-center gap-5">
-        <a href="#rsvp" class="w-full sm:w-auto bg-deepolive hover:bg-terracotta text-white text-xs font-cinzel tracking-luxury uppercase px-9 py-4 rounded-full shadow-lg transition-all duration-300">
+        <a href="#rsvp" class="w-full sm:w-auto bg-deepolive hover:bg-gold text-white text-xs font-cinzel tracking-ultra uppercase px-10 py-4.5 rounded-full shadow-2xl transition-all duration-300">
           Request The Pleasure Of Your Company
         </a>
-        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white hover:bg-champagne text-charcoal border border-terracotta/40 text-xs font-cinzel tracking-luxury uppercase px-8 py-4 rounded-full shadow-sm transition-all">
+        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white hover:bg-champagne text-charcoal border border-gold/40 text-xs font-cinzel tracking-ultra uppercase px-8 py-4.5 rounded-full shadow-sm transition-all">
           📅 Save To Calendar
         </button>
       </div>
@@ -143,27 +145,27 @@
   </section>
 
   <!-- OUR STORY SECTION -->
-  <section id="story" class="py-24 px-4 border-y border-terracotta/20 bg-white">
+  <section id="story" class="py-24 px-4 border-y border-gold/20 bg-white">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
       
       <!-- Arch Photo Frame -->
-      <div class="rounded-t-full bg-champagne p-4 shadow-2xl border border-terracotta/30 text-center space-y-4 max-w-sm mx-auto w-full">
-        <div class="rounded-t-full bg-slate-100 h-96 flex flex-col items-center justify-center p-6 text-center space-y-2 border border-terracotta/20">
-          <span class="text-4xl">💍</span>
-          <p class="font-script text-3xl text-deepolive">Kinda &amp; Bilal</p>
+      <div class="rounded-t-full bg-champagne p-4 shadow-2xl border border-gold/30 text-center space-y-4 max-w-sm mx-auto w-full">
+        <div class="rounded-t-full bg-slate-100 h-96 flex flex-col items-center justify-center p-6 text-center space-y-2 border border-gold/20">
+          <span class="text-5xl">💍</span>
+          <p class="font-script text-4xl text-deepolive">Kinda &amp; Bilal</p>
           <span class="text-[10px] text-slate-400 font-sans uppercase tracking-widest">Portrait Frame</span>
         </div>
       </div>
 
       <!-- Story Content -->
       <div class="space-y-6 text-center md:text-left">
-        <p class="font-cinzel text-xs tracking-luxury uppercase text-terracotta font-bold">Our Journey</p>
-        <h2 class="font-cinzel text-3xl sm:text-5xl text-charcoal leading-tight">A Celebration Of Love</h2>
-        <p class="font-serif text-lg sm:text-xl text-slate-700 leading-relaxed italic">
-          "Two souls with but a single thought, two hearts that beat as one."
+        <p class="font-cinzel text-xs tracking-ultra uppercase text-darkgold font-bold">Our Love Story</p>
+        <h2 class="font-cinzel text-3xl sm:text-5xl text-charcoal leading-tight">Bound By Love &amp; Devotion</h2>
+        <p class="font-serif text-lg sm:text-2xl text-slate-700 leading-relaxed italic">
+          "Two lives, two hearts, joined together in friendship and united forever in love."
         </p>
         <p class="text-slate-600 font-sans font-light leading-relaxed text-sm sm:text-base">
-          From early conversations to building our future side by side, every step has led us to this sacred celebration. We warmly invite you to witness our vows as we join our lives together.
+          From shared dreams in Lebanon to building our future side by side, we are overjoyed to welcome our beloved family and friends to share in the beginning of our forever.
         </p>
         <div class="font-script text-5xl text-terracotta pt-2">Kinda &amp; Bilal</div>
       </div>
@@ -171,139 +173,198 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN TIMER SECTION -->
+  <!-- LIVE COUNTDOWN TIMER -->
   <section class="py-20 px-4 text-center">
-    <div class="max-w-4xl mx-auto glass-card rounded-3xl p-8 sm:p-14 border border-terracotta/30 shadow-xl space-y-8">
+    <div class="max-w-4xl mx-auto glass-card rounded-3xl p-8 sm:p-14 border border-gold/30 shadow-2xl space-y-8">
       <div class="space-y-2">
-        <p class="font-cinzel text-xs tracking-luxury uppercase text-terracotta font-bold">The Countdown</p>
-        <h3 class="font-cinzel text-3xl text-charcoal">Until Our Wedding Day</h3>
+        <p class="font-cinzel text-xs tracking-ultra uppercase text-darkgold font-bold">The Countdown</p>
+        <h3 class="font-cinzel text-3xl sm:text-4xl text-charcoal">Until We Say "I Do"</h3>
       </div>
       
       <div class="grid grid-cols-4 gap-3 sm:gap-6">
-        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-terracotta/20 shadow-sm">
-          <span id="cd-days" class="font-cinzel text-3xl sm:text-6xl text-deepolive block">00</span>
-          <span class="font-cinzel text-[9px] sm:text-xs tracking-luxury uppercase text-terracotta block mt-2">Days</span>
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gold/20 shadow-sm">
+          <span id="cd-days" class="font-cinzel text-3xl sm:text-6xl text-deepolive block font-bold">00</span>
+          <span class="font-cinzel text-[9px] sm:text-xs tracking-ultra uppercase text-darkgold block mt-2">Days</span>
         </div>
-        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-terracotta/20 shadow-sm">
-          <span id="cd-hours" class="font-cinzel text-3xl sm:text-6xl text-deepolive block">00</span>
-          <span class="font-cinzel text-[9px] sm:text-xs tracking-luxury uppercase text-terracotta block mt-2">Hours</span>
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gold/20 shadow-sm">
+          <span id="cd-hours" class="font-cinzel text-3xl sm:text-6xl text-deepolive block font-bold">00</span>
+          <span class="font-cinzel text-[9px] sm:text-xs tracking-ultra uppercase text-darkgold block mt-2">Hours</span>
         </div>
-        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-terracotta/20 shadow-sm">
-          <span id="cd-mins" class="font-cinzel text-3xl sm:text-6xl text-deepolive block">00</span>
-          <span class="font-cinzel text-[9px] sm:text-xs tracking-luxury uppercase text-terracotta block mt-2">Mins</span>
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gold/20 shadow-sm">
+          <span id="cd-mins" class="font-cinzel text-3xl sm:text-6xl text-deepolive block font-bold">00</span>
+          <span class="font-cinzel text-[9px] sm:text-xs tracking-ultra uppercase text-darkgold block mt-2">Mins</span>
         </div>
-        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-terracotta/20 shadow-sm">
-          <span id="cd-secs" class="font-cinzel text-3xl sm:text-6xl text-deepolive block">00</span>
-          <span class="font-cinzel text-[9px] sm:text-xs tracking-luxury uppercase text-terracotta block mt-2">Secs</span>
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gold/20 shadow-sm">
+          <span id="cd-secs" class="font-cinzel text-3xl sm:text-6xl text-deepolive block font-bold">00</span>
+          <span class="font-cinzel text-[9px] sm:text-xs tracking-ultra uppercase text-darkgold block mt-2">Secs</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TIMELINE / SCHEDULE -->
-  <section id="schedule" class="py-24 px-4 bg-white border-y border-terracotta/20">
+  <!-- PROGRAM OF THE DAY / SCHEDULE -->
+  <section id="schedule" class="py-24 px-4 bg-white border-y border-gold/20">
     <div class="max-w-3xl mx-auto space-y-12 text-center">
       <div class="space-y-2">
-        <p class="font-cinzel text-xs tracking-luxury uppercase text-terracotta font-bold">Order of Events</p>
+        <p class="font-cinzel text-xs tracking-ultra uppercase text-darkgold font-bold">Order of Events</p>
         <h2 class="font-cinzel text-4xl text-charcoal">Program Of The Day</h2>
       </div>
 
-      <div class="relative border-l-2 border-terracotta/30 pl-8 ml-4 sm:ml-32 text-left space-y-10">
+      <div class="relative border-l-2 border-gold/40 pl-8 ml-4 sm:ml-32 text-left space-y-12">
         <div class="relative">
-          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-terracotta border-4 border-white shadow"></div>
-          <span class="font-cinzel text-xs font-semibold text-terracotta tracking-luxury">6:00 PM</span>
-          <h3 class="font-cinzel text-xl text-charcoal mt-1">Welcome Reception</h3>
-          <p class="text-sm text-slate-600 font-light mt-1">Enjoy welcome drinks, mocktails, and live chamber music as guests arrive.</p>
+          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-gold border-4 border-white shadow"></div>
+          <span class="font-cinzel text-xs font-bold text-darkgold tracking-ultra">6:00 PM</span>
+          <h3 class="font-cinzel text-xl text-charcoal mt-1">Welcome Cocktails &amp; Chamber Music</h3>
+          <p class="text-sm text-slate-600 font-light mt-1">Enjoy welcome refreshments as guests gather in the garden reception.</p>
         </div>
 
         <div class="relative">
           <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-deepolive border-4 border-white shadow"></div>
-          <span class="font-cinzel text-xs font-semibold text-terracotta tracking-luxury">7:00 PM</span>
-          <h3 class="font-cinzel text-xl text-charcoal mt-1">The Wedding Ceremony</h3>
-          <p class="text-sm text-slate-600 font-light mt-1">Join us for the exchange of vows and blessings.</p>
+          <span class="font-cinzel text-xs font-bold text-darkgold tracking-ultra">7:00 PM</span>
+          <h3 class="font-cinzel text-xl text-charcoal mt-1">The Marriage Ceremony</h3>
+          <p class="text-sm text-slate-600 font-light mt-1">The exchange of vows and floral ring ceremony.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-gold border-4 border-white shadow"></div>
+          <span class="font-cinzel text-xs font-bold text-darkgold tracking-ultra">8:30 PM</span>
+          <h3 class="font-cinzel text-xl text-charcoal mt-1">Gala Dinner &amp; Family Toasts</h3>
+          <p class="text-sm text-slate-600 font-light mt-1">An exquisite dinner banquet served alongside celebratory speeches.</p>
         </div>
 
         <div class="relative">
           <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-terracotta border-4 border-white shadow"></div>
-          <span class="font-cinzel text-xs font-semibold text-terracotta tracking-luxury">8:30 PM</span>
-          <h3 class="font-cinzel text-xl text-charcoal mt-1">Gala Dinner &amp; Toast</h3>
-          <p class="text-sm text-slate-600 font-light mt-1">An exquisite multi-course dinner served with heartfelt family toasts.</p>
-        </div>
-
-        <div class="relative">
-          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-deepolive border-4 border-white shadow"></div>
-          <span class="font-cinzel text-xs font-semibold text-terracotta tracking-luxury">10:00 PM Onwards</span>
-          <h3 class="font-cinzel text-xl text-charcoal mt-1">Party &amp; Dancing</h3>
-          <p class="text-sm text-slate-600 font-light mt-1">A night filled with music, dancing, and memories to last a lifetime.</p>
+          <span class="font-cinzel text-xs font-bold text-darkgold tracking-ultra">10:00 PM Onwards</span>
+          <h3 class="font-cinzel text-xl text-charcoal mt-1">Zaffe, Dancing &amp; Festivities</h3>
+          <p class="text-sm text-slate-600 font-light mt-1">Celebration, music, and cake cutting under the moonlight.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- LUXURY GIFT REGISTRY & WHISH MONEY SECTION -->
+  <section id="registry" class="py-24 px-4">
+    <div class="max-w-3xl mx-auto glass-card rounded-3xl p-8 sm:p-14 border border-gold/40 shadow-2xl text-center space-y-8">
+      
+      <div class="space-y-3">
+        <span class="text-4xl">🎁</span>
+        <p class="font-cinzel text-xs tracking-ultra uppercase text-darkgold font-bold">Honeymoon &amp; Blessings Fund</p>
+        <h2 class="font-cinzel text-3xl sm:text-4xl text-charcoal">Gift Registry &amp; Whish Money</h2>
+        <div class="w-16 h-0.5 bg-gold mx-auto"></div>
+      </div>
+
+      <p class="font-serif italic text-lg sm:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto">
+        "Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a contribution towards our new beginning and honeymoon fund would be deeply appreciated."
+      </p>
+
+      <!-- Whish Money Card Box -->
+      <div class="bg-white border-2 border-gold/30 rounded-2xl p-6 sm:p-8 space-y-6 text-left shadow-md">
+        
+        <div class="flex items-center justify-between border-b border-gold/20 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-deepolive text-white flex items-center justify-center font-bold text-sm">W</div>
+            <div>
+              <h4 class="font-cinzel text-base text-charcoal font-bold">Whish Money Transfer (Lebanon)</h4>
+              <p class="text-xs text-slate-500">Send directly via Whish Money App or Agents</p>
+            </div>
+          </div>
+          <span class="hidden sm:inline bg-champagne text-darkgold text-[10px] font-cinzel tracking-ultra px-3 py-1 rounded-full border border-gold/30 uppercase">Instant Transfer</span>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 text-xs font-sans">
+          <div class="bg-champagne p-4 rounded-xl border border-gold/20 space-y-1">
+            <span class="text-slate-400 uppercase text-[9px] font-cinzel tracking-ultra block">Whish Mobile Number</span>
+            <span id="whish-number" class="font-mono text-base font-bold text-charcoal block">+961 81 550 569</span>
+            <span class="text-slate-500 text-[10px] block">Name: Kinda Alawa / Bilal Obeid</span>
+          </div>
+
+          <div class="bg-champagne p-4 rounded-xl border border-gold/20 flex flex-col justify-between">
+            <span class="text-slate-400 uppercase text-[9px] font-cinzel tracking-ultra block">Copy Transfer Details</span>
+            <button onclick="copyWhishNumber()" id="copy-btn" class="bg-darkgold hover:bg-deepolive text-white text-[10px] font-cinzel tracking-ultra uppercase py-2.5 px-4 rounded-lg transition-all w-full mt-2 font-semibold">
+              📋 Copy Whish Number
+            </button>
+          </div>
+        </div>
+
+        <!-- WhatsApp Confirmation Button -->
+        <div class="pt-2">
+          <a href="https://wa.me/96181550569?text=Hello%20Kinda%20%26%20Bilal,%20I%20have%20sent%20a%20wedding%20gift%20via%20Whish%20Money!" target="_blank" class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-cinzel tracking-ultra uppercase py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 shadow-md transition-all font-semibold">
+            💬 Send Gift Receipt / Note on WhatsApp
+          </a>
+        </div>
+
+      </div>
+
+      <p class="text-[11px] text-slate-400 font-light">
+        For international bank wire instructions, please contact us directly.
+      </p>
+
     </div>
   </section>
 
   <!-- DRESS CODE SECTION -->
-  <section id="attire" class="py-20 px-4">
-    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-12 text-center border border-terracotta/30 shadow-xl space-y-6">
+  <section id="attire" class="py-20 px-4 bg-white border-y border-gold/20">
+    <div class="max-w-2xl mx-auto text-center space-y-6">
       <span class="text-4xl">✨</span>
       <h2 class="font-cinzel text-3xl text-charcoal">Dress Code</h2>
-      <p class="font-serif italic text-2xl text-terracotta">Black Tie / Formal Evening Attire</p>
+      <p class="font-serif italic text-2xl text-darkgold">Black Tie / Formal Evening Attire</p>
       <p class="text-sm text-slate-600 font-light leading-relaxed">
-        We request our guests to dress in formal evening wear to share in our glamorous celebration. Soft earth tones, sage, champagne, and classic dark suits are encouraged.
+        We kindly request our guests to arrive in formal evening attire. Gentle earth tones, sage green, terracotta accents, champagne, and classic black suits are invited.
       </p>
     </div>
   </section>
 
-  <!-- VENUE & MAP -->
-  <section id="venue" class="py-20 px-4 bg-white border-y border-terracotta/20">
+  <!-- VENUE & GOOGLE MAPS -->
+  <section id="venue" class="py-20 px-4">
     <div class="max-w-4xl mx-auto space-y-10 text-center">
       <div class="space-y-2">
-        <p class="font-cinzel text-xs tracking-luxury uppercase text-terracotta font-bold">Destination</p>
+        <p class="font-cinzel text-xs tracking-ultra uppercase text-darkgold font-bold">Destination</p>
         <h2 class="font-cinzel text-4xl text-charcoal">The Venue</h2>
       </div>
 
-      <div class="glass-card rounded-3xl p-8 sm:p-10 border border-terracotta/30 shadow-xl grid md:grid-cols-2 gap-8 text-left items-center">
+      <div class="glass-card rounded-3xl p-8 sm:p-10 border border-gold/30 shadow-2xl grid md:grid-cols-2 gap-8 text-left items-center">
         <div class="space-y-4">
           <span class="text-3xl">🏛️</span>
-          <h3 class="font-cinzel text-2xl text-charcoal">Grand Celebration Venue</h3>
+          <h3 class="font-cinzel text-2xl text-charcoal">Wedding Venue Location</h3>
           <p class="text-sm text-slate-600 font-light leading-relaxed">
-            Situated in North Lebanon, surrounded by panoramic views and classical elegance. Valet parking and reception attendants will assist all guests upon arrival.
+            Conveniently located between Koura and Tripoli, North Lebanon. Valet parking and concierge hostesses will be present to welcome you upon arrival.
           </p>
           <div class="pt-2">
-            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-deepolive hover:bg-terracotta text-white text-xs font-cinzel tracking-luxury uppercase px-6 py-3.5 rounded-xl transition-all shadow-md">
-              📍 Get Directions in Google Maps
+            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-deepolive hover:bg-gold text-white text-xs font-cinzel tracking-ultra uppercase px-6 py-3.5 rounded-xl transition-all shadow-md">
+              📍 Open Directions in Google Maps
             </a>
           </div>
         </div>
 
-        <div class="bg-champagne rounded-2xl h-64 border border-terracotta/20 flex flex-col items-center justify-center text-center p-6 space-y-2">
+        <div class="bg-champagne rounded-2xl h-64 border border-gold/20 flex flex-col items-center justify-center text-center p-6 space-y-2 shadow-inner">
           <span class="text-4xl">🗺️</span>
-          <p class="font-cinzel text-lg text-charcoal">Interactive Map Location</p>
-          <p class="text-xs text-slate-500 font-light">Lebanon Coordinates</p>
+          <p class="font-cinzel text-lg text-charcoal">North Lebanon Venue</p>
+          <p class="text-xs text-slate-500 font-light">Koura &amp; Tripoli Region</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DIGITAL GUESTBOOK / WELL WISHES FEATURE -->
-  <section id="guestbook" class="py-20 px-4">
-    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-12 border border-terracotta/30 shadow-xl space-y-8 text-center">
+  <!-- DIGITAL GUESTBOOK -->
+  <section id="guestbook" class="py-20 px-4 bg-white border-t border-gold/20">
+    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-12 border border-gold/30 shadow-xl space-y-8 text-center">
       <div class="space-y-2">
         <span class="text-3xl">✍️</span>
         <h2 class="font-cinzel text-3xl text-charcoal">Digital Guestbook</h2>
-        <p class="font-cinzel text-xs tracking-luxury uppercase text-terracotta font-medium">Leave A Romantic Wish For The Bride &amp; Groom</p>
+        <p class="font-cinzel text-xs tracking-ultra uppercase text-darkgold font-semibold">Leave A Romantic Wish For Kinda &amp; Bilal</p>
       </div>
 
-      <!-- Guest Messages List -->
       <div id="wishes-list" class="space-y-3 max-h-60 overflow-y-auto text-left pr-2">
-        <div class="bg-white p-4 rounded-xl border border-terracotta/20 text-xs space-y-1">
-          <p class="font-serif italic text-slate-700 text-sm">"Wishing you both a lifetime of love, joy, and eternal happiness together!"</p>
-          <span class="font-cinzel text-terracotta font-bold block text-[10px] uppercase">— The Salem Family</span>
+        <div class="bg-champagne p-4 rounded-xl border border-gold/20 text-xs space-y-1">
+          <p class="font-serif italic text-slate-700 text-sm">"Wishing you both a lifetime filled with continuous love, laugher, and eternal happiness!"</p>
+          <span class="font-cinzel text-darkgold font-bold block text-[10px] uppercase">— The Salem Family</span>
         </div>
       </div>
 
       <form id="guestbook-form" onsubmit="addWish(event)" class="space-y-3 text-left">
-        <input type="text" id="wishAuthor" required placeholder="Your Name" class="w-full bg-white border border-terracotta/30 rounded-xl px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-terracotta">
-        <textarea id="wishMessage" required rows="2" placeholder="Write your congratulations..." class="w-full bg-white border border-terracotta/30 rounded-xl px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-terracotta"></textarea>
-        <button type="submit" class="w-full bg-terracotta hover:bg-deepolive text-white text-xs font-cinzel tracking-luxury uppercase py-3.5 rounded-xl transition-all shadow-md">
+        <input type="text" id="wishAuthor" required placeholder="Your Name" class="w-full bg-white border border-gold/30 rounded-xl px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-gold">
+        <textarea id="wishMessage" required rows="2" placeholder="Write your warm wish..." class="w-full bg-white border border-gold/30 rounded-xl px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-gold"></textarea>
+        <button type="submit" class="w-full bg-darkgold hover:bg-deepolive text-white text-xs font-cinzel tracking-ultra uppercase py-3.5 rounded-xl transition-all shadow-md font-semibold">
           Publish Wish ✨
         </button>
       </form>
@@ -311,15 +372,15 @@
   </section>
 
   <!-- RSVP SECTION -->
-  <section id="rsvp" class="py-24 px-4 bg-white border-t border-terracotta/20">
-    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-14 shadow-2xl border border-terracotta/30 text-center space-y-8">
+  <section id="rsvp" class="py-24 px-4">
+    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-14 shadow-2xl border border-gold/30 text-center space-y-8">
       <div class="space-y-2">
-        <p class="font-cinzel text-xs tracking-luxury uppercase text-terracotta font-bold">R.S.V.P</p>
+        <p class="font-cinzel text-xs tracking-ultra uppercase text-darkgold font-bold">R.S.V.P</p>
         <h2 class="font-cinzel text-4xl text-charcoal">Confirm Your Attendance</h2>
-        <p class="font-cinzel text-xs tracking-luxury uppercase text-slate-400">Kindly respond by August 25, 2027</p>
+        <p class="font-cinzel text-xs tracking-ultra uppercase text-slate-400">Kindly respond by August 25, 2027</p>
       </div>
 
-      <div id="rsvp-success" class="hidden bg-champagne border border-terracotta/30 rounded-2xl p-8 space-y-3">
+      <div id="rsvp-success" class="hidden bg-champagne border border-gold/30 rounded-2xl p-8 space-y-3">
         <span class="text-4xl">💌</span>
         <h3 class="font-cinzel text-2xl text-charcoal">Response Received</h3>
         <p class="text-sm text-slate-600 font-light">Thank you! Your response has been saved. We look forward to celebrating with you, <span id="guest-response-name" class="font-bold text-charcoal"></span>!</p>
@@ -327,22 +388,22 @@
 
       <form id="rsvp-form" onsubmit="handleRsvp(event)" class="space-y-4 text-left">
         <div>
-          <label class="block font-cinzel text-[10px] uppercase tracking-luxury text-slate-500 mb-1">Your Full Name *</label>
-          <input type="text" id="guestName" required placeholder="e.g. Dr. Maya Kassir" class="w-full bg-champagne border border-terracotta/30 rounded-xl px-4 py-3.5 text-slate-800 text-sm focus:outline-none focus:border-terracotta">
+          <label class="block font-cinzel text-[10px] uppercase tracking-ultra text-slate-500 mb-1">Your Full Name *</label>
+          <input type="text" id="guestName" required placeholder="e.g. Dr. Maya Kassir" class="w-full bg-champagne border border-gold/30 rounded-xl px-4 py-3.5 text-slate-800 text-sm focus:outline-none focus:border-gold">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block font-cinzel text-[10px] uppercase tracking-luxury text-slate-500 mb-1">Attendance Status</label>
-            <select id="attendance" class="w-full bg-champagne border border-terracotta/30 rounded-xl px-4 py-3.5 text-slate-800 text-sm focus:outline-none focus:border-terracotta">
+            <label class="block font-cinzel text-[10px] uppercase tracking-ultra text-slate-500 mb-1">Attendance Status</label>
+            <select id="attendance" class="w-full bg-champagne border border-gold/30 rounded-xl px-4 py-3.5 text-slate-800 text-sm focus:outline-none focus:border-gold">
               <option value="true">Accepts With Pleasure</option>
               <option value="false">Declines With Regret</option>
             </select>
           </div>
 
           <div>
-            <label class="block font-cinzel text-[10px] uppercase tracking-luxury text-slate-500 mb-1">Number Of Guests</label>
-            <select id="guestCount" class="w-full bg-champagne border border-terracotta/30 rounded-xl px-4 py-3.5 text-slate-800 text-sm focus:outline-none focus:border-terracotta">
+            <label class="block font-cinzel text-[10px] uppercase tracking-ultra text-slate-500 mb-1">Number Of Guests</label>
+            <select id="guestCount" class="w-full bg-champagne border border-gold/30 rounded-xl px-4 py-3.5 text-slate-800 text-sm focus:outline-none focus:border-gold">
               <option value="1">1 Person</option>
               <option value="2">2 Persons (+1)</option>
               <option value="3">3 Persons</option>
@@ -351,21 +412,21 @@
         </div>
 
         <div>
-          <label class="block font-cinzel text-[10px] uppercase tracking-luxury text-slate-500 mb-1">Dietary Preferences / Notes (Optional)</label>
-          <input type="text" id="dietary" placeholder="e.g. Vegetarian, Allergies" class="w-full bg-champagne border border-terracotta/30 rounded-xl px-4 py-3.5 text-slate-800 text-sm focus:outline-none focus:border-terracotta">
+          <label class="block font-cinzel text-[10px] uppercase tracking-ultra text-slate-500 mb-1">Dietary Preferences / Notes (Optional)</label>
+          <input type="text" id="dietary" placeholder="e.g. Vegetarian, Allergies" class="w-full bg-champagne border border-gold/30 rounded-xl px-4 py-3.5 text-slate-800 text-sm focus:outline-none focus:border-gold">
         </div>
 
-        <button type="submit" class="w-full bg-deepolive hover:bg-terracotta text-white text-xs font-cinzel tracking-luxury uppercase py-4 rounded-xl transition-all shadow-lg mt-4">
-          Submit Confirmation
+        <button type="submit" class="w-full bg-deepolive hover:bg-darkgold text-white text-xs font-cinzel tracking-ultra uppercase py-4 rounded-xl transition-all shadow-lg mt-4 font-semibold">
+          Submit RSVP Confirmation
         </button>
       </form>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-12 text-center space-y-3 text-xs text-slate-400 font-light border-t border-terracotta/10">
-    <div class="font-script text-3xl text-deepolive font-normal">Kinda &amp; Bilal</div>
-    <p class="font-cinzel text-[10px] tracking-luxury uppercase">September 25, 2027 • Koura &amp; Tripoli, Lebanon</p>
+  <footer class="py-12 text-center space-y-3 text-xs text-slate-400 font-light border-t border-gold/10">
+    <div class="font-script text-4xl text-deepolive font-normal">Kinda &amp; Bilal</div>
+    <p class="font-cinzel text-[10px] tracking-ultra uppercase">September 25, 2027 • Koura &amp; Tripoli, Lebanon</p>
   </footer>
 
   <script>
@@ -406,9 +467,24 @@
       } else {
         audio.pause();
         text.innerText = "Play Music";
-        icon.innerText = "🎵";
+        icon.innerText = "🎼";
         isPlaying = false;
       }
+    }
+
+    // Copy Whish Number Logic
+    function copyWhishNumber() {
+      const number = "+96181550569";
+      navigator.clipboard.writeText(number);
+      const btn = document.getElementById('copy-btn');
+      btn.innerText = "✓ Whish Number Copied!";
+      btn.classList.remove('bg-darkgold');
+      btn.classList.add('bg-deepolive');
+      setTimeout(() => {
+        btn.innerText = "📋 Copy Whish Number";
+        btn.classList.remove('bg-deepolive');
+        btn.classList.add('bg-darkgold');
+      }, 3000);
     }
 
     // Digital Guestbook Logic
@@ -420,8 +496,8 @@
       if (author && message) {
         const list = document.getElementById('wishes-list');
         const card = document.createElement('div');
-        card.className = "bg-white p-4 rounded-xl border border-terracotta/30 text-xs space-y-1 shadow-sm";
-        card.innerHTML = `<p class="font-serif italic text-slate-700 text-sm">"${message}"</p><span class="font-cinzel text-terracotta font-bold block text-[10px] uppercase">— ${author}</span>`;
+        card.className = "bg-champagne p-4 rounded-xl border border-gold/30 text-xs space-y-1 shadow-sm";
+        card.innerHTML = `<p class="font-serif italic text-slate-700 text-sm">"${message}"</p><span class="font-cinzel text-darkgold font-bold block text-[10px] uppercase">— ${author}</span>`;
         list.prepend(card);
         document.getElementById('guestbook-form').reset();
       }
@@ -438,7 +514,7 @@
       }
     }
 
-    // Add to Calendar Integration
+    // Save To Calendar
     function addToCalendar() {
       const title = encodeURIComponent("Kinda & Bilal's Wedding");
       const details = encodeURIComponent("Celebrating the wedding union of Kinda Salem Alawa and Bilal Riad Obeid in Lebanon.");
