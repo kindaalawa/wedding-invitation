@@ -7,8 +7,6 @@
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- SheetJS Library for Direct Excel (.xlsx) Export -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,142 +36,417 @@
   </script>
 
   <style>
+    .letter-spacing-wide { letter-spacing: 0.25em; }
     .luxury-card {
       background: #FFFFFF;
       border: 1px solid rgba(212, 179, 130, 0.25);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     }
+    .equalizer-bar {
+      animation: bounce 1.2s infinite ease-in-out alternate;
+    }
+    @keyframes bounce {
+      0% { height: 4px; }
+      100% { height: 16px; }
+    }
   </style>
 </head>
-<body class="bg-ivory text-charcoal font-sans antialiased pb-20">
+<body class="bg-ivory text-charcoal font-sans antialiased relative pb-28">
 
-  <!-- SONG REQUEST & SUGGESTION SECTION -->
-  <section id="song-request" class="py-16 px-4">
-    <div class="max-w-xl mx-auto luxury-card rounded-2xl p-8 sm:p-10 text-center space-y-6">
+  <!-- ADVANCED FLOATING AUDIO & MUSIC PLAYER -->
+  <div class="fixed bottom-4 inset-x-4 sm:left-auto sm:right-6 z-50 max-w-sm mx-auto sm:mx-0">
+    <div class="bg-white/95 backdrop-blur-md border border-softgold/40 shadow-2xl rounded-2xl p-4 space-y-3">
       
-      <div class="space-y-1">
-        <span class="text-3xl">🎵</span>
-        <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Party Playlist</p>
-        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Suggest A Song</h2>
-        <p class="text-xs text-softgray font-light">What track will get you on the dance floor on September 25, 2026?</p>
-      </div>
-
-      <!-- Success Notification -->
-      <div id="song-success-msg" class="hidden bg-cashmere border border-softgold/40 rounded-xl p-4 text-xs text-charcoal">
-        ✨ <span class="font-semibold">Song suggested!</span> Thanks for helping build our party playlist.
-      </div>
-
-      <!-- Song Suggestion Form -->
-      <form id="song-form" onsubmit="handleSongSubmit(event)" class="space-y-3 text-left">
-        <div>
-          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Your Name *</label>
-          <input type="text" id="guestSongName" required placeholder="e.g., Kinda" class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        </div>
-
-        <div>
-          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Song Title &amp; Artist *</label>
-          <input type="text" id="songTitle" required placeholder="e.g., Perfect - Ed Sheeran" class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        </div>
-
-        <div>
-          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Optional Note / Moment (e.g., Entrance, Slow Dance)</label>
-          <input type="text" id="songNote" placeholder="e.g., Play during dinner!" class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        </div>
-
-        <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 rounded-lg transition-all font-medium">
-          Submit Song Suggestion 🎧
-        </button>
-      </form>
-
-      <!-- ADMIN CONTROLS: Live Playlist & Export to Excel -->
-      <div class="pt-6 border-t border-softgold/20 text-left space-y-3">
-        <div class="flex items-center justify-between">
-          <h4 class="font-serif text-lg text-charcoal">Suggested Playlist (<span id="song-count">0</span>)</h4>
-          <button onclick="exportToExcel()" class="bg-charcoal hover:bg-rosegold text-white text-[10px] font-sans tracking-widest uppercase py-2 px-3 rounded-lg transition-all flex items-center gap-1.5 font-medium">
-            📊 Download Excel (.xlsx)
+      <!-- Track Details & Visualizer -->
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <button onclick="toggleAudio()" id="play-pause-btn" class="w-10 h-10 rounded-full bg-rosegold hover:bg-charcoal text-white flex items-center justify-center text-sm shadow-md transition-all flex-shrink-0">
+            ▶
           </button>
+          <div class="truncate text-left">
+            <span id="current-song-title" class="text-xs font-semibold text-charcoal block truncate">Romantic Piano Melodies</span>
+            <span class="text-[10px] text-softgray block">Atmosphere Music</span>
+          </div>
         </div>
 
-        <div id="songs-list" class="space-y-2 max-h-48 overflow-y-auto pr-1">
-          <!-- Dynamic song entries appear here -->
+        <!-- Equalizer Animation (Shown when playing) -->
+        <div id="equalizer" class="hidden flex items-end gap-0.5 h-4 px-2">
+          <div class="w-1 bg-rosegold rounded-full equalizer-bar" style="animation-delay: 0.1s;"></div>
+          <div class="w-1 bg-softgold rounded-full equalizer-bar" style="animation-delay: 0.3s;"></div>
+          <div class="w-1 bg-rosegold rounded-full equalizer-bar" style="animation-delay: 0.2s;"></div>
+        </div>
+      </div>
+
+      <!-- Playlist Selector -->
+      <div class="pt-2 border-t border-softgold/20 flex items-center gap-2">
+        <span class="text-[10px] text-softgray uppercase tracking-wider font-semibold">Track:</span>
+        <select id="playlist-select" onchange="changeTrack(this.value)" class="w-full bg-cashmere text-xs text-charcoal font-medium border border-softgold/30 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-rosegold">
+          <option value="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116327.mp3">🎹 Piano Atmosphere</option>
+          <option value="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a8d11d.mp3?filename=sweet-acoustic-11231.mp3">🎸 Sweet Acoustic Guitar</option>
+          <option value="https://cdn.pixabay.com/download/audio/2021/09/06/audio_8b248eb3a6.mp3?filename=soft-ambient-celebration-9023.mp3">✨ Soft Celebration Ambient</option>
+        </select>
+      </div>
+
+      <!-- Native Audio Element -->
+      <audio id="wedding-audio" loop preload="none">
+        <source id="audio-source" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116327.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+
+  <!-- Minimalist Navigation Bar -->
+  <nav class="fixed top-0 inset-x-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-softgold/20 py-4 px-6">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="#home" class="font-script text-3xl text-rosegold">Celebration</a>
+      <div class="hidden md:flex gap-8 text-[11px] font-sans font-medium tracking-widest uppercase text-softgray">
+        <a href="#countdown-section" class="hover:text-rosegold transition-colors">Countdown</a>
+        <a href="#schedule" class="hover:text-rosegold transition-colors">Program</a>
+        <a href="#registry" class="hover:text-rosegold transition-colors font-semibold text-rosegold">Gifts &amp; Whish</a>
+        <a href="#guestbook" class="hover:text-rosegold transition-colors">Guestbook</a>
+        <a href="#rsvp" class="hover:text-rosegold transition-colors text-rosegold font-semibold">RSVP</a>
+      </div>
+      <a href="#rsvp" class="md:hidden bg-rosegold text-white text-[10px] font-sans tracking-widest uppercase px-4 py-2 rounded-full shadow-sm">
+        RSVP
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-28 pb-16 px-4">
+    <div class="max-w-3xl mx-auto space-y-6">
+
+      <p class="font-sans text-xs tracking-widest uppercase text-softgray font-medium">Save The Date</p>
+      
+      <!-- Script Title -->
+      <h1 class="font-script text-7xl sm:text-9xl text-charcoal font-normal leading-tight">
+        Celebration
+      </h1>
+
+      <p class="font-serif italic text-2xl sm:text-3xl text-charcoal font-light">
+        Friday, September 25, 2026
+      </p>
+      <p class="font-sans text-xs tracking-widest uppercase text-softgray">Koura &amp; Tripoli, Lebanon</p>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#rsvp" class="w-full sm:w-auto bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase px-8 py-4 rounded-full shadow-md transition-all duration-300 font-medium">
+          Confirm Attendance
+        </a>
+        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white hover:bg-cashmere text-charcoal border border-softgold/40 text-xs font-sans tracking-widest uppercase px-7 py-4 rounded-full shadow-sm transition-all font-medium">
+          📅 Save To Calendar
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELEGANT INTERACTIVE COUNTDOWN TIMER -->
+  <section id="countdown-section" class="py-20 px-4">
+    <div class="max-w-3xl mx-auto bg-white/90 backdrop-blur-lg rounded-2xl p-8 sm:p-12 text-center space-y-8 relative overflow-hidden shadow-xl border border-softgold/30">
+      
+      <!-- Ambient Radial Glows -->
+      <div class="absolute -top-16 -left-16 w-36 h-36 bg-rosegold/10 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -right-16 w-36 h-36 bg-softgold/15 rounded-full blur-2xl pointer-events-none"></div>
+
+      <!-- Live Badge & Section Title -->
+      <div class="space-y-3 relative z-10">
+        <div class="inline-flex items-center gap-2 bg-cashmere/90 border border-softgold/30 px-3.5 py-1 rounded-full shadow-sm">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rosegold opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-rosegold"></span>
+          </span>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-charcoal font-semibold">Counting Down</span>
+        </div>
+
+        <h3 class="font-serif text-3xl sm:text-4xl text-charcoal tracking-wide">Until September 25, 2026</h3>
+        <p class="font-serif italic text-sm text-slate-600 max-w-md mx-auto">Every second brings us closer to our special day</p>
+      </div>
+      
+      <!-- Interactive Grid of Time Units -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+        
+        <!-- DAYS -->
+        <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          <div class="overflow-hidden">
+            <span id="cd-days" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+              00
+            </span>
+          </div>
+          <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Days</span>
+        </div>
+
+        <!-- HOURS -->
+        <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          <div class="overflow-hidden">
+            <span id="cd-hours" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+              00
+            </span>
+          </div>
+          <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Hours</span>
+        </div>
+
+        <!-- MINUTES -->
+        <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          <div class="overflow-hidden">
+            <span id="cd-mins" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+              00
+            </span>
+          </div>
+          <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Minutes</span>
+        </div>
+
+        <!-- SECONDS -->
+        <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          <div class="overflow-hidden">
+            <span id="cd-secs" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+              00
+            </span>
+          </div>
+          <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+          <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Seconds</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROGRAM OF THE DAY -->
+  <section id="schedule" class="py-20 px-4 bg-white border-y border-softgold/20">
+    <div class="max-w-2xl mx-auto space-y-10 text-center">
+      <div class="space-y-1">
+        <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Order of Events</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Program Of The Day</h2>
+      </div>
+
+      <div class="border-l border-softgold/40 pl-6 text-left space-y-8 max-w-md mx-auto">
+        <div class="relative">
+          <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-softgold"></div>
+          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">6:00 PM</span>
+          <h3 class="font-serif text-xl text-charcoal mt-0.5">Welcome Reception</h3>
+          <p class="text-xs text-softgray font-light mt-0.5">Refreshments &amp; ambient music as guests arrive.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-rosegold"></div>
+          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">7:30 PM</span>
+          <h3 class="font-serif text-xl text-charcoal mt-0.5">Dinner &amp; Celebration</h3>
+          <p class="text-xs text-softgray font-light mt-0.5">Banquet dinner, toasts, and cake cutting.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-softgold"></div>
+          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">9:30 PM</span>
+          <h3 class="font-serif text-xl text-charcoal mt-0.5">Music &amp; Dancing</h3>
+          <p class="text-xs text-softgray font-light mt-0.5">Evening celebration and continuous music.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIFT REGISTRY & WHISH MONEY -->
+  <section id="registry" class="py-20 px-4">
+    <div class="max-w-2xl mx-auto luxury-card rounded-2xl p-8 sm:p-12 text-center space-y-8">
+      
+      <div class="space-y-2">
+        <span class="text-3xl text-rosegold">✨</span>
+        <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Registry &amp; Blessings</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Gifts &amp; Whish Money</h2>
+        <div class="w-12 h-0.5 bg-softgold/50 mx-auto"></div>
+      </div>
+
+      <p class="font-serif italic text-lg sm:text-xl text-slate-700 leading-relaxed max-w-lg mx-auto">
+        "Your presence and warm blessings are the greatest gifts of all."
+      </p>
+
+      <div class="bg-cashmere/80 border border-softgold/30 rounded-2xl p-6 text-left space-y-4 shadow-sm">
+        <div class="flex items-center justify-between border-b border-softgold/20 pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#E2231A] text-white flex items-center justify-center font-bold text-xs">W</div>
+            <h4 class="font-serif text-base text-charcoal font-semibold">Whish Transfer Mobile</h4>
+          </div>
+          <span class="bg-white text-rosegold text-[9px] font-sans px-2.5 py-0.5 rounded-full border border-softgold/30 uppercase font-semibold">Lebanon</span>
+        </div>
+
+        <div class="flex items-center justify-between bg-white p-3.5 rounded-xl border border-softgold/25">
+          <span id="whish-number" class="font-mono text-sm font-bold text-charcoal">+961 81 550 569</span>
+          <button onclick="copyWhishNumber()" id="copy-btn" class="bg-charcoal hover:bg-rosegold text-white text-[10px] font-sans tracking-widest uppercase py-2 px-3 rounded-lg transition-all font-medium">
+            📋 Copy Number
+          </button>
         </div>
       </div>
 
     </div>
   </section>
 
+  <!-- DIGITAL GUESTBOOK -->
+  <section id="guestbook" class="py-20 px-4 bg-white border-t border-softgold/20">
+    <div class="max-w-xl mx-auto luxury-card rounded-2xl p-8 sm:p-10 text-center space-y-6">
+      <div class="space-y-1">
+        <span class="text-2xl">✍️</span>
+        <h2 class="font-serif text-3xl text-charcoal">Digital Guestbook</h2>
+        <p class="font-sans text-[11px] tracking-widest uppercase text-rosegold font-semibold">Leave A Blessing</p>
+      </div>
+
+      <div id="wishes-list" class="space-y-3 max-h-52 overflow-y-auto text-left pr-1">
+        <div class="bg-cashmere p-3.5 rounded-lg border border-softgold/20 text-xs space-y-1">
+          <p class="font-serif italic text-slate-700 text-sm">"Wishing you endless joy and beautiful moments!"</p>
+          <span class="font-sans text-rosegold font-semibold block text-[10px] uppercase">— Family Friend</span>
+        </div>
+      </div>
+
+      <form id="guestbook-form" onsubmit="addWish(event)" class="space-y-3 text-left">
+        <input type="text" id="wishAuthor" required placeholder="Your Name" class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+        <textarea id="wishMessage" required rows="2" placeholder="Write your message..." class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold"></textarea>
+        <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3 rounded-lg transition-all font-medium">
+          Send Wish ✨
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- RSVP SECTION -->
+  <section id="rsvp" class="py-20 px-4">
+    <div class="max-w-xl mx-auto luxury-card rounded-2xl p-8 sm:p-12 text-center space-y-6">
+      <div class="space-y-1">
+        <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">R.S.V.P</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Confirm Your Attendance</h2>
+      </div>
+
+      <div id="rsvp-success" class="hidden bg-cashmere border border-softgold/30 rounded-xl p-6 space-y-2">
+        <span class="text-3xl">💌</span>
+        <h3 class="font-serif text-xl text-charcoal">Thank You!</h3>
+        <p class="text-xs text-softgray">Your attendance response has been recorded, <span id="guest-response-name" class="font-semibold text-charcoal"></span>!</p>
+      </div>
+
+      <form id="rsvp-form" onsubmit="handleRsvp(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Full Name *</label>
+          <input type="text" id="guestName" required placeholder="Your full name" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+        </div>
+
+        <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 rounded-lg transition-all font-medium mt-2">
+          Submit Response
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-10 text-center space-y-2 text-xs text-softgray font-light border-t border-softgold/20">
+    <div class="font-script text-3xl text-rosegold">September 25, 2026</div>
+    <p class="font-sans text-[10px] tracking-widest uppercase">Lebanon</p>
+  </footer>
+
   <script>
-    // Storage array for submitted songs
-    let suggestedSongs = [
-      { Guest: "Sample Guest", Song: "A Thousand Years - Christina Perri", Note: "For slow dance", Date: "2026-09-08 11:00" }
-    ];
+    // Countdown Target Date: September 25, 2026
+    const targetDate = new Date('September 25, 2026 18:00:00').getTime();
 
-    function renderSongList() {
-      const container = document.getElementById('songs-list');
-      const countLabel = document.getElementById('song-count');
-      countLabel.innerText = suggestedSongs.length;
-      container.innerHTML = '';
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
 
-      suggestedSongs.forEach(item => {
-        const div = document.createElement('div');
-        div.className = "bg-cashmere p-3 rounded-lg border border-softgold/20 text-xs flex justify-between items-center gap-2";
-        div.innerHTML = `
-          <div>
-            <p class="font-medium text-charcoal">${item.Song}</p>
-            <p class="text-[10px] text-softgray">By <span class="font-semibold text-rosegold">${item.Guest}</span> ${item.Note ? `• ${item.Note}` : ''}</p>
-          </div>
-          <span class="text-[9px] text-slate-400">${item.Date.split(' ')[0]}</span>
-        `;
-        container.appendChild(div);
-      });
+      if (diff > 0) {
+        document.getElementById('cd-days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        document.getElementById('cd-hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById('cd-mins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById('cd-secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+      } else {
+        document.getElementById('cd-days').innerText = "00";
+        document.getElementById('cd-hours').innerText = "00";
+        document.getElementById('cd-mins').innerText = "00";
+        document.getElementById('cd-secs').innerText = "00";
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Advanced Audio & Song Selection Controls
+    let isPlaying = false;
+    const audio = document.getElementById('wedding-audio');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const equalizer = document.getElementById('equalizer');
+    const songTitle = document.getElementById('current-song-title');
+
+    function toggleAudio() {
+      if (!isPlaying) {
+        audio.play().then(() => {
+          isPlaying = true;
+          playPauseBtn.innerText = "❚❚";
+          equalizer.classList.remove('hidden');
+          equalizer.classList.add('flex');
+        }).catch(err => console.log("Audio play blocked", err));
+      } else {
+        audio.pause();
+        isPlaying = false;
+        playPauseBtn.innerText = "▶";
+        equalizer.classList.add('hidden');
+        equalizer.classList.remove('flex');
+      }
     }
 
-    // Submit song handler
-    function handleSongSubmit(e) {
+    function changeTrack(srcUrl) {
+      const selectElem = document.getElementById('playlist-select');
+      const selectedOptionText = selectElem.options[selectElem.selectedIndex].text;
+      
+      songTitle.innerText = selectedOptionText.replace(/^[^\s]+\s/, ''); // Remove leading emoji
+      audio.src = srcUrl;
+
+      if (isPlaying) {
+        audio.play();
+      }
+    }
+
+    // Whish Number Copy
+    function copyWhishNumber() {
+      navigator.clipboard.writeText("+96181550569");
+      const btn = document.getElementById('copy-btn');
+      btn.innerText = "✓ Copied!";
+      btn.classList.add('bg-rosegold');
+      btn.classList.remove('bg-charcoal');
+
+      setTimeout(() => {
+        btn.innerText = "📋 Copy Number";
+        btn.classList.add('bg-charcoal');
+        btn.classList.remove('bg-rosegold');
+      }, 3000);
+    }
+
+    // Guestbook Wish Submission
+    function addWish(e) {
       e.preventDefault();
-      const guest = document.getElementById('guestSongName').value;
-      const song = document.getElementById('songTitle').value;
-      const note = document.getElementById('songNote').value;
-      const now = new Date().toISOString().replace('T', ' ').substring(0, 16);
+      const author = document.getElementById('wishAuthor').value;
+      const message = document.getElementById('wishMessage').value;
 
-      if (guest && song) {
-        suggestedSongs.push({
-          Guest: guest,
-          Song: song,
-          Note: note || "N/A",
-          Date: now
-        });
-
-        renderSongList();
-
-        // Show feedback message
-        const msg = document.getElementById('song-success-msg');
-        msg.classList.remove('hidden');
-        document.getElementById('song-form').reset();
-
-        setTimeout(() => msg.classList.add('hidden'), 4000);
+      if (author && message) {
+        const list = document.getElementById('wishes-list');
+        const card = document.createElement('div');
+        card.className = "bg-cashmere p-3.5 rounded-lg border border-softgold/20 text-xs space-y-1";
+        card.innerHTML = `<p class="font-serif italic text-slate-700 text-sm">"${message}"</p><span class="font-sans text-rosegold font-semibold block text-[10px] uppercase">— ${author}</span>`;
+        list.prepend(card);
+        document.getElementById('guestbook-form').reset();
       }
     }
 
-    // EXPORT DIRECTLY TO EXCEL (.xlsx)
-    function exportToExcel() {
-      if (suggestedSongs.length === 0) {
-        alert("No song suggestions to export yet!");
-        return;
+    // RSVP Submission
+    function handleRsvp(e) {
+      e.preventDefault();
+      const name = document.getElementById('guestName').value;
+      if (name) {
+        document.getElementById('guest-response-name').innerText = name;
+        document.getElementById('rsvp-form').classList.add('hidden');
+        document.getElementById('rsvp-success').classList.remove('hidden');
       }
-
-      // Convert array of objects to worksheet using SheetJS
-      const worksheet = XLSX.utils.json_to_sheet(suggestedSongs);
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Wedding_Song_Suggestions");
-
-      // Save file dynamically
-      XLSX.writeFile(workbook, "Wedding_Song_Suggestions_2026.xlsx");
     }
 
-    // Initial render on load
-    renderSongList();
+    // Save To Google Calendar
+    function addToCalendar() {
+      const title = encodeURIComponent("Special Celebration");
+      const details = encodeURIComponent("Celebration event on September 25, 2026.");
+      const location = encodeURIComponent("Koura & Tripoli, Lebanon");
+      window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260925T150000Z/20260925T230000Z&details=${details}&location=${location}`, '_blank');
+    }
   </script>
-
 </body>
 </html>
