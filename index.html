@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kinda & Bilal — Wedding Celebration</title>
+  <title>Kinda & Bilal — Interactive 3D Hero</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   
   <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,700 +41,230 @@
   </script>
 
   <style>
-    /* Glassmorphism & Custom Luxury Styling */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(212, 179, 130, 0.3);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+    /* 3D Interactive Card Perspective */
+    .perspective-container {
+      perspective: 1200px;
     }
     
+    .tilt-card {
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    }
+
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+
+    /* Floating Depth Layers */
+    .translate-z-subtle { transform: translateZ(20px); }
+    .translate-z-title { transform: translateZ(55px); }
+    .translate-z-date { transform: translateZ(35px); }
+    .translate-z-btn { transform: translateZ(65px); }
+
+    /* Glassmorphism Refinements */
+    .hero-glass-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 179, 130, 0.35);
+      box-shadow: 0 30px 60px -12px rgba(184, 125, 112, 0.12), 0 18px 36px -18px rgba(0, 0, 0, 0.08);
+    }
+
     .gold-gradient-text {
-      background: linear-gradient(135deg, #222222 0%, #B87D70 50%, #D4B382 100%);
+      background: linear-gradient(135deg, #1E1E1E 0%, #B87D70 50%, #D4B382 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #FAF8F5; }
-    ::-webkit-scrollbar-thumb { background: #D4B382; rounded: 10px; }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-      100% { transform: translateY(0px); }
+    /* Dynamic Holographic Shine Layer */
+    .shine-overlay {
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%);
+      pointer-events: none;
     }
-    .animate-float { animation: float 4s ease-in-out infinite; }
   </style>
 </head>
-<body class="bg-ivory text-charcoal font-sans antialiased relative selection:bg-rosegold selection:text-white">
+<body class="bg-ivory text-charcoal font-sans antialiased overflow-x-hidden">
 
-  <!-- ==================== AMBIENT AUDIO PLAYER ==================== -->
-  <div class="fixed bottom-6 right-6 z-50">
-    <button onclick="toggleAudio()" class="bg-white/90 backdrop-blur-md border border-champagne/40 shadow-2xl px-5 py-3 rounded-full flex items-center gap-3 hover:scale-105 transition-all text-xs font-sans tracking-wider text-charcoal group">
-      <span id="audio-icon" class="text-rosegold text-sm group-hover:rotate-12 transition-transform"><i class="fa-solid fa-music"></i></span>
-      <span id="audio-text" class="hidden sm:inline font-medium uppercase text-[10px] tracking-widest">Play Background Music</span>
-    </button>
-    <audio id="wedding-audio" loop preload="none">
-      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116327.mp3" type="audio/mpeg">
-    </audio>
-  </div>
+  <!-- ==================== 3D INTERACTIVE HERO SECTION ==================== -->
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center py-20 px-4 relative overflow-hidden perspective-container">
+    
+    <!-- Three.js Canvas Background for Floating 3D Gold Particles -->
+    <canvas id="hero-3d-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
-  <!-- ==================== NAVIGATION BAR ==================== -->
-  <nav class="fixed top-0 inset-x-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-champagne/20 py-4 px-6 transition-all duration-300">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <a href="#home" class="font-script text-3xl sm:text-4xl text-rosegold hover:opacity-80 transition-opacity">K &amp; B</a>
-      <div class="hidden lg:flex gap-7 text-[10px] font-sans font-medium tracking-widest uppercase text-softgray">
-        <a href="#story" class="hover:text-rosegold transition-colors">Our Story</a>
-        <a href="#gallery" class="hover:text-rosegold transition-colors">Our Memories</a>
-        <a href="#countdown-section" class="hover:text-rosegold transition-colors">Countdown</a>
-        <a href="#schedule" class="hover:text-rosegold transition-colors">Schedule</a>
-        <a href="#song-requests" class="hover:text-rosegold transition-colors">Song Requests</a>
-        <a href="#registry" class="hover:text-rosegold transition-colors font-semibold text-rosegold">Registry &amp; Whish</a>
-        <a href="#faqs" class="hover:text-rosegold transition-colors">FAQs</a>
-        <a href="#guestbook" class="hover:text-rosegold transition-colors">Guestbook</a>
-      </div>
-      <a href="#rsvp" class="bg-rosegold hover:bg-charcoal text-white text-[10px] font-sans tracking-widest uppercase px-5 py-2.5 rounded-full shadow-md transition-all duration-300">
-        RSVP Now
-      </a>
-    </div>
-  </nav>
+    <!-- Ambient Glowing Color Spheres -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-full w-96 h-96 bg-rosegold/15 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
+    <div class="absolute bottom-1/4 right-1/2 translate-x-full w-[30rem] h-[30rem] bg-champagne/20 rounded-full blur-3xl pointer-events-none"></div>
 
-  <!-- ==================== HERO SECTION ==================== -->
-  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-28 pb-16 px-4 relative overflow-hidden">
-    <!-- Ambient Background Accents -->
-    <div class="absolute top-1/4 left-10 w-72 h-72 bg-rosegold/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-1/4 right-10 w-80 h-80 bg-champagne/15 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-3xl mx-auto space-y-6 relative z-10 animate-float">
+    <!-- 3D Interactive Tilt Card Wrapper -->
+    <div id="tilt-wrapper" class="tilt-card max-w-3xl w-full mx-auto relative z-10 hero-glass-card rounded-[2.5rem] p-8 sm:p-14 my-auto border border-champagne/40 transition-shadow">
       
-      <p class="font-sans text-[11px] tracking-widest uppercase text-softgray font-medium">Together with their loving families</p>
-      
-      <h1 class="font-script text-7xl sm:text-9xl text-charcoal font-normal leading-tight">
-        Kinda <span class="text-rosegold">&amp;</span> Bilal
-      </h1>
+      <!-- Holographic Surface Reflection -->
+      <div id="shine" class="shine-overlay absolute inset-0 rounded-[2.5rem] z-20"></div>
 
-      <div class="w-16 h-0.5 bg-champagne/40 mx-auto"></div>
-
-      <p class="font-serif italic text-2xl sm:text-3xl text-charcoal font-light">
-        Wednesday, July 7, 2027
-      </p>
-      <p class="font-sans text-xs tracking-widest uppercase text-softgray">Koura &amp; Tripoli, Lebanon</p>
-
-      <!-- Action Buttons -->
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#rsvp" class="w-full sm:w-auto bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase px-8 py-4 rounded-full shadow-xl transition-all duration-300 font-medium">
-          Confirm RSVP
-        </a>
-        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white hover:bg-cashmere text-charcoal border border-champagne/50 text-xs font-sans tracking-widest uppercase px-7 py-4 rounded-full shadow-sm transition-all font-medium flex items-center justify-center gap-2">
-          <i class="fa-regular fa-calendar-check text-rosegold"></i> Save To Calendar
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== OUR STORY SECTION ==================== -->
-  <section id="story" class="py-24 px-4 bg-white border-y border-champagne/20">
-    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      
-      <!-- Arch Photo Container -->
-      <div class="rounded-t-full bg-cashmere p-4 shadow-sm border border-champagne/30 text-center space-y-4 max-w-xs mx-auto w-full relative">
-        <div class="rounded-t-full bg-ivory h-80 flex flex-col items-center justify-center p-6 text-center space-y-3 border border-champagne/20">
-          <div class="w-16 h-16 rounded-full bg-rosegold/10 text-rosegold flex items-center justify-center text-2xl mb-1">
-            <i class="fa-solid fa-rings-wedding"></i>
-          </div>
-          <p class="font-script text-4xl text-rosegold">Kinda &amp; Bilal</p>
-          <span class="text-[10px] text-softgray font-sans uppercase tracking-widest">July 07, 2027</span>
-        </div>
-      </div>
-
-      <!-- Story Content -->
-      <div class="space-y-6 text-center md:text-left">
-        <span class="font-sans text-[10px] tracking-widest uppercase text-rosegold font-semibold bg-cashmere px-3 py-1 rounded-full border border-champagne/30">
-          Our Journey
-        </span>
-        <h2 class="font-serif text-3xl sm:text-5xl text-charcoal">Two Hearts, One Promise</h2>
-        <p class="font-serif italic text-xl text-softgray leading-relaxed">
-          "From shared laughter and unconditional support to embarking on our lifetime journey, we can’t wait to celebrate our love with the people who mean the world to us."
-        </p>
-        <p class="text-slate-600 font-sans font-light leading-relaxed text-xs sm:text-sm">
-          Join us in North Lebanon for an unforgettable evening filled with traditional warmth, music, and joyful dancing as we say "I Do".
-        </p>
-        <div class="font-script text-4xl text-rosegold pt-2">Kinda &amp; Bilal</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== OUR MEMORIES PHOTO GALLERY ==================== -->
-  <section id="gallery" class="py-24 px-4 bg-ivory">
-    <div class="max-w-5xl mx-auto space-y-12 text-center">
-      
-      <div class="space-y-3">
-        <span class="font-sans text-[10px] tracking-widest uppercase text-rosegold font-semibold bg-cashmere px-3.5 py-1 rounded-full border border-champagne/30">
-          Memorable Moments
-        </span>
-        <h2 class="font-serif text-3xl sm:text-5xl text-charcoal">Our Story In Pictures</h2>
-        <p class="font-serif italic text-softgray text-base max-w-md mx-auto">A glimpse into our favorite milestones together before the big day.</p>
-      </div>
-
-      <!-- 4-Photo Timeline Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+      <div class="preserve-3d space-y-7 relative z-10">
         
-        <!-- Moment 1 -->
-        <div class="group glass-card rounded-2xl p-3 hover:-translate-y-1.5 transition-all duration-300 shadow-sm border border-champagne/30">
-          <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-cashmere border border-champagne/20 flex flex-col justify-end p-4">
-            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent z-10 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-            <div class="absolute inset-0 flex items-center justify-center text-rosegold/20 group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-heart text-6xl"></i>
-            </div>
-            <div class="relative z-20 space-y-1 text-white">
-              <span class="font-sans text-[9px] uppercase tracking-widest text-champagne font-semibold block">Chapter I</span>
-              <h3 class="font-serif text-xl font-medium">First Date</h3>
-              <p class="font-sans text-[10px] text-gray-200 font-light leading-relaxed">Where it all began—conversations that lasted for hours.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Moment 2 -->
-        <div class="group glass-card rounded-2xl p-3 hover:-translate-y-1.5 transition-all duration-300 shadow-sm border border-champagne/30">
-          <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-cashmere border border-champagne/20 flex flex-col justify-end p-4">
-            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent z-10 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-            <div class="absolute inset-0 flex items-center justify-center text-rosegold/20 group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-plane text-6xl"></i>
-            </div>
-            <div class="relative z-20 space-y-1 text-white">
-              <span class="font-sans text-[9px] uppercase tracking-widest text-champagne font-semibold block">Chapter II</span>
-              <h3 class="font-serif text-xl font-medium">Adventures &amp; Trips</h3>
-              <p class="font-sans text-[10px] text-gray-200 font-light leading-relaxed">Exploring new places, creating unforgettable laughter.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Moment 3 -->
-        <div class="group glass-card rounded-2xl p-3 hover:-translate-y-1.5 transition-all duration-300 shadow-sm border border-champagne/30">
-          <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-cashmere border border-champagne/20 flex flex-col justify-end p-4">
-            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent z-10 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-            <div class="absolute inset-0 flex items-center justify-center text-rosegold/20 group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-gem text-6xl"></i>
-            </div>
-            <div class="relative z-20 space-y-1 text-white">
-              <span class="font-sans text-[9px] uppercase tracking-widest text-champagne font-semibold block">Chapter III</span>
-              <h3 class="font-serif text-xl font-medium">The Proposal</h3>
-              <p class="font-sans text-[10px] text-gray-200 font-light leading-relaxed">A heartfelt 'Yes!' to forever under the stars.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Moment 4 -->
-        <div class="group glass-card rounded-2xl p-3 hover:-translate-y-1.5 transition-all duration-300 shadow-sm border border-champagne/30">
-          <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-cashmere border border-champagne/20 flex flex-col justify-end p-4">
-            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent z-10 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-            <div class="absolute inset-0 flex items-center justify-center text-rosegold/20 group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-glass-cheers text-6xl"></i>
-            </div>
-            <div class="relative z-20 space-y-1 text-white">
-              <span class="font-sans text-[9px] uppercase tracking-widest text-champagne font-semibold block">Chapter IV</span>
-              <h3 class="font-serif text-xl font-medium">Official Engagement</h3>
-              <p class="font-sans text-[10px] text-gray-200 font-light leading-relaxed">Celebrating our union with close family and loved ones.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== COUNTDOWN TIMER ==================== -->
-  <section id="countdown-section" class="py-20 px-4">
-    <div class="max-w-4xl mx-auto glass-card rounded-3xl p-8 sm:p-14 text-center space-y-8 relative overflow-hidden">
-      
-      <div class="space-y-3 relative z-10">
-        <div class="inline-flex items-center gap-2 bg-cashmere border border-champagne/30 px-3.5 py-1 rounded-full shadow-sm">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rosegold opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-rosegold"></span>
+        <!-- Badge / Subtitle -->
+        <div class="translate-z-subtle">
+          <span class="inline-block font-sans text-[11px] tracking-[0.25em] uppercase text-softgray font-medium bg-white/70 px-4 py-1.5 rounded-full border border-champagne/30 shadow-sm">
+            Together with their loving families
           </span>
-          <span class="font-sans text-[10px] tracking-widest uppercase text-charcoal font-semibold">Live Countdown</span>
         </div>
-
-        <h3 class="font-serif text-3xl sm:text-4xl text-charcoal tracking-wide">Until We Celebrate Together</h3>
-        <p class="font-serif italic text-sm text-softgray">July 7, 2027 • Koura &amp; Tripoli</p>
-      </div>
-      
-      <!-- Interactive Grid of Time Units -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 relative z-10">
-        <div class="bg-cashmere/80 hover:bg-white p-5 sm:p-6 rounded-2xl border border-champagne/25 hover:border-rosegold/50 shadow-sm transition-all duration-300">
-          <span id="cd-days" class="font-serif text-4xl sm:text-5xl gold-gradient-text block font-bold">00</span>
-          <div class="w-8 h-0.5 bg-champagne/40 mx-auto my-2.5"></div>
-          <span class="font-sans text-[10px] tracking-widest uppercase text-softgray block font-semibold">Days</span>
-        </div>
-
-        <div class="bg-cashmere/80 hover:bg-white p-5 sm:p-6 rounded-2xl border border-champagne/25 hover:border-rosegold/50 shadow-sm transition-all duration-300">
-          <span id="cd-hours" class="font-serif text-4xl sm:text-5xl gold-gradient-text block font-bold">00</span>
-          <div class="w-8 h-0.5 bg-champagne/40 mx-auto my-2.5"></div>
-          <span class="font-sans text-[10px] tracking-widest uppercase text-softgray block font-semibold">Hours</span>
-        </div>
-
-        <div class="bg-cashmere/80 hover:bg-white p-5 sm:p-6 rounded-2xl border border-champagne/25 hover:border-rosegold/50 shadow-sm transition-all duration-300">
-          <span id="cd-mins" class="font-serif text-4xl sm:text-5xl gold-gradient-text block font-bold">00</span>
-          <div class="w-8 h-0.5 bg-champagne/40 mx-auto my-2.5"></div>
-          <span class="font-sans text-[10px] tracking-widest uppercase text-softgray block font-semibold">Minutes</span>
-        </div>
-
-        <div class="bg-cashmere/80 hover:bg-white p-5 sm:p-6 rounded-2xl border border-champagne/25 hover:border-rosegold/50 shadow-sm transition-all duration-300">
-          <span id="cd-secs" class="font-serif text-4xl sm:text-5xl gold-gradient-text block font-bold">00</span>
-          <div class="w-8 h-0.5 bg-champagne/40 mx-auto my-2.5"></div>
-          <span class="font-sans text-[10px] tracking-widest uppercase text-softgray block font-semibold">Seconds</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== PROGRAM OF THE DAY ==================== -->
-  <section id="schedule" class="py-24 px-4 bg-white border-y border-champagne/20">
-    <div class="max-w-3xl mx-auto space-y-12 text-center">
-      <div class="space-y-2">
-        <span class="font-sans text-[10px] tracking-widest uppercase text-rosegold font-semibold bg-cashmere px-3.5 py-1 rounded-full border border-champagne/30">
-          Order of Events
-        </span>
-        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">The Wedding Day Schedule</h2>
-        <p class="font-serif italic text-softgray text-sm">A timeline for our special night</p>
-      </div>
-
-      <div class="border-l-2 border-champagne/40 pl-8 text-left space-y-10 max-w-lg mx-auto relative">
         
-        <div class="relative group">
-          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-rosegold group-hover:bg-rosegold transition-colors"></div>
-          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">6:00 PM</span>
-          <h3 class="font-serif text-2xl text-charcoal mt-0.5">Welcome Cocktails</h3>
-          <p class="text-xs text-softgray font-light mt-1">Sip signature drinks &amp; enjoy live acoustic lounge music as guests arrive.</p>
+        <!-- Main Names Title -->
+        <div class="translate-z-title">
+          <h1 class="font-script text-7xl sm:text-9xl text-charcoal font-normal leading-none drop-shadow-sm py-2">
+            Kinda <span class="text-rosegold font-serif italic text-6xl sm:text-8xl">&amp;</span> Bilal
+          </h1>
         </div>
 
-        <div class="relative group">
-          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-champagne group-hover:bg-champagne transition-colors"></div>
-          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">7:00 PM</span>
-          <h3 class="font-serif text-2xl text-charcoal mt-0.5">Marriage Ceremony</h3>
-          <p class="text-xs text-softgray font-light mt-1">Exchange of vows and rings in an enchanting setting.</p>
-        </div>
-
-        <div class="relative group">
-          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-rosegold group-hover:bg-rosegold transition-colors"></div>
-          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">8:30 PM</span>
-          <h3 class="font-serif text-2xl text-charcoal mt-0.5">Gala Dinner Banquet</h3>
-          <p class="text-xs text-softgray font-light mt-1">A curated culinary experience, family toasts, and warm celebration.</p>
-        </div>
-
-        <div class="relative group">
-          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-champagne group-hover:bg-champagne transition-colors"></div>
-          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">10:00 PM</span>
-          <h3 class="font-serif text-2xl text-charcoal mt-0.5">Zaffe &amp; Party</h3>
-          <p class="text-xs text-softgray font-light mt-1">Traditional Lebanese Zaffe entrance, cake cutting, and non-stop dancing!</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== GUEST SONG REQUESTS & VOTING ==================== -->
-  <section id="song-requests" class="py-20 px-4">
-    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-12 text-center space-y-8">
-      
-      <div class="space-y-2">
-        <span class="w-12 h-12 rounded-full bg-rosegold/10 text-rosegold inline-flex items-center justify-center text-xl mb-1">
-          <i class="fa-solid fa-compact-disc"></i>
-        </span>
-        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Interactive Song Request</h2>
-        <p class="text-xs text-softgray font-light max-w-md mx-auto">
-          What track will guarantee you stay on the dance floor? Add your favorite song and upvote requests from other guests!
-        </p>
-      </div>
-
-      <!-- Live Playlist & Voting Board -->
-      <div id="songs-playlist" class="space-y-3 max-h-64 overflow-y-auto text-left pr-1">
-        <!-- Default Preset Songs -->
-        <div class="bg-cashmere/80 hover:bg-white p-4 rounded-xl border border-champagne/20 text-xs flex items-center justify-between transition-all">
-          <div>
-            <p class="font-serif font-semibold text-charcoal text-base">"Tamally Ma'ak" — Amr Diab</p>
-            <span class="font-sans text-softgray block text-[10px] uppercase tracking-wider">Suggested by Maya K.</span>
+        <!-- Decorative Divider with Floating Ring Badge -->
+        <div class="translate-z-subtle flex items-center justify-center gap-4 py-1">
+          <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-champagne to-transparent"></div>
+          <div class="w-8 h-8 rounded-full bg-white/90 border border-champagne/50 shadow-sm flex items-center justify-center text-rosegold text-xs">
+            <i class="fa-solid fa-heart"></i>
           </div>
-          <button onclick="upvoteSong(this)" class="bg-white hover:bg-rosegold hover:text-white border border-champagne/40 px-3 py-1.5 rounded-full text-xs transition-colors flex items-center gap-1.5">
-            <i class="fa-solid fa-heart text-rosegold group-hover:text-white"></i> <span class="vote-count font-semibold">14</span>
+          <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-champagne to-transparent"></div>
+        </div>
+
+        <!-- Wedding Date & Location -->
+        <div class="translate-z-date space-y-2">
+          <p class="font-serif italic text-2xl sm:text-4xl text-charcoal font-light tracking-wide">
+            Wednesday, July 7, 2027
+          </p>
+          <p class="font-sans text-xs tracking-[0.2em] uppercase text-rosegold font-semibold">
+            <i class="fa-solid fa-location-dot text-champagne mr-1.5"></i> Koura &amp; Tripoli, Lebanon
+          </p>
+        </div>
+
+        <!-- Action Interactive Buttons -->
+        <div class="translate-z-btn pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#rsvp" class="w-full sm:w-auto bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-[0.2em] uppercase px-9 py-4 rounded-full shadow-2xl hover:shadow-rosegold/30 transition-all duration-300 font-medium hover:scale-105">
+            Confirm RSVP
+          </a>
+          <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white/90 hover:bg-cashmere text-charcoal border border-champagne/60 text-xs font-sans tracking-[0.15em] uppercase px-8 py-4 rounded-full shadow-sm hover:shadow-md transition-all font-medium flex items-center justify-center gap-2 hover:scale-105">
+            <i class="fa-regular fa-calendar-check text-rosegold text-sm"></i> Save To Calendar
           </button>
         </div>
 
-        <div class="bg-cashmere/80 hover:bg-white p-4 rounded-xl border border-champagne/20 text-xs flex items-center justify-between transition-all">
-          <div>
-            <p class="font-serif font-semibold text-charcoal text-base">"Perfect" — Ed Sheeran</p>
-            <span class="font-sans text-softgray block text-[10px] uppercase tracking-wider">Suggested by Tarek S.</span>
-          </div>
-          <button onclick="upvoteSong(this)" class="bg-white hover:bg-rosegold hover:text-white border border-champagne/40 px-3 py-1.5 rounded-full text-xs transition-colors flex items-center gap-1.5">
-            <i class="fa-solid fa-heart text-rosegold group-hover:text-white"></i> <span class="vote-count font-semibold">9</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Submission Form -->
-      <form id="standalone-song-form" onsubmit="addStandaloneSong(event)" class="space-y-3 text-left border-t border-champagne/20 pt-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input type="text" id="songUser" required placeholder="Your Name" class="bg-white border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-          <input type="text" id="songTitleInput" required placeholder="Song Name & Artist" class="bg-white border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        </div>
-        <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 rounded-xl transition-all font-medium">
-          Add To Playlist 🎧
-        </button>
-      </form>
-
-    </div>
-  </section>
-
-  <!-- ==================== GIFT REGISTRY & WHISH MONEY ==================== -->
-  <section id="registry" class="py-24 px-4 bg-white border-y border-champagne/20">
-    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-12 text-center space-y-8">
-      
-      <div class="space-y-2">
-        <span class="w-12 h-12 rounded-full bg-rosegold/10 text-rosegold inline-flex items-center justify-center text-xl mb-1">
-          <i class="fa-solid fa-gift"></i>
-        </span>
-        <span class="font-sans text-[10px] tracking-widest uppercase text-rosegold font-semibold block">Registry &amp; Blessings</span>
-        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Gift Registry &amp; Whish Money</h2>
-      </div>
-
-      <p class="font-serif italic text-lg sm:text-xl text-slate-700 leading-relaxed max-w-lg mx-auto">
-        "Your presence on our big day is the greatest gift. If you wish to bless us with a gift, a contribution towards our honeymoon and future home would be deeply appreciated."
-      </p>
-
-      <!-- Whish Money Card Box -->
-      <div class="bg-cashmere/80 border border-champagne/30 rounded-2xl p-6 sm:p-8 text-left space-y-6 relative overflow-hidden">
-        
-        <div class="flex items-center justify-between border-b border-champagne/20 pb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-[#E2231A] text-white flex items-center justify-center font-bold text-base tracking-tighter shadow-sm">
-              W
-            </div>
-            <div>
-              <h3 class="font-serif text-lg text-charcoal font-semibold">Whish Money Transfer</h3>
-              <p class="text-[11px] text-softgray font-light">Available via Whish App or official Lebanon agents</p>
-            </div>
-          </div>
-          <span class="bg-white text-rosegold text-[9px] font-sans tracking-widest px-3 py-1 rounded-full border border-champagne/30 uppercase font-semibold">
-            Lebanon
-          </span>
-        </div>
-
-        <div class="grid sm:grid-cols-2 gap-4 text-xs font-sans">
-          <div class="bg-white p-4 rounded-xl border border-champagne/25 space-y-1 shadow-sm">
-            <span class="text-softgray uppercase text-[9px] tracking-widest block font-medium">Whish Transfer Number</span>
-            <span id="whish-number" class="font-mono text-base font-bold text-charcoal block tracking-wider">+961 81 550 569</span>
-            <span class="text-softgray text-[10px] block font-light">Recipient: Kinda Alawa / Bilal Obeid</span>
-          </div>
-
-          <div class="bg-white p-4 rounded-xl border border-champagne/25 flex flex-col justify-between shadow-sm">
-            <span class="text-softgray uppercase text-[9px] tracking-widest block font-medium">Quick Copy</span>
-            <button onclick="copyWhishNumber()" id="copy-btn" class="bg-charcoal hover:bg-rosegold text-white text-[10px] font-sans tracking-widest uppercase py-3 px-3 rounded-lg transition-all w-full mt-2 font-medium flex items-center justify-center gap-2">
-              <i class="fa-regular fa-copy"></i> <span id="copy-text">Copy Mobile Number</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- WhatsApp Gift Confirmation -->
-        <a href="https://wa.me/96181550569?text=Hello%20Kinda%20%26%20Bilal,%20I%20have%20sent%20a%20wedding%20gift%20via%20Whish%20Money!" 
-           target="_blank" 
-           class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 px-4 rounded-xl flex items-center justify-center gap-2.5 transition-all shadow-sm font-medium">
-          <i class="fa-brands fa-whatsapp text-lg"></i>
-          Send Gift Transfer Note on WhatsApp
-        </a>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== GUEST FAQS SECTION ==================== -->
-  <section id="faqs" class="py-24 px-4 bg-white border-y border-champagne/20">
-    <div class="max-w-2xl mx-auto space-y-10 text-center">
-      <div class="space-y-2">
-        <span class="font-sans text-[10px] tracking-widest uppercase text-rosegold font-semibold bg-cashmere px-3.5 py-1 rounded-full border border-champagne/30">
-          Helpful Information
-        </span>
-        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Frequently Asked Questions</h2>
-      </div>
-
-      <div class="space-y-4 text-left">
-        
-        <div class="border border-champagne/30 rounded-2xl p-5 bg-ivory">
-          <h3 class="font-serif font-semibold text-lg text-charcoal flex items-center gap-2">
-            <i class="fa-solid fa-circle-question text-rosegold text-sm"></i>
-            Is valet parking available at the venue?
-          </h3>
-          <p class="text-xs text-softgray font-light mt-2 leading-relaxed">
-            Yes! Full valet parking and hostess reception will be available upon your arrival.
-          </p>
-        </div>
-
-        <div class="border border-champagne/30 rounded-2xl p-5 bg-ivory">
-          <h3 class="font-serif font-semibold text-lg text-charcoal flex items-center gap-2">
-            <i class="fa-solid fa-circle-question text-rosegold text-sm"></i>
-            Can I bring a +1 or my children?
-          </h3>
-          <p class="text-xs text-softgray font-light mt-2 leading-relaxed">
-            Please refer to your RSVP form below. You can select the number of guests allocated to your invitation.
-          </p>
-        </div>
-
-        <div class="border border-champagne/30 rounded-2xl p-5 bg-ivory">
-          <h3 class="font-serif font-semibold text-lg text-charcoal flex items-center gap-2">
-            <i class="fa-solid fa-circle-question text-rosegold text-sm"></i>
-            When should I submit my RSVP?
-          </h3>
-          <p class="text-xs text-softgray font-light mt-2 leading-relaxed">
-            Kindly confirm your attendance by **June 15, 2027**, so we can finalize seating and catering arrangements.
-          </p>
-        </div>
-
       </div>
     </div>
-  </section>
 
-  <!-- ==================== DIGITAL GUESTBOOK ==================== -->
-  <section id="guestbook" class="py-20 px-4">
-    <div class="max-w-xl mx-auto glass-card rounded-3xl p-8 sm:p-12 text-center space-y-6">
-      <div class="space-y-1">
-        <span class="w-12 h-12 rounded-full bg-rosegold/10 text-rosegold inline-flex items-center justify-center text-xl mb-1">
-          <i class="fa-solid fa-pen-nib"></i>
-        </span>
-        <h2 class="font-serif text-3xl text-charcoal">Digital Guestbook</h2>
-        <p class="font-sans text-[10px] tracking-widest uppercase text-rosegold font-semibold">Leave A Blessing For The Bride &amp; Groom</p>
+    <!-- Scroll Indicator Hint -->
+    <div class="absolute bottom-6 inset-x-0 z-10 flex flex-col items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity">
+      <span class="font-sans text-[9px] tracking-widest uppercase text-softgray">Scroll To Explore</span>
+      <div class="w-4 h-7 border-2 border-champagne/60 rounded-full flex justify-center pt-1">
+        <div class="w-1 h-2 bg-rosegold rounded-full animate-bounce"></div>
       </div>
-
-      <div id="wishes-list" class="space-y-3 max-h-56 overflow-y-auto text-left pr-1">
-        <div class="bg-cashmere/80 p-4 rounded-xl border border-champagne/20 text-xs space-y-1">
-          <p class="font-serif italic text-slate-700 text-sm">"Wishing Kinda and Bilal a lifetime filled with continuous love, success, and pure bliss!"</p>
-          <span class="font-sans text-rosegold font-semibold block text-[10px] uppercase">— The Salem Family</span>
-        </div>
-      </div>
-
-      <form id="guestbook-form" onsubmit="addWish(event)" class="space-y-3 text-left">
-        <input type="text" id="wishAuthor" required placeholder="Your Name" class="w-full bg-white border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        <textarea id="wishMessage" required rows="2" placeholder="Write your heartfelt message..." class="w-full bg-white border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold"></textarea>
-        <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 rounded-xl transition-all font-medium">
-          Send Warm Wishes ✨
-        </button>
-      </form>
     </div>
+
   </section>
-
-  <!-- ==================== RSVP SECTION ==================== -->
-  <section id="rsvp" class="py-24 px-4 bg-white border-t border-champagne/20">
-    <div class="max-w-xl mx-auto glass-card rounded-3xl p-8 sm:p-12 text-center space-y-6">
-      <div class="space-y-1">
-        <span class="font-sans text-[10px] tracking-widest uppercase text-rosegold font-semibold bg-cashmere px-3 py-1 rounded-full border border-champagne/30">
-          R.S.V.P
-        </span>
-        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal pt-2">Confirm Attendance</h2>
-        <p class="font-sans text-[10px] tracking-widest uppercase text-softgray">Kindly respond by June 15, 2027</p>
-      </div>
-
-      <!-- Success Card -->
-      <div id="rsvp-success" class="hidden bg-cashmere border border-champagne/30 rounded-2xl p-6 space-y-3">
-        <div class="w-12 h-12 rounded-full bg-rosegold text-white flex items-center justify-center text-xl mx-auto">
-          <i class="fa-solid fa-check"></i>
-        </div>
-        <h3 class="font-serif text-2xl text-charcoal">Response Received!</h3>
-        <p class="text-xs text-softgray leading-relaxed">
-          Thank you <span id="guest-response-name" class="font-semibold text-charcoal"></span>! Your attendance response and song request have been noted. We can't wait to celebrate with you!
-        </p>
-      </div>
-
-      <!-- RSVP Form -->
-      <form id="rsvp-form" onsubmit="handleRsvp(event)" class="space-y-4 text-left">
-        <div>
-          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Full Name *</label>
-          <input type="text" id="guestName" required placeholder="e.g. Dr. Maya Kassir" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Attendance</label>
-            <select id="attendance" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-              <option value="true">Joyfully Accepts</option>
-              <option value="false">Regretfully Declines</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Number of Guests</label>
-            <select id="guestCount" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-              <option value="1">1 Guest</option>
-              <option value="2">2 Guests (+1)</option>
-              <option value="3">3 Guests</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Song Request For The DJ 🎵</label>
-          <input type="text" id="rsvpSong" placeholder="What song will get you dancing?" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        </div>
-
-        <div>
-          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Dietary Restrictions / Notes</label>
-          <input type="text" id="dietary" placeholder="e.g., Vegetarian, allergies, etc." class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        </div>
-
-        <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-4 rounded-xl transition-all font-medium shadow-md">
-          Submit Response
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="py-12 text-center space-y-3 text-xs text-softgray font-light border-t border-champagne/20">
-    <div class="font-script text-4xl text-rosegold">Kinda &amp; Bilal</div>
-    <p class="font-sans text-[10px] tracking-widest uppercase">July 7, 2027 • Koura &amp; Tripoli, Lebanon</p>
-  </footer>
 
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
-    // Live Countdown
-    const targetDate = new Date('July 7, 2027 18:00:00').getTime();
+    // ==================== 1. THREE.JS 3D BACKGROUND PARTICLES ====================
+    const canvas = document.getElementById('hero-3d-canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-      if (diff > 0) {
-        document.getElementById('cd-days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-        document.getElementById('cd-hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        document.getElementById('cd-mins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        document.getElementById('cd-secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
-      }
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+    // Create Gold Particle Geometry
+    const particleCount = 120;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const scales = new Float32Array(particleCount);
 
-    // Background Audio Toggle
-    let isPlaying = false;
-    function toggleAudio() {
-      const audio = document.getElementById('wedding-audio');
-      const text = document.getElementById('audio-text');
-      const icon = document.getElementById('audio-icon');
-
-      if (!isPlaying) {
-        audio.play().then(() => {
-          text.innerText = "Pause Music";
-          icon.innerHTML = '<i class="fa-solid fa-pause"></i>';
-          isPlaying = true;
-        }).catch(err => console.log("Audio blocked", err));
-      } else {
-        audio.pause();
-        text.innerText = "Play Music";
-        icon.innerHTML = '<i class="fa-solid fa-music"></i>';
-        isPlaying = false;
-      }
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      positions[i] = (Math.random() - 0.5) * 15;
+      positions[i + 1] = (Math.random() - 0.5) * 15;
+      positions[i + 2] = (Math.random() - 0.5) * 10;
+      scales[i / 3] = Math.random() * 0.08 + 0.02;
     }
 
-    // Upvote Song Feature
-    function upvoteSong(btn) {
-      const countSpan = btn.querySelector('.vote-count');
-      let count = parseInt(countSpan.innerText);
-      countSpan.innerText = count + 1;
-      btn.classList.add('bg-rosegold', 'text-white');
-      btn.disabled = true;
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    // Particle Material with Soft Warm Gold Color
+    const material = new THREE.PointsMaterial({
+      color: 0xD4B382,
+      size: 0.08,
+      transparent: true,
+      opacity: 0.75,
+      blending: THREE.AdditiveBlending
+    });
+
+    const particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+
+    camera.position.z = 5;
+
+    // Mouse Tracking for 3D Camera Shift
+    let mouseX = 0;
+    let mouseY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+    });
+
+    // Animate 3D Scene
+    function animate3D() {
+      requestAnimationFrame(animate3D);
+
+      particles.rotation.y += 0.0012;
+      particles.rotation.x += 0.0006;
+
+      // Smooth Parallax Movement
+      camera.position.x += (mouseX - camera.position.x) * 0.05;
+      camera.position.y += (-mouseY - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
     }
+    animate3D();
 
-    // Add Song via Song Section
-    function addStandaloneSong(e) {
-      e.preventDefault();
-      const name = document.getElementById('songUser').value;
-      const song = document.getElementById('songTitleInput').value;
+    // Handle Window Resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
 
-      if (name && song) {
-        const playlist = document.getElementById('songs-playlist');
-        const card = document.createElement('div');
-        card.className = "bg-cashmere/80 hover:bg-white p-4 rounded-xl border border-champagne/20 text-xs flex items-center justify-between transition-all";
-        card.innerHTML = `
-          <div>
-            <p class="font-serif font-semibold text-charcoal text-base">"${song}"</p>
-            <span class="font-sans text-softgray block text-[10px] uppercase tracking-wider">Suggested by ${name}</span>
-          </div>
-          <button onclick="upvoteSong(this)" class="bg-white hover:bg-rosegold hover:text-white border border-champagne/40 px-3 py-1.5 rounded-full text-xs transition-colors flex items-center gap-1.5">
-            <i class="fa-solid fa-heart text-rosegold"></i> <span class="vote-count font-semibold">1</span>
-          </button>
-        `;
-        playlist.prepend(card);
-        document.getElementById('standalone-song-form').reset();
-      }
-    }
 
-    // Copy Whish Number Action
-    function copyWhishNumber() {
-      navigator.clipboard.writeText("+96181550569");
-      const btnText = document.getElementById('copy-text');
-      const btn = document.getElementById('copy-btn');
-      
-      btnText.innerText = "Copied to Clipboard!";
-      btn.classList.add('bg-rosegold');
-      btn.classList.remove('bg-charcoal');
+    // ==================== 2. PARALLAX 3D CARD TILT EFFECT ====================
+    const card = document.getElementById('tilt-wrapper');
+    const shine = document.getElementById('shine');
 
-      setTimeout(() => {
-        btnText.innerText = "Copy Mobile Number";
-        btn.classList.add('bg-charcoal');
-        btn.classList.remove('bg-rosegold');
-      }, 2500);
-    }
+    window.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const cardCenterX = rect.left + rect.width / 2;
+      const cardCenterY = rect.top + rect.height / 2;
 
-    // Guestbook Wish Submission
-    function addWish(e) {
-      e.preventDefault();
-      const author = document.getElementById('wishAuthor').value;
-      const message = document.getElementById('wishMessage').value;
+      const mouseFromCenterX = e.clientX - cardCenterX;
+      const mouseFromCenterY = e.clientY - cardCenterY;
 
-      if (author && message) {
-        const list = document.getElementById('wishes-list');
-        const card = document.createElement('div');
-        card.className = "bg-cashmere/80 p-4 rounded-xl border border-champagne/20 text-xs space-y-1";
-        card.innerHTML = `<p class="font-serif italic text-slate-700 text-sm">"${message}"</p><span class="font-sans text-rosegold font-semibold block text-[10px] uppercase">— ${author}</span>`;
-        list.prepend(card);
-        document.getElementById('guestbook-form').reset();
-      }
-    }
+      // Calculate Rotation Angles (Limit to 12 degrees for subtlety)
+      const rotateX = (mouseFromCenterY / (rect.height / 2)) * -10;
+      const rotateY = (mouseFromCenterX / (rect.width / 2)) * 10;
 
-    // RSVP Submission
-    function handleRsvp(e) {
-      e.preventDefault();
-      const name = document.getElementById('guestName').value;
-      const song = document.getElementById('rsvpSong').value;
+      // Apply 3D Transform
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
-      if (name) {
-        if (song) {
-          const playlist = document.getElementById('songs-playlist');
-          const card = document.createElement('div');
-          card.className = "bg-cashmere/80 hover:bg-white p-4 rounded-xl border border-champagne/20 text-xs flex items-center justify-between transition-all";
-          card.innerHTML = `
-            <div>
-              <p class="font-serif font-semibold text-charcoal text-base">"${song}"</p>
-              <span class="font-sans text-softgray block text-[10px] uppercase tracking-wider">Suggested by ${name}</span>
-            </div>
-            <button onclick="upvoteSong(this)" class="bg-white hover:bg-rosegold hover:text-white border border-champagne/40 px-3 py-1.5 rounded-full text-xs transition-colors flex items-center gap-1.5">
-              <i class="fa-solid fa-heart text-rosegold"></i> <span class="vote-count font-semibold">1</span>
-            </button>
-          `;
-          playlist.prepend(card);
-        }
+      // Update Holographic Shine Position
+      const mouseXPercentage = ((e.clientX - rect.left) / rect.width) * 100;
+      const mouseYPercentage = ((e.clientY - rect.top) / rect.height) * 100;
+      shine.style.setProperty('--mouse-x', `${mouseXPercentage}%`);
+      shine.style.setProperty('--mouse-y', `${mouseYPercentage}%`);
+    });
 
-        document.getElementById('guest-response-name').innerText = name;
-        document.getElementById('rsvp-form').classList.add('hidden');
-        document.getElementById('rsvp-success').classList.remove('hidden');
-      }
-    }
+    // Reset Card Tilt when mouse leaves window/card area
+    document.addEventListener('mouseleave', () => {
+      card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    });
 
-    // Calendar Integration
+
+    // ==================== 3. CALENDAR ACTION ====================
     function addToCalendar() {
       const title = encodeURIComponent("Kinda & Bilal's Wedding Celebration");
       const details = encodeURIComponent("Wedding celebration for Kinda Salem Alawa & Bilal Riad Obeid.");
