@@ -42,20 +42,29 @@
       border: 1px solid rgba(212, 179, 130, 0.25);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     }
+    .equalizer-bar {
+      animation: bounce 1.2s ease-in-out infinite alternate;
+    }
+    @keyframes bounce {
+      0% { height: 4px; }
+      100% { height: 20px; }
+    }
   </style>
 </head>
 <body class="bg-ivory text-charcoal font-sans antialiased relative">
 
-  <!-- Ambient Audio Player -->
+  <!-- Ambient Floating Audio Player -->
   <div class="fixed bottom-6 right-6 z-50">
-    <button onclick="toggleAudio()" class="bg-white/90 border border-softgold/40 shadow-xl px-5 py-3 rounded-full flex items-center gap-3 hover:scale-105 transition-all text-xs font-sans tracking-wider text-charcoal">
+    <button onclick="toggleAudio()" class="bg-white/90 border border-softgold/40 shadow-xl px-5 py-3 rounded-full flex items-center gap-3 hover:scale-105 transition-all text-xs font-sans tracking-wider text-charcoal backdrop-blur-md">
       <span id="audio-icon" class="text-base">🎵</span>
       <span id="audio-text" class="hidden sm:inline font-medium uppercase text-[10px]">Play Atmosphere Music</span>
     </button>
-    <audio id="wedding-audio" loop preload="none">
-      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116327.mp3" type="audio/mpeg">
-    </audio>
   </div>
+
+  <!-- Audio Element -->
+  <audio id="wedding-audio" loop preload="none">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116327.mp3" type="audio/mpeg">
+  </audio>
 
   <!-- Minimalist Navigation Bar -->
   <nav class="fixed top-0 inset-x-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-softgold/20 py-4 px-6">
@@ -64,6 +73,7 @@
       <div class="hidden md:flex gap-8 text-[11px] font-sans font-medium tracking-widest uppercase text-softgray">
         <a href="#story" class="hover:text-rosegold transition-colors">Our Story</a>
         <a href="#countdown-section" class="hover:text-rosegold transition-colors">Countdown</a>
+        <a href="#music" class="hover:text-rosegold transition-colors">Music</a>
         <a href="#schedule" class="hover:text-rosegold transition-colors">Program</a>
         <a href="#registry" class="hover:text-rosegold transition-colors font-semibold text-rosegold">Gifts &amp; Whish</a>
         <a href="#venue" class="hover:text-rosegold transition-colors">Venue</a>
@@ -206,8 +216,50 @@
     </div>
   </section>
 
+  <!-- MUSIC & ATMOSPHERE SECTION -->
+  <section id="music" class="py-20 px-4 bg-white border-y border-softgold/20">
+    <div class="max-w-2xl mx-auto luxury-card rounded-2xl p-8 sm:p-12 text-center space-y-6">
+      <div class="space-y-2">
+        <span class="text-3xl text-rosegold">🎼</span>
+        <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Atmosphere</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Wedding Melodies</h2>
+        <div class="w-12 h-0.5 bg-softgold/50 mx-auto"></div>
+      </div>
+
+      <p class="font-serif italic text-lg text-softgray leading-relaxed max-w-md mx-auto">
+        "Music expresses that which cannot be said and on which it is impossible to be silent."
+      </p>
+
+      <!-- Interactive Music Control Card -->
+      <div class="bg-cashmere/70 border border-softgold/30 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
+        <div class="flex items-center justify-between">
+          <div class="text-left space-y-1">
+            <span id="music-status-badge" class="bg-white text-rosegold text-[9px] font-sans tracking-widest px-3 py-1 rounded-full border border-softgold/30 uppercase font-semibold inline-block">
+              Paused
+            </span>
+            <h4 class="font-serif text-xl text-charcoal font-semibold">Romantic Piano Serenade</h4>
+            <p class="text-xs text-softgray font-light">Official Background Atmosphere</p>
+          </div>
+
+          <!-- Animated Sound Equalizer Visualizer -->
+          <div id="visualizer" class="flex items-end gap-1 h-6 opacity-40 transition-opacity">
+            <div class="w-1 bg-rosegold rounded-full equalizer-bar" style="animation-delay: 0.1s;"></div>
+            <div class="w-1 bg-softgold rounded-full equalizer-bar" style="animation-delay: 0.3s;"></div>
+            <div class="w-1 bg-rosegold rounded-full equalizer-bar" style="animation-delay: 0.2s;"></div>
+            <div class="w-1 bg-softgold rounded-full equalizer-bar" style="animation-delay: 0.4s;"></div>
+          </div>
+        </div>
+
+        <button onclick="toggleAudio()" id="section-play-btn" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-4 px-6 rounded-xl transition-all shadow-md font-medium flex items-center justify-center gap-2">
+          <span id="section-play-icon">▶</span>
+          <span id="section-play-text">Play Background Music</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- PROGRAM OF THE DAY -->
-  <section id="schedule" class="py-20 px-4 bg-white border-y border-softgold/20">
+  <section id="schedule" class="py-20 px-4">
     <div class="max-w-2xl mx-auto space-y-10 text-center">
       <div class="space-y-1">
         <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Order of Events</p>
@@ -247,7 +299,7 @@
   </section>
 
   <!-- ELEGANT GIFT REGISTRY & WHISH MONEY -->
-  <section id="registry" class="py-20 px-4">
+  <section id="registry" class="py-20 px-4 bg-white border-y border-softgold/20">
     <div class="max-w-2xl mx-auto luxury-card rounded-2xl p-8 sm:p-12 text-center space-y-8">
       
       <!-- Section Header -->
@@ -325,7 +377,7 @@
   </section>
 
   <!-- DRESS CODE -->
-  <section class="py-16 px-4 bg-white border-y border-softgold/20 text-center">
+  <section class="py-16 px-4 text-center">
     <div class="max-w-xl mx-auto space-y-4">
       <span class="text-3xl text-rosegold">✨</span>
       <h2 class="font-serif text-3xl text-charcoal">Dress Code</h2>
@@ -337,7 +389,7 @@
   </section>
 
   <!-- VENUE & LOCATION -->
-  <section id="venue" class="py-20 px-4">
+  <section id="venue" class="py-20 px-4 bg-white border-y border-softgold/20">
     <div class="max-w-3xl mx-auto space-y-8 text-center">
       <div class="space-y-1">
         <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Location</p>
@@ -368,7 +420,7 @@
   </section>
 
   <!-- DIGITAL GUESTBOOK -->
-  <section id="guestbook" class="py-20 px-4 bg-white border-t border-softgold/20">
+  <section id="guestbook" class="py-20 px-4">
     <div class="max-w-xl mx-auto luxury-card rounded-2xl p-8 sm:p-10 text-center space-y-6">
       <div class="space-y-1">
         <span class="text-2xl">✍️</span>
@@ -394,7 +446,7 @@
   </section>
 
   <!-- RSVP SECTION -->
-  <section id="rsvp" class="py-20 px-4">
+  <section id="rsvp" class="py-20 px-4 bg-white border-t border-softgold/20">
     <div class="max-w-xl mx-auto luxury-card rounded-2xl p-8 sm:p-12 text-center space-y-6">
       <div class="space-y-1">
         <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">R.S.V.P</p>
@@ -469,23 +521,43 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Audio Toggle
+    // Audio Toggle Logic
     let isPlaying = false;
     function toggleAudio() {
       const audio = document.getElementById('wedding-audio');
       const text = document.getElementById('audio-text');
       const icon = document.getElementById('audio-icon');
+      const sectionText = document.getElementById('section-play-text');
+      const sectionIcon = document.getElementById('section-play-icon');
+      const badge = document.getElementById('music-status-badge');
+      const visualizer = document.getElementById('visualizer');
 
       if (!isPlaying) {
         audio.play().then(() => {
           text.innerText = "Pause Music";
           icon.innerText = "⏸️";
+          if (sectionText) sectionText.innerText = "Pause Music";
+          if (sectionIcon) sectionIcon.innerText = "⏸";
+          if (badge) {
+            badge.innerText = "Playing Now";
+            badge.classList.add('bg-rosegold', 'text-white');
+            badge.classList.remove('bg-white', 'text-rosegold');
+          }
+          if (visualizer) visualizer.classList.remove('opacity-40');
           isPlaying = true;
         }).catch(err => console.log("Audio play blocked by browser policy", err));
       } else {
         audio.pause();
         text.innerText = "Play Music";
         icon.innerText = "🎵";
+        if (sectionText) sectionText.innerText = "Play Background Music";
+        if (sectionIcon) sectionIcon.innerText = "▶";
+        if (badge) {
+          badge.innerText = "Paused";
+          badge.classList.remove('bg-rosegold', 'text-white');
+          badge.classList.add('bg-white', 'text-rosegold');
+        }
+        if (visualizer) visualizer.classList.add('opacity-40');
         isPlaying = false;
       }
     }
