@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Celebration — September 25, 2026</title>
+  <title>Kinda & Bilal — Wedding Invitation</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -42,66 +42,31 @@
       border: 1px solid rgba(212, 179, 130, 0.25);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     }
-    .equalizer-bar {
-      animation: bounce 1.2s infinite ease-in-out alternate;
-    }
-    @keyframes bounce {
-      0% { height: 4px; }
-      100% { height: 16px; }
-    }
   </style>
 </head>
-<body class="bg-ivory text-charcoal font-sans antialiased relative pb-28">
+<body class="bg-ivory text-charcoal font-sans antialiased relative">
 
-  <!-- ADVANCED FLOATING AUDIO & MUSIC PLAYER -->
-  <div class="fixed bottom-4 inset-x-4 sm:left-auto sm:right-6 z-50 max-w-sm mx-auto sm:mx-0">
-    <div class="bg-white/95 backdrop-blur-md border border-softgold/40 shadow-2xl rounded-2xl p-4 space-y-3">
-      
-      <!-- Track Details & Visualizer -->
-      <div class="flex items-center justify-between gap-3">
-        <div class="flex items-center gap-3 overflow-hidden">
-          <button onclick="toggleAudio()" id="play-pause-btn" class="w-10 h-10 rounded-full bg-rosegold hover:bg-charcoal text-white flex items-center justify-center text-sm shadow-md transition-all flex-shrink-0">
-            ▶
-          </button>
-          <div class="truncate text-left">
-            <span id="current-song-title" class="text-xs font-semibold text-charcoal block truncate">Romantic Piano Melodies</span>
-            <span class="text-[10px] text-softgray block">Atmosphere Music</span>
-          </div>
-        </div>
-
-        <!-- Equalizer Animation (Shown when playing) -->
-        <div id="equalizer" class="hidden flex items-end gap-0.5 h-4 px-2">
-          <div class="w-1 bg-rosegold rounded-full equalizer-bar" style="animation-delay: 0.1s;"></div>
-          <div class="w-1 bg-softgold rounded-full equalizer-bar" style="animation-delay: 0.3s;"></div>
-          <div class="w-1 bg-rosegold rounded-full equalizer-bar" style="animation-delay: 0.2s;"></div>
-        </div>
-      </div>
-
-      <!-- Playlist Selector -->
-      <div class="pt-2 border-t border-softgold/20 flex items-center gap-2">
-        <span class="text-[10px] text-softgray uppercase tracking-wider font-semibold">Track:</span>
-        <select id="playlist-select" onchange="changeTrack(this.value)" class="w-full bg-cashmere text-xs text-charcoal font-medium border border-softgold/30 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-rosegold">
-          <option value="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116327.mp3">🎹 Piano Atmosphere</option>
-          <option value="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a8d11d.mp3?filename=sweet-acoustic-11231.mp3">🎸 Sweet Acoustic Guitar</option>
-          <option value="https://cdn.pixabay.com/download/audio/2021/09/06/audio_8b248eb3a6.mp3?filename=soft-ambient-celebration-9023.mp3">✨ Soft Celebration Ambient</option>
-        </select>
-      </div>
-
-      <!-- Native Audio Element -->
-      <audio id="wedding-audio" loop preload="none">
-        <source id="audio-source" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116327.mp3" type="audio/mpeg">
-      </audio>
-    </div>
+  <!-- Ambient Audio Player -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button onclick="toggleAudio()" class="bg-white/90 border border-softgold/40 shadow-xl px-5 py-3 rounded-full flex items-center gap-3 hover:scale-105 transition-all text-xs font-sans tracking-wider text-charcoal">
+      <span id="audio-icon" class="text-base">🎵</span>
+      <span id="audio-text" class="hidden sm:inline font-medium uppercase text-[10px]">Play Atmosphere Music</span>
+    </button>
+    <audio id="wedding-audio" loop preload="none">
+      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116327.mp3" type="audio/mpeg">
+    </audio>
   </div>
 
   <!-- Minimalist Navigation Bar -->
   <nav class="fixed top-0 inset-x-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-softgold/20 py-4 px-6">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
-      <a href="#home" class="font-script text-3xl text-rosegold">Celebration</a>
+      <a href="#home" class="font-script text-3xl text-rosegold">K &amp; B</a>
       <div class="hidden md:flex gap-8 text-[11px] font-sans font-medium tracking-widest uppercase text-softgray">
+        <a href="#story" class="hover:text-rosegold transition-colors">Our Story</a>
         <a href="#countdown-section" class="hover:text-rosegold transition-colors">Countdown</a>
         <a href="#schedule" class="hover:text-rosegold transition-colors">Program</a>
         <a href="#registry" class="hover:text-rosegold transition-colors font-semibold text-rosegold">Gifts &amp; Whish</a>
+        <a href="#venue" class="hover:text-rosegold transition-colors">Venue</a>
         <a href="#guestbook" class="hover:text-rosegold transition-colors">Guestbook</a>
         <a href="#rsvp" class="hover:text-rosegold transition-colors text-rosegold font-semibold">RSVP</a>
       </div>
@@ -115,21 +80,21 @@
   <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-28 pb-16 px-4">
     <div class="max-w-3xl mx-auto space-y-6">
 
-      <p class="font-sans text-xs tracking-widest uppercase text-softgray font-medium">Save The Date</p>
+      <p class="font-sans text-xs tracking-widest uppercase text-softgray font-medium">Together with their families</p>
       
-      <!-- Script Title -->
+      <!-- Script Names -->
       <h1 class="font-script text-7xl sm:text-9xl text-charcoal font-normal leading-tight">
-        Celebration
+        Kinda <span class="text-rosegold">&amp;</span> Bilal
       </h1>
 
       <p class="font-serif italic text-2xl sm:text-3xl text-charcoal font-light">
-        Friday, September 25, 2026
+        Wednesday, July 7, 2027
       </p>
       <p class="font-sans text-xs tracking-widest uppercase text-softgray">Koura &amp; Tripoli, Lebanon</p>
 
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="#rsvp" class="w-full sm:w-auto bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase px-8 py-4 rounded-full shadow-md transition-all duration-300 font-medium">
-          Confirm Attendance
+          Respond To Invitation
         </a>
         <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white hover:bg-cashmere text-charcoal border border-softgold/40 text-xs font-sans tracking-widest uppercase px-7 py-4 rounded-full shadow-sm transition-all font-medium">
           📅 Save To Calendar
@@ -138,11 +103,40 @@
     </div>
   </section>
 
+  <!-- OUR STORY SECTION -->
+  <section id="story" class="py-20 px-4 bg-white border-y border-softgold/20">
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      
+      <!-- Arch Photo Container -->
+      <div class="rounded-t-full bg-cashmere p-4 shadow-sm border border-softgold/30 text-center space-y-4 max-w-xs mx-auto w-full">
+        <div class="rounded-t-full bg-ivory h-80 flex flex-col items-center justify-center p-6 text-center space-y-2 border border-softgold/20">
+          <span class="text-4xl text-rosegold">💍</span>
+          <p class="font-script text-3xl text-rosegold">Kinda &amp; Bilal</p>
+          <span class="text-[10px] text-softgray font-sans uppercase tracking-widest">Portrait</span>
+        </div>
+      </div>
+
+      <!-- Story Content -->
+      <div class="space-y-5 text-center md:text-left">
+        <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Our Journey</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Two Hearts, One Journey</h2>
+        <p class="font-serif italic text-xl text-softgray leading-relaxed">
+          "With immense gratitude and joy, we invite you to celebrate the beginning of our married life together."
+        </p>
+        <p class="text-slate-600 font-sans font-light leading-relaxed text-xs sm:text-sm">
+          Surrounded by our nearest and dearest in Lebanon, we look forward to creating everlasting memories with you on our special day.
+        </p>
+        <div class="font-script text-4xl text-rosegold pt-2">Kinda &amp; Bilal</div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ELEGANT INTERACTIVE COUNTDOWN TIMER -->
   <section id="countdown-section" class="py-20 px-4">
     <div class="max-w-3xl mx-auto bg-white/90 backdrop-blur-lg rounded-2xl p-8 sm:p-12 text-center space-y-8 relative overflow-hidden shadow-xl border border-softgold/30">
       
-      <!-- Ambient Radial Glows -->
+      <!-- Ambient Subtle Radial Glows -->
       <div class="absolute -top-16 -left-16 w-36 h-36 bg-rosegold/10 rounded-full blur-2xl pointer-events-none"></div>
       <div class="absolute -bottom-16 -right-16 w-36 h-36 bg-softgold/15 rounded-full blur-2xl pointer-events-none"></div>
 
@@ -156,8 +150,8 @@
           <span class="font-sans text-[10px] tracking-widest uppercase text-charcoal font-semibold">Counting Down</span>
         </div>
 
-        <h3 class="font-serif text-3xl sm:text-4xl text-charcoal tracking-wide">Until September 25, 2026</h3>
-        <p class="font-serif italic text-sm text-slate-600 max-w-md mx-auto">Every second brings us closer to our special day</p>
+        <h3 class="font-serif text-3xl sm:text-4xl text-charcoal tracking-wide">Until We Say "I Do"</h3>
+        <p class="font-serif italic text-sm text-slate-600 max-w-md mx-auto">July 7, 2027 • Every second brings us closer to forever</p>
       </div>
       
       <!-- Interactive Grid of Time Units -->
@@ -224,59 +218,152 @@
         <div class="relative">
           <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-softgold"></div>
           <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">6:00 PM</span>
-          <h3 class="font-serif text-xl text-charcoal mt-0.5">Welcome Reception</h3>
-          <p class="text-xs text-softgray font-light mt-0.5">Refreshments &amp; ambient music as guests arrive.</p>
+          <h3 class="font-serif text-xl text-charcoal mt-0.5">Welcome Cocktails</h3>
+          <p class="text-xs text-softgray font-light mt-0.5">Refreshment &amp; musical ambiance as guests arrive.</p>
         </div>
 
         <div class="relative">
           <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-rosegold"></div>
-          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">7:30 PM</span>
-          <h3 class="font-serif text-xl text-charcoal mt-0.5">Dinner &amp; Celebration</h3>
-          <p class="text-xs text-softgray font-light mt-0.5">Banquet dinner, toasts, and cake cutting.</p>
+          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">7:00 PM</span>
+          <h3 class="font-serif text-xl text-charcoal mt-0.5">Marriage Ceremony</h3>
+          <p class="text-xs text-softgray font-light mt-0.5">Exchange of vows and rings.</p>
         </div>
 
         <div class="relative">
           <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-softgold"></div>
-          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">9:30 PM</span>
-          <h3 class="font-serif text-xl text-charcoal mt-0.5">Music &amp; Dancing</h3>
-          <p class="text-xs text-softgray font-light mt-0.5">Evening celebration and continuous music.</p>
+          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">8:30 PM</span>
+          <h3 class="font-serif text-xl text-charcoal mt-0.5">Gala Dinner Banquet</h3>
+          <p class="text-xs text-softgray font-light mt-0.5">Dinner served alongside speeches and family toasts.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-rosegold"></div>
+          <span class="font-sans text-xs font-semibold text-rosegold tracking-widest">10:00 PM</span>
+          <h3 class="font-serif text-xl text-charcoal mt-0.5">Zaffe &amp; Dancing</h3>
+          <p class="text-xs text-softgray font-light mt-0.5">Traditional celebration, cake cutting, and music.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GIFT REGISTRY & WHISH MONEY -->
+  <!-- ELEGANT GIFT REGISTRY & WHISH MONEY -->
   <section id="registry" class="py-20 px-4">
     <div class="max-w-2xl mx-auto luxury-card rounded-2xl p-8 sm:p-12 text-center space-y-8">
       
+      <!-- Section Header -->
       <div class="space-y-2">
         <span class="text-3xl text-rosegold">✨</span>
         <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Registry &amp; Blessings</p>
-        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Gifts &amp; Whish Money</h2>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Gift Registry &amp; Whish Money</h2>
         <div class="w-12 h-0.5 bg-softgold/50 mx-auto"></div>
       </div>
 
+      <!-- Gentle Etiquette Message -->
       <p class="font-serif italic text-lg sm:text-xl text-slate-700 leading-relaxed max-w-lg mx-auto">
-        "Your presence and warm blessings are the greatest gifts of all."
+        "Your presence and warm blessings on our wedding day are the greatest gifts of all. Should you wish to honor us with a gift, a contribution towards our new home and honeymoon fund would be deeply cherished."
       </p>
 
-      <div class="bg-cashmere/80 border border-softgold/30 rounded-2xl p-6 text-left space-y-4 shadow-sm">
-        <div class="flex items-center justify-between border-b border-softgold/20 pb-3">
+      <!-- Whish Money Card Box -->
+      <div class="bg-cashmere/80 border border-softgold/30 rounded-2xl p-6 sm:p-8 text-left space-y-6 shadow-sm relative overflow-hidden">
+        
+        <!-- Card Top Header -->
+        <div class="flex items-center justify-between border-b border-softgold/20 pb-4">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-[#E2231A] text-white flex items-center justify-center font-bold text-xs">W</div>
-            <h4 class="font-serif text-base text-charcoal font-semibold">Whish Transfer Mobile</h4>
+            <div class="w-10 h-10 rounded-full bg-[#E2231A] text-white flex items-center justify-center font-bold text-sm tracking-tighter shadow-sm">
+              W
+            </div>
+            <div>
+              <h4 class="font-serif text-lg text-charcoal font-semibold">Whish Money Transfer</h4>
+              <p class="text-[11px] text-softgray font-light">Transfer via Whish Money App or any official agent</p>
+            </div>
           </div>
-          <span class="bg-white text-rosegold text-[9px] font-sans px-2.5 py-0.5 rounded-full border border-softgold/30 uppercase font-semibold">Lebanon</span>
+          <span class="bg-white text-rosegold text-[9px] font-sans tracking-widest px-3 py-1 rounded-full border border-softgold/30 uppercase font-semibold">
+            Lebanon
+          </span>
         </div>
 
-        <div class="flex items-center justify-between bg-white p-3.5 rounded-xl border border-softgold/25">
-          <span id="whish-number" class="font-mono text-sm font-bold text-charcoal">+961 81 550 569</span>
-          <button onclick="copyWhishNumber()" id="copy-btn" class="bg-charcoal hover:bg-rosegold text-white text-[10px] font-sans tracking-widest uppercase py-2 px-3 rounded-lg transition-all font-medium">
-            📋 Copy Number
-          </button>
+        <!-- Account Details Grid -->
+        <div class="grid sm:grid-cols-2 gap-4 text-xs font-sans">
+          
+          <!-- Whish Number Card -->
+          <div class="bg-white p-4 rounded-xl border border-softgold/25 space-y-1 shadow-sm">
+            <span class="text-softgray uppercase text-[9px] tracking-widest block font-medium">Whish Transfer Mobile</span>
+            <span id="whish-number" class="font-mono text-base font-bold text-charcoal block tracking-wider">+961 81 550 569</span>
+            <span class="text-softgray text-[10px] block font-light">Recipient: Kinda Alawa / Bilal Obeid</span>
+          </div>
+
+          <!-- Copy Action Card -->
+          <div class="bg-white p-4 rounded-xl border border-softgold/25 flex flex-col justify-between shadow-sm">
+            <span class="text-softgray uppercase text-[9px] tracking-widest block font-medium">Instant Action</span>
+            <button onclick="copyWhishNumber()" id="copy-btn" class="bg-charcoal hover:bg-rosegold text-white text-[10px] font-sans tracking-widest uppercase py-2.5 px-3 rounded-lg transition-all w-full mt-2 font-medium">
+              📋 Copy Mobile Number
+            </button>
+          </div>
+
         </div>
+
+        <!-- Elegantly Styled WhatsApp Confirmation Button -->
+        <div class="pt-1">
+          <a href="https://wa.me/96181550569?text=Hello%20Kinda%20%26%20Bilal,%20I%20have%20sent%20a%20wedding%20gift%20via%20Whish%20Money!" 
+             target="_blank" 
+             class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 px-4 rounded-xl flex items-center justify-center gap-2.5 transition-all shadow-sm font-medium">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+            </svg>
+            Send Transfer Note on WhatsApp
+          </a>
+        </div>
+
       </div>
 
+      <!-- Soft Note -->
+      <p class="text-[11px] text-softgray font-light">
+        For international gifts or bank transfer options, feel free to reach out to us directly.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="py-16 px-4 bg-white border-y border-softgold/20 text-center">
+    <div class="max-w-xl mx-auto space-y-4">
+      <span class="text-3xl text-rosegold">✨</span>
+      <h2 class="font-serif text-3xl text-charcoal">Dress Code</h2>
+      <p class="font-serif italic text-xl text-rosegold">Formal Evening Attire / Black Tie Optional</p>
+      <p class="text-xs text-softgray font-light leading-relaxed">
+        Soft neutral tones, champagne, blush, terracotta, and classic tuxedo or dark suits are warmly encouraged.
+      </p>
+    </div>
+  </section>
+
+  <!-- VENUE & LOCATION -->
+  <section id="venue" class="py-20 px-4">
+    <div class="max-w-3xl mx-auto space-y-8 text-center">
+      <div class="space-y-1">
+        <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Location</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">The Venue</h2>
+      </div>
+
+      <div class="luxury-card rounded-2xl p-8 border border-softgold/30 grid md:grid-cols-2 gap-6 text-left items-center">
+        <div class="space-y-3">
+          <span class="text-2xl">🏛️</span>
+          <h3 class="font-serif text-2xl text-charcoal">Koura &amp; Tripoli Region</h3>
+          <p class="text-xs text-softgray font-light leading-relaxed">
+            North Lebanon. Valet parking service and hostess greeting will be available upon arrival.
+          </p>
+          <div class="pt-2">
+            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-rosegold hover:bg-charcoal text-white text-[11px] font-sans tracking-widest uppercase px-5 py-3 rounded-lg transition-all font-medium">
+              📍 Open Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-cashmere rounded-xl h-48 border border-softgold/20 flex flex-col items-center justify-center text-center p-4 space-y-1">
+          <span class="text-3xl">🗺️</span>
+          <p class="font-serif text-lg text-charcoal">North Lebanon Venue</p>
+          <p class="text-[11px] text-softgray">Directions &amp; Map Coordinates</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -286,19 +373,19 @@
       <div class="space-y-1">
         <span class="text-2xl">✍️</span>
         <h2 class="font-serif text-3xl text-charcoal">Digital Guestbook</h2>
-        <p class="font-sans text-[11px] tracking-widest uppercase text-rosegold font-semibold">Leave A Blessing</p>
+        <p class="font-sans text-[11px] tracking-widest uppercase text-rosegold font-semibold">Leave A Blessing For The Bride &amp; Groom</p>
       </div>
 
       <div id="wishes-list" class="space-y-3 max-h-52 overflow-y-auto text-left pr-1">
         <div class="bg-cashmere p-3.5 rounded-lg border border-softgold/20 text-xs space-y-1">
-          <p class="font-serif italic text-slate-700 text-sm">"Wishing you endless joy and beautiful moments!"</p>
-          <span class="font-sans text-rosegold font-semibold block text-[10px] uppercase">— Family Friend</span>
+          <p class="font-serif italic text-slate-700 text-sm">"Wishing you a lifetime filled with love, prosperity, and happiness!"</p>
+          <span class="font-sans text-rosegold font-semibold block text-[10px] uppercase">— The Salem Family</span>
         </div>
       </div>
 
       <form id="guestbook-form" onsubmit="addWish(event)" class="space-y-3 text-left">
         <input type="text" id="wishAuthor" required placeholder="Your Name" class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        <textarea id="wishMessage" required rows="2" placeholder="Write your message..." class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold"></textarea>
+        <textarea id="wishMessage" required rows="2" placeholder="Write your warm wish..." class="w-full bg-ivory border border-softgold/30 rounded-lg px-3.5 py-2.5 text-charcoal text-xs focus:outline-none focus:border-rosegold"></textarea>
         <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3 rounded-lg transition-all font-medium">
           Send Wish ✨
         </button>
@@ -312,18 +399,38 @@
       <div class="space-y-1">
         <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">R.S.V.P</p>
         <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Confirm Your Attendance</h2>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-softgray">Kindly respond by June 15, 2027</p>
       </div>
 
       <div id="rsvp-success" class="hidden bg-cashmere border border-softgold/30 rounded-xl p-6 space-y-2">
         <span class="text-3xl">💌</span>
         <h3 class="font-serif text-xl text-charcoal">Thank You!</h3>
-        <p class="text-xs text-softgray">Your attendance response has been recorded, <span id="guest-response-name" class="font-semibold text-charcoal"></span>!</p>
+        <p class="text-xs text-softgray">Your attendance response has been recorded. We look forward to seeing you, <span id="guest-response-name" class="font-semibold text-charcoal"></span>!</p>
       </div>
 
       <form id="rsvp-form" onsubmit="handleRsvp(event)" class="space-y-4 text-left">
         <div>
           <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Full Name *</label>
-          <input type="text" id="guestName" required placeholder="Your full name" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+          <input type="text" id="guestName" required placeholder="e.g. Dr. Maya Kassir" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Attendance</label>
+            <select id="attendance" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+              <option value="true">Joyfully Accepts</option>
+              <option value="false">Regretfully Declines</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Number of Guests</label>
+            <select id="guestCount" class="w-full bg-cashmere border border-softgold/30 rounded-lg px-3.5 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests (+1)</option>
+              <option value="3">3 Guests</option>
+            </select>
+          </div>
         </div>
 
         <button type="submit" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 rounded-lg transition-all font-medium mt-2">
@@ -335,13 +442,13 @@
 
   <!-- FOOTER -->
   <footer class="py-10 text-center space-y-2 text-xs text-softgray font-light border-t border-softgold/20">
-    <div class="font-script text-3xl text-rosegold">September 25, 2026</div>
-    <p class="font-sans text-[10px] tracking-widest uppercase">Lebanon</p>
+    <div class="font-script text-3xl text-rosegold">Kinda &amp; Bilal</div>
+    <p class="font-sans text-[10px] tracking-widest uppercase">July 7, 2027 • Koura &amp; Tripoli, Lebanon</p>
   </footer>
 
   <script>
-    // Countdown Target Date: September 25, 2026
-    const targetDate = new Date('September 25, 2026 18:00:00').getTime();
+    // Synchronized Live Countdown Target Date: July 7, 2027
+    const targetDate = new Date('July 7, 2027 18:00:00').getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -362,43 +469,28 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Advanced Audio & Song Selection Controls
+    // Audio Toggle
     let isPlaying = false;
-    const audio = document.getElementById('wedding-audio');
-    const playPauseBtn = document.getElementById('play-pause-btn');
-    const equalizer = document.getElementById('equalizer');
-    const songTitle = document.getElementById('current-song-title');
-
     function toggleAudio() {
+      const audio = document.getElementById('wedding-audio');
+      const text = document.getElementById('audio-text');
+      const icon = document.getElementById('audio-icon');
+
       if (!isPlaying) {
         audio.play().then(() => {
+          text.innerText = "Pause Music";
+          icon.innerText = "⏸️";
           isPlaying = true;
-          playPauseBtn.innerText = "❚❚";
-          equalizer.classList.remove('hidden');
-          equalizer.classList.add('flex');
-        }).catch(err => console.log("Audio play blocked", err));
+        }).catch(err => console.log("Audio play blocked by browser policy", err));
       } else {
         audio.pause();
+        text.innerText = "Play Music";
+        icon.innerText = "🎵";
         isPlaying = false;
-        playPauseBtn.innerText = "▶";
-        equalizer.classList.add('hidden');
-        equalizer.classList.remove('flex');
       }
     }
 
-    function changeTrack(srcUrl) {
-      const selectElem = document.getElementById('playlist-select');
-      const selectedOptionText = selectElem.options[selectElem.selectedIndex].text;
-      
-      songTitle.innerText = selectedOptionText.replace(/^[^\s]+\s/, ''); // Remove leading emoji
-      audio.src = srcUrl;
-
-      if (isPlaying) {
-        audio.play();
-      }
-    }
-
-    // Whish Number Copy
+    // Copy Whish Number Action
     function copyWhishNumber() {
       navigator.clipboard.writeText("+96181550569");
       const btn = document.getElementById('copy-btn');
@@ -407,7 +499,7 @@
       btn.classList.remove('bg-charcoal');
 
       setTimeout(() => {
-        btn.innerText = "📋 Copy Number";
+        btn.innerText = "📋 Copy Mobile Number";
         btn.classList.add('bg-charcoal');
         btn.classList.remove('bg-rosegold');
       }, 3000);
@@ -440,12 +532,12 @@
       }
     }
 
-    // Save To Google Calendar
+    // Save Date To Google Calendar
     function addToCalendar() {
-      const title = encodeURIComponent("Special Celebration");
-      const details = encodeURIComponent("Celebration event on September 25, 2026.");
+      const title = encodeURIComponent("Kinda & Bilal's Wedding Celebration");
+      const details = encodeURIComponent("Wedding celebration for Kinda Salem Alawa & Bilal Riad Obeid.");
       const location = encodeURIComponent("Koura & Tripoli, Lebanon");
-      window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260925T150000Z/20260925T230000Z&details=${details}&location=${location}`, '_blank');
+      window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20270707T150000Z/20270707T230000Z&details=${details}&location=${location}`, '_blank');
     }
   </script>
 </body>
