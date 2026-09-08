@@ -8,26 +8,28 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Great Vibes (Script) + Playfair Display (Serif) + Jost (Sans) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            script: ['"Great Vibes"', 'cursive'],
+            script: ['"Alex Brush"', 'cursive'],
             serif: ['"Playfair Display"', 'serif'],
             sans: ['"Jost"', 'sans-serif'],
           },
           colors: {
             sage: '#8A9A86',
-            sagelight: '#F3F5F2',
+            sagelight: '#F2F5F1',
             champagne: '#FAF7F2',
             terracotta: '#C88A75',
-            deepolive: '#2F3E30'
+            deepolive: '#2F3E30',
+            dustyrose: '#D8A79B',
+            goldaccent: '#D4AF37'
           }
         }
       }
@@ -35,155 +37,294 @@
   </script>
 
   <style>
-    /* Canva-Style Arch Frames */
     .arch-card {
-      border-radius: 120px 120px 24px 24px;
+      border-radius: 140px 140px 24px 24px;
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(16px);
+    }
+    .hero-glow {
+      background: radial-gradient(circle, rgba(216,167,155,0.2) 0%, rgba(250,247,242,0) 70%);
+    }
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+    .petal {
+      position: fixed;
+      pointer-events: none;
+      background: #D8A79B;
+      border-radius: 150% 0 150% 0;
+      opacity: 0.3;
+      animation: float 12s infinite linear;
     }
   </style>
 </head>
-<body class="bg-champagne text-slate-700 font-sans antialiased selection:bg-sage selection:text-white">
+<body class="bg-champagne text-slate-700 font-sans antialiased selection:bg-sage selection:text-white relative">
 
-  <!-- Sticky Elegant Navigation -->
-  <nav class="fixed top-0 inset-x-0 z-50 bg-champagne/80 backdrop-blur-md border-b border-sage/10 py-4 px-6">
-    <div class="max-w-4xl mx-auto flex items-center justify-between">
-      <a href="#home" class="font-script text-2xl text-deepolive">K &amp; B</a>
-      <div class="flex gap-4 sm:gap-8 text-xs font-medium tracking-widest uppercase text-deepolive/80">
+  <!-- Floating Petals Decorative Layer -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="petal w-3 h-4 left-[10%]" style="animation-duration: 14s; animation-delay: 0s;"></div>
+    <div class="petal w-4 h-5 left-[25%]" style="animation-duration: 18s; animation-delay: 3s;"></div>
+    <div class="petal w-3 h-3 left-[50%]" style="animation-duration: 12s; animation-delay: 1s;"></div>
+    <div class="petal w-5 h-6 left-[75%]" style="animation-duration: 16s; animation-delay: 5s;"></div>
+    <div class="petal w-3 h-4 left-[90%]" style="animation-duration: 15s; animation-delay: 2s;"></div>
+  </div>
+
+  <!-- Sticky Elegant Navigation Bar -->
+  <nav class="fixed top-0 inset-x-0 z-50 bg-champagne/90 backdrop-blur-md border-b border-sage/10 py-4 px-6 transition-all duration-300">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="#home" class="font-script text-3xl text-deepolive hover:text-terracotta transition-colors">K &amp; B</a>
+      <div class="hidden md:flex gap-8 text-xs font-medium tracking-widest uppercase text-deepolive/80">
         <a href="#story" class="hover:text-terracotta transition-colors">Our Story</a>
-        <a href="#details" class="hover:text-terracotta transition-colors">Details</a>
-        <a href="#rsvp" class="hover:text-terracotta transition-colors">RSVP</a>
+        <a href="#gallery" class="hover:text-terracotta transition-colors">Gallery</a>
+        <a href="#schedule" class="hover:text-terracotta transition-colors">Schedule</a>
+        <a href="#venue" class="hover:text-terracotta transition-colors">Venue &amp; Map</a>
+        <a href="#music" class="hover:text-terracotta transition-colors">Song Requests</a>
+        <a href="#rsvp" class="hover:text-terracotta transition-colors font-semibold text-terracotta">RSVP</a>
       </div>
+      <a href="#rsvp" class="md:hidden bg-sage text-white text-[10px] font-medium tracking-widest uppercase px-4 py-2 rounded-full">
+        RSVP
+      </a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
-  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-24 pb-12 px-4 relative overflow-hidden">
-    <!-- Soft Decorative Floral Blurs -->
-    <div class="absolute top-10 left-10 w-72 h-72 bg-sage/15 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-10 right-10 w-80 h-80 bg-terracotta/15 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-2xl mx-auto space-y-6 relative z-10">
-      <p class="font-sans text-xs sm:text-sm tracking-[0.3em] uppercase text-sage font-medium">We Are Getting Married</p>
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-28 pb-16 px-4 relative overflow-hidden hero-glow">
+    <div class="max-w-3xl mx-auto space-y-6 relative z-10">
+      <p class="font-sans text-xs sm:text-sm tracking-[0.35em] uppercase text-sage font-medium">Together With Their Families</p>
       
-      <h1 class="font-script text-6xl sm:text-8xl text-deepolive font-normal leading-tight">
-        Kinda <span class="text-terracotta">&amp;</span> Bilal
+      <h1 class="font-script text-7xl sm:text-9xl text-deepolive font-normal leading-none py-2">
+        Kinda <span class="text-terracotta font-serif italic text-5xl sm:text-7xl">&amp;</span> Bilal
       </h1>
 
-      <div class="w-12 h-0.5 bg-terracotta mx-auto opacity-50"></div>
+      <div class="flex items-center justify-center gap-4 my-2">
+        <div class="w-12 h-px bg-terracotta/40"></div>
+        <span class="text-goldaccent text-lg">✦</span>
+        <div class="w-12 h-px bg-terracotta/40"></div>
+      </div>
 
-      <p class="font-serif italic text-xl sm:text-2xl text-slate-600">
+      <p class="font-serif italic text-2xl sm:text-3xl text-slate-700">
         Saturday, September 25, 2027
       </p>
-      <p class="text-xs uppercase tracking-widest text-slate-500">Lebanon</p>
+      <p class="text-xs uppercase tracking-[0.25em] text-slate-500 font-medium">Koura &amp; Tripoli, Lebanon</p>
 
-      <div class="pt-6">
-        <a href="#rsvp" class="inline-block bg-sage hover:bg-deepolive text-white text-xs font-medium tracking-widest uppercase px-8 py-4 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5">
-          Request The Pleasure Of Your Company
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#rsvp" class="w-full sm:w-auto bg-sage hover:bg-deepolive text-white text-xs font-medium tracking-widest uppercase px-8 py-4 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5">
+          Confirm Attendance
         </a>
+        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white/80 hover:bg-white text-deepolive border border-sage/30 text-xs font-medium tracking-widest uppercase px-8 py-4 rounded-full shadow-sm transition-all">
+          📅 Add to Calendar
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- OUR STORY / CREATIVE CANVA CARD SECTION -->
-  <section id="story" class="py-20 px-4 bg-sagelight/60 border-y border-sage/10">
-    <div class="max-w-4xl mx-auto grid sm:grid-cols-2 gap-12 items-center">
+  <!-- OUR STORY SECTION -->
+  <section id="story" class="py-24 px-4 bg-sagelight/60 border-y border-sage/10">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
       
-      <!-- Arch Frame Image Placeholder -->
       <div class="arch-card bg-white p-4 shadow-xl border border-sage/20 text-center space-y-4 max-w-sm mx-auto w-full">
-        <div class="arch-card bg-sage/10 h-80 flex items-center justify-center text-sage font-serif italic text-lg">
-          [ Insert Photo Here ]
+        <div class="arch-card bg-sage/10 h-96 flex flex-col items-center justify-center text-sage font-serif italic p-6 text-center space-y-2">
+          <span class="text-4xl">💍</span>
+          <p class="text-lg text-deepolive font-serif">Kinda &amp; Bilal</p>
+          <span class="text-xs text-slate-400 font-sans uppercase tracking-wider">Photo Placeholder</span>
         </div>
-        <p class="font-script text-3xl text-deepolive">Two Hearts, One Journey</p>
+        <p class="font-script text-3xl text-deepolive">Two Hearts, One Life</p>
       </div>
 
-      <!-- Story Text -->
-      <div class="space-y-6 text-center sm:text-left">
-        <p class="text-xs tracking-[0.25em] uppercase text-terracotta font-medium">// Our Journey</p>
-        <h2 class="font-serif text-3xl sm:text-4xl text-deepolive">How Our Story Began</h2>
+      <div class="space-y-6 text-center md:text-left">
+        <p class="text-xs tracking-[0.3em] uppercase text-terracotta font-semibold">Our Journey</p>
+        <h2 class="font-serif text-3xl sm:text-5xl text-deepolive leading-tight">How Our Love Story Began</h2>
         <p class="text-slate-600 leading-relaxed font-light text-sm sm:text-base">
-          From late-night conversations to building our dreams side by side, every step has brought us to this beautiful moment. We can’t wait to celebrate our union surrounded by the people we love most.
+          From late-night conversations and shared laughter to building our dreams side by side, every chapter of our journey has brought us to this moment. We are ready to begin our greatest adventure together.
         </p>
-        <div class="font-script text-4xl text-sage pt-2">Kinda &amp; Bilal</div>
+        <p class="text-slate-600 leading-relaxed font-light text-sm sm:text-base">
+          We invite you to join us as we say "I do" and celebrate surrounded by the warmth of our beloved family and friends.
+        </p>
+        <div class="font-script text-5xl text-sage pt-2">Kinda &amp; Bilal</div>
       </div>
 
     </div>
   </section>
 
   <!-- LIVE COUNTDOWN SECTION -->
-  <section class="py-16 px-4 text-center">
-    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-12 border border-sage/20 shadow-xl space-y-6">
-      <h3 class="font-serif text-2xl text-deepolive">Counting Down to September 25, 2027</h3>
+  <section class="py-20 px-4 text-center">
+    <div class="max-w-3xl mx-auto glass-card rounded-3xl p-8 sm:p-14 border border-sage/20 shadow-2xl space-y-8">
+      <div class="space-y-2">
+        <p class="text-xs tracking-[0.25em] uppercase text-terracotta font-medium">Counting Down</p>
+        <h3 class="font-serif text-3xl text-deepolive">Until We Become Mr. &amp; Mrs.</h3>
+      </div>
       
       <div class="grid grid-cols-4 gap-3 sm:gap-6">
-        <div class="bg-white/80 p-4 rounded-2xl border border-sage/10">
-          <span id="cd-days" class="font-serif text-3xl sm:text-5xl text-deepolive block">00</span>
-          <span class="text-[10px] uppercase tracking-widest text-sage font-medium">Days</span>
+        <div class="bg-white/90 p-4 sm:p-6 rounded-2xl border border-sage/15 shadow-sm">
+          <span id="cd-days" class="font-serif text-3xl sm:text-6xl text-deepolive block">00</span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-widest text-sage font-medium mt-1 block">Days</span>
         </div>
-        <div class="bg-white/80 p-4 rounded-2xl border border-sage/10">
-          <span id="cd-hours" class="font-serif text-3xl sm:text-5xl text-deepolive block">00</span>
-          <span class="text-[10px] uppercase tracking-widest text-sage font-medium">Hours</span>
+        <div class="bg-white/90 p-4 sm:p-6 rounded-2xl border border-sage/15 shadow-sm">
+          <span id="cd-hours" class="font-serif text-3xl sm:text-6xl text-deepolive block">00</span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-widest text-sage font-medium mt-1 block">Hours</span>
         </div>
-        <div class="bg-white/80 p-4 rounded-2xl border border-sage/10">
-          <span id="cd-mins" class="font-serif text-3xl sm:text-5xl text-deepolive block">00</span>
-          <span class="text-[10px] uppercase tracking-widest text-sage font-medium">Mins</span>
+        <div class="bg-white/90 p-4 sm:p-6 rounded-2xl border border-sage/15 shadow-sm">
+          <span id="cd-mins" class="font-serif text-3xl sm:text-6xl text-deepolive block">00</span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-widest text-sage font-medium mt-1 block">Mins</span>
         </div>
-        <div class="bg-white/80 p-4 rounded-2xl border border-sage/10">
-          <span id="cd-secs" class="font-serif text-3xl sm:text-5xl text-deepolive block">00</span>
-          <span class="text-[10px] uppercase tracking-widest text-sage font-medium">Secs</span>
+        <div class="bg-white/90 p-4 sm:p-6 rounded-2xl border border-sage/15 shadow-sm">
+          <span id="cd-secs" class="font-serif text-3xl sm:text-6xl text-deepolive block">00</span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-widest text-sage font-medium mt-1 block">Secs</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EVENT DETAILS & TIMELINE -->
-  <section id="details" class="py-20 px-4 bg-sagelight/40 border-t border-sage/10">
+  <!-- PHOTO GALLERY GRID -->
+  <section id="gallery" class="py-20 px-4 bg-sagelight/40 border-t border-sage/10">
+    <div class="max-w-5xl mx-auto space-y-12 text-center">
+      <div class="space-y-2">
+        <p class="text-xs tracking-[0.25em] uppercase text-terracotta font-medium">Moments Captured</p>
+        <h2 class="font-serif text-4xl text-deepolive">Photo Gallery</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="aspect-square bg-white rounded-2xl p-2 shadow-md border border-sage/10 flex items-center justify-center text-sage text-xs italic font-serif">
+          [ Engagement Memory ]
+        </div>
+        <div class="aspect-square bg-white rounded-2xl p-2 shadow-md border border-sage/10 flex items-center justify-center text-sage text-xs italic font-serif">
+          [ Sunset Moments ]
+        </div>
+        <div class="aspect-square bg-white rounded-2xl p-2 shadow-md border border-sage/10 flex items-center justify-center text-sage text-xs italic font-serif">
+          [ Smiles &amp; Laughter ]
+        </div>
+        <div class="aspect-square bg-white rounded-2xl p-2 shadow-md border border-sage/10 flex items-center justify-center text-sage text-xs italic font-serif">
+          [ Hand in Hand ]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILED SCHEDULE TIMELINE -->
+  <section id="schedule" class="py-24 px-4">
     <div class="max-w-3xl mx-auto space-y-12 text-center">
       <div class="space-y-2">
-        <p class="text-xs tracking-[0.25em] uppercase text-terracotta font-medium">Schedule of Events</p>
-        <h2 class="font-serif text-4xl text-deepolive">The Wedding Day</h2>
+        <p class="text-xs tracking-[0.25em] uppercase text-terracotta font-semibold">Order of Events</p>
+        <h2 class="font-serif text-4xl text-deepolive">The Celebration Schedule</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 gap-6 text-left">
-        <div class="bg-white p-8 rounded-2xl shadow-md border border-sage/10 space-y-3">
-          <div class="text-xs uppercase font-semibold text-terracotta tracking-widest">6:00 PM Sharp</div>
-          <h3 class="font-serif text-xl text-deepolive">Welcome &amp; Ceremony</h3>
-          <p class="text-sm text-slate-600 font-light">Join us for welcome drinks followed by our vow exchange ceremony.</p>
+      <div class="relative border-l-2 border-sage/20 pl-8 ml-4 sm:ml-32 text-left space-y-10">
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-terracotta border-4 border-champagne"></div>
+          <span class="text-xs font-semibold text-terracotta uppercase tracking-widest">6:00 PM</span>
+          <h3 class="font-serif text-xl text-deepolive mt-1">Guest Arrival &amp; Welcome Drinks</h3>
+          <p class="text-sm text-slate-600 font-light mt-1">Enjoy refreshing welcome drinks and music as everyone arrives.</p>
         </div>
 
-        <div class="bg-white p-8 rounded-2xl shadow-md border border-sage/10 space-y-3">
-          <div class="text-xs uppercase font-semibold text-terracotta tracking-widest">8:00 PM Onwards</div>
-          <h3 class="font-serif text-xl text-deepolive">Dinner &amp; Dancing</h3>
-          <p class="text-sm text-slate-600 font-light">Celebratory dinner followed by music, dancing, and memories to last a lifetime.</p>
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-sage border-4 border-champagne"></div>
+          <span class="text-xs font-semibold text-sage uppercase tracking-widest">7:00 PM</span>
+          <h3 class="font-serif text-xl text-deepolive mt-1">Vow Exchange Ceremony</h3>
+          <p class="text-sm text-slate-600 font-light mt-1">Join us for our main wedding ceremony and exchange of promises.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-terracotta border-4 border-champagne"></div>
+          <span class="text-xs font-semibold text-terracotta uppercase tracking-widest">8:30 PM</span>
+          <h3 class="font-serif text-xl text-deepolive mt-1">Celebratory Dinner</h3>
+          <p class="text-sm text-slate-600 font-light mt-1">A delicious banquet dinner served with live entertainment.</p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-sage border-4 border-champagne"></div>
+          <span class="text-xs font-semibold text-sage uppercase tracking-widest">10:00 PM Onwards</span>
+          <h3 class="font-serif text-xl text-deepolive mt-1">Party &amp; Dancing</h3>
+          <p class="text-sm text-slate-600 font-light mt-1">Let’s dance the night away and celebrate our new journey!</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- VENUE & GOOGLE MAPS CARD -->
+  <section id="venue" class="py-20 px-4 bg-sagelight/60 border-y border-sage/10">
+    <div class="max-w-4xl mx-auto space-y-10 text-center">
+      <div class="space-y-2">
+        <p class="text-xs tracking-[0.25em] uppercase text-terracotta font-semibold">Location Details</p>
+        <h2 class="font-serif text-4xl text-deepolive">The Wedding Venue</h2>
+      </div>
+
+      <div class="glass-card rounded-3xl p-8 sm:p-10 border border-sage/20 shadow-xl grid md:grid-cols-2 gap-8 text-left items-center">
+        <div class="space-y-4">
+          <span class="text-3xl">🏛️</span>
+          <h3 class="font-serif text-2xl text-deepolive">Grand Celebration Venue</h3>
+          <p class="text-sm text-slate-600 font-light leading-relaxed">
+            Located in North Lebanon, surrounded by nature and elegance. Valet parking is available for all guests upon arrival.
+          </p>
+          <div class="pt-2">
+            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-deepolive hover:bg-sage text-white text-xs font-medium tracking-widest uppercase px-6 py-3 rounded-xl transition-all shadow-md">
+              📍 Open Directions in Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white/80 rounded-2xl h-64 border border-sage/20 flex flex-col items-center justify-center text-center p-6 space-y-2">
+          <span class="text-4xl">🗺️</span>
+          <p class="font-serif text-lg text-deepolive">Interactive Map Preview</p>
+          <p class="text-xs text-slate-500 font-light">Lebanon Coordinates</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SONG REQUEST SECTION -->
+  <section id="music" class="py-20 px-4">
+    <div class="max-w-xl mx-auto glass-card rounded-3xl p-8 sm:p-10 shadow-xl border border-sage/20 text-center space-y-6">
+      <div class="space-y-2">
+        <span class="text-3xl">🎶</span>
+        <h2 class="font-serif text-3xl text-deepolive">Song Requests</h2>
+        <p class="text-xs uppercase tracking-widest text-slate-500 font-medium">Help us build our dance floor playlist!</p>
+      </div>
+
+      <div id="song-success" class="hidden bg-sagelight border border-sage/30 rounded-2xl p-4 text-sm text-deepolive">
+        🎵 Song request added! Thank you for helping us party!
+      </div>
+
+      <form id="song-form" onsubmit="handleSongSubmit(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Song Title &amp; Artist</label>
+          <input type="text" id="songInput" required placeholder="e.g. Perfect — Ed Sheeran" class="w-full bg-white border border-sage/20 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sage text-sm">
+        </div>
+        <button type="submit" class="w-full bg-terracotta hover:bg-deepolive text-white text-xs font-medium tracking-widest uppercase py-3.5 rounded-xl transition-all shadow-md">
+          Suggest Song 🎵
+        </button>
+      </form>
     </div>
   </section>
 
   <!-- RSVP SECTION -->
-  <section id="rsvp" class="py-20 px-4">
-    <div class="max-w-xl mx-auto glass-card rounded-3xl p-8 sm:p-12 shadow-2xl border border-sage/20 text-center space-y-8">
+  <section id="rsvp" class="py-24 px-4 bg-sagelight/40 border-t border-sage/10">
+    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-14 shadow-2xl border border-sage/20 text-center space-y-8">
       <div class="space-y-2">
-        <h2 class="font-serif text-3xl text-deepolive">R.S.V.P</h2>
+        <p class="text-xs uppercase tracking-[0.25em] text-terracotta font-semibold">Join Us</p>
+        <h2 class="font-serif text-4xl text-deepolive">R.S.V.P</h2>
         <p class="text-xs uppercase tracking-widest text-sage font-medium">Please respond by August 25, 2027</p>
       </div>
 
-      <div id="rsvp-success" class="hidden bg-sagelight border border-sage/30 rounded-2xl p-6 space-y-2">
-        <h3 class="font-serif text-xl text-deepolive">Thank You!</h3>
-        <p class="text-sm text-slate-600">Your response has been saved. We look forward to celebrating with you, <span id="guest-response-name" class="font-semibold text-deepolive"></span>!</p>
+      <div id="rsvp-success" class="hidden bg-sagelight border border-sage/30 rounded-2xl p-8 space-y-3">
+        <span class="text-4xl">💌</span>
+        <h3 class="font-serif text-2xl text-deepolive">Thank You!</h3>
+        <p class="text-sm text-slate-600">Your response has been saved. We cannot wait to celebrate our union with you, <span id="guest-response-name" class="font-semibold text-deepolive"></span>!</p>
+        <button onclick="resetRsvp()" class="text-xs text-terracotta underline pt-2">Edit your response</button>
       </div>
 
       <form id="rsvp-form" onsubmit="handleRsvp(event)" class="space-y-4 text-left">
         <div>
-          <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Your Full Name</label>
-          <input type="text" id="guestName" required placeholder="e.g. Layla Kassir" class="w-full bg-white border border-sage/20 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sage text-sm">
+          <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Your Full Name *</label>
+          <input type="text" id="guestName" required placeholder="e.g. Maya Haddad" class="w-full bg-white border border-sage/20 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sage text-sm">
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Will You Attend?</label>
+            <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Attendance</label>
             <select id="attendance" class="w-full bg-white border border-sage/20 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-sage text-sm">
               <option value="true">Joyfully Accepts</option>
               <option value="false">Regretfully Declines</option>
@@ -191,13 +332,18 @@
           </div>
 
           <div>
-            <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Total Guests</label>
+            <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Number of Guests</label>
             <select id="guestCount" class="w-full bg-white border border-sage/20 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-sage text-sm">
               <option value="1">1 Person</option>
               <option value="2">2 Persons (+1)</option>
               <option value="3">3 Persons</option>
             </select>
           </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Dietary Requirements / Notes (Optional)</label>
+          <input type="text" id="dietary" placeholder="e.g. Vegetarian, Allergies" class="w-full bg-white border border-sage/20 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sage text-sm">
         </div>
 
         <button type="submit" class="w-full bg-deepolive hover:bg-sage text-white text-xs font-medium tracking-widest uppercase py-4 rounded-xl transition-all shadow-md mt-4">
@@ -208,12 +354,12 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-8 text-center text-xs text-slate-400 font-light">
-    Kinda &amp; Bilal • September 25, 2027
+  <footer class="py-12 text-center space-y-2 text-xs text-slate-400 font-light">
+    <div class="font-script text-3xl text-deepolive">Kinda &amp; Bilal</div>
+    <p>September 25, 2027 • Lebanon</p>
   </footer>
 
   <script>
-    // Countdown Timer Logic
     const targetDate = new Date('2027-09-25T18:00:00').getTime();
 
     function updateCountdown() {
@@ -236,7 +382,6 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Form RSVP Submission
     function handleRsvp(e) {
       e.preventDefault();
       const name = document.getElementById('guestName').value;
@@ -245,6 +390,28 @@
         document.getElementById('rsvp-form').classList.add('hidden');
         document.getElementById('rsvp-success').classList.remove('hidden');
       }
+    }
+
+    function resetRsvp() {
+      document.getElementById('rsvp-form').classList.remove('hidden');
+      document.getElementById('rsvp-success').classList.add('hidden');
+    }
+
+    function handleSongSubmit(e) {
+      e.preventDefault();
+      document.getElementById('song-form').reset();
+      document.getElementById('song-success').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('song-success').classList.add('hidden');
+      }, 4000);
+    }
+
+    function addToCalendar() {
+      const title = encodeURIComponent("Kinda & Bilal's Wedding");
+      const details = encodeURIComponent("Joining Kinda & Bilal to celebrate their wedding day in Lebanon!");
+      const location = encodeURIComponent("Lebanon");
+      const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20270925T150000Z/20270925T230000Z&details=${details}&location=${location}`;
+      window.open(url, '_blank');
     }
   </script>
 </body>
