@@ -38,14 +38,12 @@
   </script>
 
   <style>
-    /* Ensure body and html allow vertical scrolling */
     html, body {
       height: auto;
       overflow-x: hidden;
       overflow-y: auto;
     }
 
-    /* Glassmorphism & Custom Luxury Styling */
     .glass-card {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(12px);
@@ -60,7 +58,15 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Custom Scrollbar */
+    /* Floating Animation for Hero Elements */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+    .animate-float {
+      animation: floatSlow 6s ease-in-out infinite;
+    }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #FAF8F5; }
     ::-webkit-scrollbar-thumb { background: #D4B382; border-radius: 10px; }
@@ -99,54 +105,70 @@
     </div>
   </nav>
 
-  <!-- ==================== ELEGANT CLASSIC HERO SECTION ==================== -->
-  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center py-28 px-4 relative bg-ivory overflow-hidden">
+  <!-- ==================== LUXURY EDITORIAL HERO SECTION ==================== -->
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-32 pb-20 px-4 relative bg-ivory overflow-hidden">
     
-    <!-- Background Decorative Elements -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-cashmere rounded-full blur-2xl pointer-events-none -z-10 border border-champagne/10"></div>
+    <!-- Sophisticated Background Glow & Decorative Framing -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-gradient-to-tr from-cashmere via-champagne/10 to-rosegold/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute inset-x-12 top-24 bottom-12 border border-champagne/20 rounded-[3rem] pointer-events-none hidden md:block -z-10"></div>
 
-    <div class="max-w-3xl mx-auto space-y-8 relative z-10">
+    <div class="max-w-4xl mx-auto space-y-8 relative z-10">
       
-      <!-- Top Family Note Badge -->
-      <div>
-        <span class="inline-block font-sans text-[11px] tracking-[0.3em] uppercase text-softgray font-medium bg-cashmere/80 px-5 py-2 rounded-full border border-champagne/30 shadow-sm">
-          Together with their loving families
-        </span>
+      <!-- Floating Top Badge -->
+      <div class="animate-float">
+        <div class="inline-flex items-center gap-2.5 font-sans text-[11px] tracking-[0.35em] uppercase text-softgray font-medium bg-white/80 backdrop-blur-md px-6 py-2.5 rounded-full border border-champagne/40 shadow-sm">
+          <i class="fa-solid fa-sparkles text-rosegold text-xs"></i>
+          <span>The Wedding Celebration Of</span>
+          <i class="fa-solid fa-sparkles text-rosegold text-xs"></i>
+        </div>
       </div>
 
-      <!-- Main Couple Names -->
-      <div class="space-y-2">
-        <h1 class="font-script text-7xl sm:text-9xl text-charcoal font-normal leading-none drop-shadow-sm py-2">
-          Kinda <span class="text-rosegold font-serif italic text-6xl sm:text-8xl">&amp;</span> Bilal
-        </h1>
+      <!-- Editorial Couple Heading with Layered Frame Effect -->
+      <div class="relative py-4">
+        <!-- Floating Backdrop Decorative Monogram -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none select-none">
+          <span class="font-script text-[14rem] sm:text-[20rem] text-rosegold">K&amp;B</span>
+        </div>
+
+        <div class="space-y-3 relative z-10">
+          <h1 class="font-script text-8xl sm:text-[10.5rem] text-charcoal font-normal leading-none drop-shadow-sm tracking-tight">
+            Kinda <span class="text-rosegold font-serif italic text-6xl sm:text-8xl">&amp;</span> Bilal
+          </h1>
+        </div>
       </div>
 
-      <!-- Divider Motif -->
-      <div class="flex items-center justify-center gap-4 py-1">
-        <div class="w-20 h-px bg-champagne/60"></div>
-        <div class="w-8 h-8 rounded-full bg-cashmere border border-champagne/40 shadow-sm flex items-center justify-center text-rosegold text-xs">
+      <!-- Ornate Divider Motif -->
+      <div class="flex items-center justify-center gap-5 py-1">
+        <div class="w-24 h-px bg-gradient-to-r from-transparent to-champagne"></div>
+        <div class="w-10 h-10 rounded-full bg-white border border-champagne/50 shadow-sm flex items-center justify-center text-rosegold text-sm animate-pulse">
           <i class="fa-solid fa-heart"></i>
         </div>
-        <div class="w-20 h-px bg-champagne/60"></div>
+        <div class="w-24 h-px bg-gradient-to-l from-transparent to-champagne"></div>
       </div>
 
-      <!-- Date & Location -->
-      <div class="space-y-3">
-        <p class="font-serif italic text-2xl sm:text-4xl text-charcoal font-light tracking-wide">
-          Wednesday, July 7, 2027
-        </p>
-        <p class="font-sans text-xs tracking-[0.25em] uppercase text-rosegold font-semibold">
-          <i class="fa-solid fa-location-dot text-champagne mr-1.5"></i> Koura &amp; Tripoli, Lebanon
-        </p>
+      <!-- Interactive Mini Details Strip -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto pt-2">
+        <div class="glass-card rounded-2xl p-4 flex flex-col items-center justify-center space-y-1 border border-champagne/30 shadow-sm">
+          <span class="text-[9px] font-sans tracking-widest uppercase text-softgray">Date</span>
+          <span class="font-serif text-lg font-medium text-charcoal">Wednesday, July 7, 2027</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 flex flex-col items-center justify-center space-y-1 border border-champagne/30 shadow-sm">
+          <span class="text-[9px] font-sans tracking-widest uppercase text-softgray">Location</span>
+          <span class="font-serif text-lg font-medium text-charcoal">Koura &amp; Tripoli, Lebanon</span>
+        </div>
+        <div class="glass-card rounded-2xl p-4 flex flex-col items-center justify-center space-y-1 border border-champagne/30 shadow-sm">
+          <span class="text-[9px] font-sans tracking-widest uppercase text-softgray">Dress Code</span>
+          <span class="font-serif text-lg font-medium text-charcoal">Black Tie / Formal</span>
+        </div>
       </div>
 
-      <!-- Action Buttons -->
+      <!-- High-End Action Buttons -->
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#rsvp" class="w-full sm:w-auto bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-[0.2em] uppercase px-9 py-4 rounded-full shadow-lg hover:shadow-rosegold/30 transition-all duration-300 font-medium">
-          Confirm RSVP
+        <a href="#rsvp" class="w-full sm:w-auto bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-[0.2em] uppercase px-10 py-4.5 rounded-full shadow-xl hover:shadow-rosegold/30 transition-all duration-300 font-medium">
+          Confirm Attendance (RSVP)
         </a>
-        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white hover:bg-cashmere text-charcoal border border-champagne/60 text-xs font-sans tracking-[0.15em] uppercase px-8 py-4 rounded-full shadow-sm hover:shadow transition-all font-medium flex items-center justify-center gap-2">
-          <i class="fa-regular fa-calendar-check text-rosegold text-sm"></i> Save To Calendar
+        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white/90 hover:bg-cashmere text-charcoal border border-champagne/60 text-xs font-sans tracking-[0.15em] uppercase px-8 py-4.5 rounded-full shadow-md hover:shadow-lg transition-all font-medium flex items-center justify-center gap-2.5">
+          <i class="fa-regular fa-calendar-check text-rosegold text-sm"></i> Save The Date
         </button>
       </div>
 
@@ -154,7 +176,7 @@
 
     <!-- Scroll Indicator Hint -->
     <div class="absolute bottom-6 inset-x-0 z-10 flex flex-col items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity">
-      <span class="font-sans text-[9px] tracking-widest uppercase text-softgray">Scroll To Explore</span>
+      <span class="font-sans text-[9px] tracking-widest uppercase text-softgray">Scroll To Experience</span>
       <div class="w-4 h-7 border-2 border-champagne/60 rounded-full flex justify-center pt-1">
         <div class="w-1 h-2 bg-rosegold rounded-full animate-bounce"></div>
       </div>
@@ -627,7 +649,6 @@
 
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
-    // ==================== 1. LIVE COUNTDOWN TIMER ====================
     const targetDate = new Date('July 7, 2027 18:00:00').getTime();
 
     function updateCountdown() {
@@ -644,7 +665,6 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // ==================== 2. BACKGROUND AUDIO TOGGLE ====================
     let isPlaying = false;
     function toggleAudio() {
       const audio = document.getElementById('wedding-audio');
@@ -665,7 +685,6 @@
       }
     }
 
-    // ==================== 3. UPVOTE SONG FEATURE ====================
     function upvoteSong(btn) {
       const countSpan = btn.querySelector('.vote-count');
       let count = parseInt(countSpan.innerText);
@@ -674,7 +693,6 @@
       btn.disabled = true;
     }
 
-    // ==================== 4. ADD SONG VIA SONG SECTION ====================
     function addStandaloneSong(e) {
       e.preventDefault();
       const name = document.getElementById('songUser').value;
@@ -698,7 +716,6 @@
       }
     }
 
-    // ==================== 5. COPY WHISH NUMBER ====================
     function copyWhishNumber() {
       navigator.clipboard.writeText("+96181550569");
       const btnText = document.getElementById('copy-text');
@@ -715,7 +732,6 @@
       }, 2500);
     }
 
-    // ==================== 6. GUESTBOOK WISH SUBMISSION ====================
     function addWish(e) {
       e.preventDefault();
       const author = document.getElementById('wishAuthor').value;
@@ -731,7 +747,6 @@
       }
     }
 
-    // ==================== 7. RSVP SUBMISSION ====================
     function handleRsvp(e) {
       e.preventDefault();
       const name = document.getElementById('guestName').value;
@@ -760,7 +775,6 @@
       }
     }
 
-    // ==================== 8. CALENDAR INTEGRATION ====================
     function addToCalendar() {
       const title = encodeURIComponent("Kinda & Bilal's Wedding Celebration");
       const details = encodeURIComponent("Wedding celebration for Kinda Salem Alawa & Bilal Riad Obeid.");
