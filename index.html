@@ -41,6 +41,13 @@
   </script>
 
   <style>
+    /* Ensure body and html allow vertical scrolling */
+    html, body {
+      height: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
     /* 3D Interactive Perspective Container */
     .perspective-container {
       perspective: 1200px;
@@ -96,7 +103,7 @@
     ::-webkit-scrollbar-thumb { background: #D4B382; border-radius: 10px; }
   </style>
 </head>
-<body class="bg-ivory text-charcoal font-sans antialiased relative selection:bg-rosegold selection:text-white overflow-x-hidden">
+<body class="bg-ivory text-charcoal font-sans antialiased relative selection:bg-rosegold selection:text-white">
 
   <!-- ==================== AMBIENT AUDIO PLAYER ==================== -->
   <div class="fixed bottom-6 right-6 z-50">
@@ -130,7 +137,7 @@
   </nav>
 
   <!-- ==================== 3D INTERACTIVE HERO SECTION ==================== -->
-  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center py-20 px-4 relative overflow-hidden perspective-container">
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center py-24 px-4 relative perspective-container">
     
     <!-- Three.js Canvas Background for Floating 3D Gold Particles -->
     <canvas id="hero-3d-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
