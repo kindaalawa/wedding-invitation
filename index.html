@@ -8,9 +8,6 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Three.js Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  
   <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,26 +45,6 @@
       overflow-y: auto;
     }
 
-    /* 3D Interactive Perspective Container */
-    .perspective-container {
-      perspective: 1200px;
-    }
-    
-    .tilt-card {
-      transform-style: preserve-3d;
-      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
-    }
-
-    .preserve-3d {
-      transform-style: preserve-3d;
-    }
-
-    /* Floating Depth Layers */
-    .translate-z-subtle { transform: translateZ(20px); }
-    .translate-z-title { transform: translateZ(55px); }
-    .translate-z-date { transform: translateZ(35px); }
-    .translate-z-btn { transform: translateZ(65px); }
-
     /* Glassmorphism & Custom Luxury Styling */
     .glass-card {
       background: rgba(255, 255, 255, 0.85);
@@ -77,24 +54,10 @@
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
     }
 
-    .hero-glass-card {
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(212, 179, 130, 0.35);
-      box-shadow: 0 30px 60px -12px rgba(184, 125, 112, 0.12), 0 18px 36px -18px rgba(0, 0, 0, 0.08);
-    }
-
     .gold-gradient-text {
       background: linear-gradient(135deg, #1E1E1E 0%, #B87D70 50%, #D4B382 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-    }
-
-    /* Dynamic Holographic Shine Layer */
-    .shine-overlay {
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%);
-      pointer-events: none;
     }
 
     /* Custom Scrollbar */
@@ -136,68 +99,57 @@
     </div>
   </nav>
 
-  <!-- ==================== 3D INTERACTIVE HERO SECTION ==================== -->
-  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center py-24 px-4 relative perspective-container">
+  <!-- ==================== ELEGANT CLASSIC HERO SECTION ==================== -->
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center py-28 px-4 relative bg-ivory overflow-hidden">
     
-    <!-- Three.js Canvas Background for Floating 3D Gold Particles -->
-    <canvas id="hero-3d-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+    <!-- Background Decorative Elements -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-cashmere rounded-full blur-2xl pointer-events-none -z-10 border border-champagne/10"></div>
 
-    <!-- Ambient Glowing Color Spheres -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-full w-96 h-96 bg-rosegold/15 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
-    <div class="absolute bottom-1/4 right-1/2 translate-x-full w-[30rem] h-[30rem] bg-champagne/20 rounded-full blur-3xl pointer-events-none"></div>
-
-    <!-- 3D Interactive Tilt Card Wrapper -->
-    <div id="tilt-wrapper" class="tilt-card max-w-3xl w-full mx-auto relative z-10 hero-glass-card rounded-[2.5rem] p-8 sm:p-14 my-auto border border-champagne/40 transition-shadow">
+    <div class="max-w-3xl mx-auto space-y-8 relative z-10">
       
-      <!-- Holographic Surface Reflection -->
-      <div id="shine" class="shine-overlay absolute inset-0 rounded-[2.5rem] z-20"></div>
-
-      <div class="preserve-3d space-y-7 relative z-10">
-        
-        <!-- Badge / Subtitle -->
-        <div class="translate-z-subtle">
-          <span class="inline-block font-sans text-[11px] tracking-[0.25em] uppercase text-softgray font-medium bg-white/70 px-4 py-1.5 rounded-full border border-champagne/30 shadow-sm">
-            Together with their loving families
-          </span>
-        </div>
-        
-        <!-- Main Names Title -->
-        <div class="translate-z-title">
-          <h1 class="font-script text-7xl sm:text-9xl text-charcoal font-normal leading-none drop-shadow-sm py-2">
-            Kinda <span class="text-rosegold font-serif italic text-6xl sm:text-8xl">&amp;</span> Bilal
-          </h1>
-        </div>
-
-        <!-- Decorative Divider with Floating Ring Badge -->
-        <div class="translate-z-subtle flex items-center justify-center gap-4 py-1">
-          <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-champagne to-transparent"></div>
-          <div class="w-8 h-8 rounded-full bg-white/90 border border-champagne/50 shadow-sm flex items-center justify-center text-rosegold text-xs">
-            <i class="fa-solid fa-heart"></i>
-          </div>
-          <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-champagne to-transparent"></div>
-        </div>
-
-        <!-- Wedding Date & Location -->
-        <div class="translate-z-date space-y-2">
-          <p class="font-serif italic text-2xl sm:text-4xl text-charcoal font-light tracking-wide">
-            Wednesday, July 7, 2027
-          </p>
-          <p class="font-sans text-xs tracking-[0.2em] uppercase text-rosegold font-semibold">
-            <i class="fa-solid fa-location-dot text-champagne mr-1.5"></i> Koura &amp; Tripoli, Lebanon
-          </p>
-        </div>
-
-        <!-- Action Interactive Buttons -->
-        <div class="translate-z-btn pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="#rsvp" class="w-full sm:w-auto bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-[0.2em] uppercase px-9 py-4 rounded-full shadow-2xl hover:shadow-rosegold/30 transition-all duration-300 font-medium hover:scale-105">
-            Confirm RSVP
-          </a>
-          <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white/90 hover:bg-cashmere text-charcoal border border-champagne/60 text-xs font-sans tracking-[0.15em] uppercase px-8 py-4 rounded-full shadow-sm hover:shadow-md transition-all font-medium flex items-center justify-center gap-2 hover:scale-105">
-            <i class="fa-regular fa-calendar-check text-rosegold text-sm"></i> Save To Calendar
-          </button>
-        </div>
-
+      <!-- Top Family Note Badge -->
+      <div>
+        <span class="inline-block font-sans text-[11px] tracking-[0.3em] uppercase text-softgray font-medium bg-cashmere/80 px-5 py-2 rounded-full border border-champagne/30 shadow-sm">
+          Together with their loving families
+        </span>
       </div>
+
+      <!-- Main Couple Names -->
+      <div class="space-y-2">
+        <h1 class="font-script text-7xl sm:text-9xl text-charcoal font-normal leading-none drop-shadow-sm py-2">
+          Kinda <span class="text-rosegold font-serif italic text-6xl sm:text-8xl">&amp;</span> Bilal
+        </h1>
+      </div>
+
+      <!-- Divider Motif -->
+      <div class="flex items-center justify-center gap-4 py-1">
+        <div class="w-20 h-px bg-champagne/60"></div>
+        <div class="w-8 h-8 rounded-full bg-cashmere border border-champagne/40 shadow-sm flex items-center justify-center text-rosegold text-xs">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <div class="w-20 h-px bg-champagne/60"></div>
+      </div>
+
+      <!-- Date & Location -->
+      <div class="space-y-3">
+        <p class="font-serif italic text-2xl sm:text-4xl text-charcoal font-light tracking-wide">
+          Wednesday, July 7, 2027
+        </p>
+        <p class="font-sans text-xs tracking-[0.25em] uppercase text-rosegold font-semibold">
+          <i class="fa-solid fa-location-dot text-champagne mr-1.5"></i> Koura &amp; Tripoli, Lebanon
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#rsvp" class="w-full sm:w-auto bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-[0.2em] uppercase px-9 py-4 rounded-full shadow-lg hover:shadow-rosegold/30 transition-all duration-300 font-medium">
+          Confirm RSVP
+        </a>
+        <button onclick="addToCalendar()" class="w-full sm:w-auto bg-white hover:bg-cashmere text-charcoal border border-champagne/60 text-xs font-sans tracking-[0.15em] uppercase px-8 py-4 rounded-full shadow-sm hover:shadow transition-all font-medium flex items-center justify-center gap-2">
+          <i class="fa-regular fa-calendar-check text-rosegold text-sm"></i> Save To Calendar
+        </button>
+      </div>
+
     </div>
 
     <!-- Scroll Indicator Hint -->
@@ -675,109 +627,7 @@
 
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
-    // ==================== 1. THREE.JS 3D BACKGROUND PARTICLES ====================
-    const canvas = document.getElementById('hero-3d-canvas');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    // Create Gold Particle Geometry
-    const particleCount = 120;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const scales = new Float32Array(particleCount);
-
-    for (let i = 0; i < particleCount * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 15;
-      positions[i + 1] = (Math.random() - 0.5) * 15;
-      positions[i + 2] = (Math.random() - 0.5) * 10;
-      scales[i / 3] = Math.random() * 0.08 + 0.02;
-    }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    // Particle Material with Soft Warm Gold Color
-    const material = new THREE.PointsMaterial({
-      color: 0xD4B382,
-      size: 0.08,
-      transparent: true,
-      opacity: 0.75,
-      blending: THREE.AdditiveBlending
-    });
-
-    const particles = new THREE.Points(geometry, material);
-    scene.add(particles);
-
-    camera.position.z = 5;
-
-    // Mouse Tracking for 3D Camera Shift
-    let mouseX = 0;
-    let mouseY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-      mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
-    });
-
-    // Animate 3D Scene
-    function animate3D() {
-      requestAnimationFrame(animate3D);
-
-      particles.rotation.y += 0.0012;
-      particles.rotation.x += 0.0006;
-
-      // Smooth Parallax Movement
-      camera.position.x += (mouseX - camera.position.x) * 0.05;
-      camera.position.y += (-mouseY - camera.position.y) * 0.05;
-      camera.lookAt(scene.position);
-
-      renderer.render(scene, camera);
-    }
-    animate3D();
-
-    // Handle Window Resize
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // ==================== 2. PARALLAX 3D CARD TILT EFFECT ====================
-    const card = document.getElementById('tilt-wrapper');
-    const shine = document.getElementById('shine');
-
-    window.addEventListener('mousemove', (e) => {
-      if (!card || !shine) return;
-      const rect = card.getBoundingClientRect();
-      const cardCenterX = rect.left + rect.width / 2;
-      const cardCenterY = rect.top + rect.height / 2;
-
-      const mouseFromCenterX = e.clientX - cardCenterX;
-      const mouseFromCenterY = e.clientY - cardCenterY;
-
-      // Calculate Rotation Angles (Limit to 10 degrees for subtlety)
-      const rotateX = (mouseFromCenterY / (rect.height / 2)) * -10;
-      const rotateY = (mouseFromCenterX / (rect.width / 2)) * 10;
-
-      // Apply 3D Transform
-      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-
-      // Update Holographic Shine Position
-      const mouseXPercentage = ((e.clientX - rect.left) / rect.width) * 100;
-      const mouseYPercentage = ((e.clientY - rect.top) / rect.height) * 100;
-      shine.style.setProperty('--mouse-x', `${mouseXPercentage}%`);
-      shine.style.setProperty('--mouse-y', `${mouseYPercentage}%`);
-    });
-
-    // Reset Card Tilt when mouse leaves window/card area
-    document.addEventListener('mouseleave', () => {
-      if (card) card.style.transform = `rotateX(0deg) rotateY(0deg)`;
-    });
-
-    // ==================== 3. LIVE COUNTDOWN TIMER ====================
+    // ==================== 1. LIVE COUNTDOWN TIMER ====================
     const targetDate = new Date('July 7, 2027 18:00:00').getTime();
 
     function updateCountdown() {
@@ -794,7 +644,7 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // ==================== 4. BACKGROUND AUDIO TOGGLE ====================
+    // ==================== 2. BACKGROUND AUDIO TOGGLE ====================
     let isPlaying = false;
     function toggleAudio() {
       const audio = document.getElementById('wedding-audio');
@@ -815,7 +665,7 @@
       }
     }
 
-    // ==================== 5. UPVOTE SONG FEATURE ====================
+    // ==================== 3. UPVOTE SONG FEATURE ====================
     function upvoteSong(btn) {
       const countSpan = btn.querySelector('.vote-count');
       let count = parseInt(countSpan.innerText);
@@ -824,7 +674,7 @@
       btn.disabled = true;
     }
 
-    // ==================== 6. ADD SONG VIA SONG SECTION ====================
+    // ==================== 4. ADD SONG VIA SONG SECTION ====================
     function addStandaloneSong(e) {
       e.preventDefault();
       const name = document.getElementById('songUser').value;
@@ -848,7 +698,7 @@
       }
     }
 
-    // ==================== 7. COPY WHISH NUMBER ====================
+    // ==================== 5. COPY WHISH NUMBER ====================
     function copyWhishNumber() {
       navigator.clipboard.writeText("+96181550569");
       const btnText = document.getElementById('copy-text');
@@ -865,7 +715,7 @@
       }, 2500);
     }
 
-    // ==================== 8. GUESTBOOK WISH SUBMISSION ====================
+    // ==================== 6. GUESTBOOK WISH SUBMISSION ====================
     function addWish(e) {
       e.preventDefault();
       const author = document.getElementById('wishAuthor').value;
@@ -881,7 +731,7 @@
       }
     }
 
-    // ==================== 9. RSVP SUBMISSION ====================
+    // ==================== 7. RSVP SUBMISSION ====================
     function handleRsvp(e) {
       e.preventDefault();
       const name = document.getElementById('guestName').value;
@@ -910,7 +760,7 @@
       }
     }
 
-    // ==================== 10. CALENDAR INTEGRATION ====================
+    // ==================== 8. CALENDAR INTEGRATION ====================
     function addToCalendar() {
       const title = encodeURIComponent("Kinda & Bilal's Wedding Celebration");
       const details = encodeURIComponent("Wedding celebration for Kinda Salem Alawa & Bilal Riad Obeid.");
