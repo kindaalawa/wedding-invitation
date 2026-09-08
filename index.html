@@ -134,34 +134,79 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN TIMER -->
-  <section class="py-16 px-4">
-    <div class="max-w-3xl mx-auto luxury-card rounded-2xl p-8 sm:p-12 text-center space-y-6">
-      <div class="space-y-1">
-        <p class="font-sans text-xs tracking-widest uppercase text-rosegold font-semibold">Counting Down</p>
-        <h3 class="font-serif text-2xl sm:text-3xl text-charcoal">Until The Celebration</h3>
+<!-- ELEGANT INTERACTIVE COUNTDOWN TIMER -->
+<section id="countdown-section" class="py-20 px-4">
+  <div class="max-w-3xl mx-auto bg-white/90 backdrop-blur-lg rounded-2xl p-8 sm:p-12 text-center space-y-8 relative overflow-hidden shadow-xl border border-softgold/30">
+    
+    <!-- Ambient Subtle Radial Glows -->
+    <div class="absolute -top-16 -left-16 w-36 h-36 bg-rosegold/10 rounded-full blur-2xl pointer-events-none"></div>
+    <div class="absolute -bottom-16 -right-16 w-36 h-36 bg-softgold/15 rounded-full blur-2xl pointer-events-none"></div>
+
+    <!-- Live Badge & Section Title -->
+    <div class="space-y-3 relative z-10">
+      <div class="inline-flex items-center gap-2 bg-cashmere/90 border border-softgold/30 px-3.5 py-1 rounded-full shadow-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rosegold opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-rosegold"></span>
+        </span>
+        <span class="font-sans text-[10px] tracking-widest uppercase text-charcoal font-semibold">Counting Down</span>
       </div>
-      
-      <div class="grid grid-cols-4 gap-3 sm:gap-6">
-        <div class="bg-cashmere p-4 rounded-xl border border-softgold/20">
-          <span id="cd-days" class="font-serif text-2xl sm:text-5xl text-sage block font-normal">00</span>
-          <span class="font-sans text-[9px] tracking-widest uppercase text-softgray block mt-1">Days</span>
-        </div>
-        <div class="bg-cashmere p-4 rounded-xl border border-softgold/20">
-          <span id="cd-hours" class="font-serif text-2xl sm:text-5xl text-sage block font-normal">00</span>
-          <span class="font-sans text-[9px] tracking-widest uppercase text-softgray block mt-1">Hours</span>
-        </div>
-        <div class="bg-cashmere p-4 rounded-xl border border-softgold/20">
-          <span id="cd-mins" class="font-serif text-2xl sm:text-5xl text-sage block font-normal">00</span>
-          <span class="font-sans text-[9px] tracking-widest uppercase text-softgray block mt-1">Mins</span>
-        </div>
-        <div class="bg-cashmere p-4 rounded-xl border border-softgold/20">
-          <span id="cd-secs" class="font-serif text-2xl sm:text-5xl text-sage block font-normal">00</span>
-          <span class="font-sans text-[9px] tracking-widest uppercase text-softgray block mt-1">Secs</span>
-        </div>
-      </div>
+
+      <h3 class="font-serif text-3xl sm:text-4xl text-charcoal tracking-wide">Until We Say "I Do"</h3>
+      <p class="font-serif italic text-sm text-slate-600 max-w-md mx-auto">July 7, 2027 • Every second brings us closer to forever</p>
     </div>
-  </section>
+    
+    <!-- Interactive Grid of Time Units -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+      
+      <!-- DAYS -->
+      <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="overflow-hidden">
+          <span id="cd-days" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+            00
+          </span>
+        </div>
+        <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+        <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Days</span>
+      </div>
+
+      <!-- HOURS -->
+      <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="overflow-hidden">
+          <span id="cd-hours" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+            00
+          </span>
+        </div>
+        <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+        <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Hours</span>
+      </div>
+
+      <!-- MINUTES -->
+      <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="overflow-hidden">
+          <span id="cd-mins" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+            00
+          </span>
+        </div>
+        <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+        <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Minutes</span>
+      </div>
+
+      <!-- SECONDS -->
+      <div class="group bg-cashmere/60 hover:bg-white p-5 sm:p-6 rounded-2xl border border-softgold/25 hover:border-rosegold/50 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="overflow-hidden">
+          <span id="cd-secs" class="font-serif text-3xl sm:text-5xl bg-gradient-to-br from-charcoal via-rosegold to-softgold bg-clip-text text-transparent block font-bold transition-transform duration-300 group-hover:scale-105">
+            00
+          </span>
+        </div>
+        <div class="w-8 h-0.5 bg-softgold/40 mx-auto my-2.5 transition-all group-hover:w-12 group-hover:bg-rosegold"></div>
+        <span class="font-sans text-[10px] tracking-widest uppercase text-slate-500 block font-semibold">Seconds</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
   <!-- PROGRAM OF THE DAY -->
   <section id="schedule" class="py-20 px-4 bg-white border-y border-softgold/20">
