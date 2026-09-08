@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kinda & Bilal — We're Getting Married!</title>
+  <title>Kinda & Bilal — September 25, 2027</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Playfair Display (Serif) & Cormorant Garamond -->
+  <!-- Google Fonts: Great Vibes (Script) + Playfair Display (Serif) + Jost (Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
+            script: ['"Great Vibes"', 'cursive'],
             serif: ['"Playfair Display"', 'serif'],
-            cursive: ['"Cormorant Garamond"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Jost"', 'sans-serif'],
           },
           colors: {
-            rosewood: '#8C5258',
-            blush: '#FFF5F5',
-            warmgold: '#D4AF37',
-            champagne: '#F9F6F0',
-            deepwine: '#4A2E35'
+            sage: '#8A9A86',
+            sagelight: '#F3F5F2',
+            champagne: '#FAF7F2',
+            terracotta: '#C88A75',
+            deepolive: '#2F3E30'
           }
         }
       }
@@ -35,128 +35,164 @@
   </script>
 
   <style>
-    .glass-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
+    /* Canva-Style Arch Frames */
+    .arch-card {
+      border-radius: 120px 120px 24px 24px;
     }
-    .text-glow {
-      text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    .glass-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
     }
   </style>
 </head>
-<body class="bg-champagne text-slate-800 font-sans min-h-screen selection:bg-rosewood selection:text-white">
+<body class="bg-champagne text-slate-700 font-sans antialiased selection:bg-sage selection:text-white">
 
-  <!-- Background Decorative Blurs -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute -top-24 -left-24 w-96 h-96 bg-rose-200/50 rounded-full blur-3xl"></div>
-    <div class="absolute top-1/2 -right-24 w-96 h-96 bg-amber-100/60 rounded-full blur-3xl"></div>
-    <div class="absolute -bottom-24 left-1/3 w-96 h-96 bg-pink-100/50 rounded-full blur-3xl"></div>
-  </div>
-
-  <!-- Header -->
-  <header class="py-6 text-center relative z-10 border-b border-rose-100/60 bg-white/40 backdrop-blur-sm">
-    <p class="font-cursive italic text-rosewood text-xl sm:text-2xl tracking-wide">Together with their families</p>
-  </header>
-
-  <!-- Hero Section -->
-  <main class="max-w-3xl mx-auto px-4 py-12 relative z-10 space-y-12">
-    
-    <!-- Names & Title Card -->
-    <div class="text-center space-y-6">
-      <div class="inline-block px-4 py-1 rounded-full bg-rose-100/60 border border-rose-200 text-rosewood text-xs font-medium tracking-widest uppercase">
-        Wedding Celebration
+  <!-- Sticky Elegant Navigation -->
+  <nav class="fixed top-0 inset-x-0 z-50 bg-champagne/80 backdrop-blur-md border-b border-sage/10 py-4 px-6">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <a href="#home" class="font-script text-2xl text-deepolive">K &amp; B</a>
+      <div class="flex gap-4 sm:gap-8 text-xs font-medium tracking-widest uppercase text-deepolive/80">
+        <a href="#story" class="hover:text-terracotta transition-colors">Our Story</a>
+        <a href="#details" class="hover:text-terracotta transition-colors">Details</a>
+        <a href="#rsvp" class="hover:text-terracotta transition-colors">RSVP</a>
       </div>
+    </div>
+  </nav>
 
-      <h1 class="font-serif text-5xl sm:text-7xl text-deepwine font-normal tracking-tight">
-        Kinda <span class="font-cursive italic text-rosewood font-light">&amp;</span> Bilal
+  <!-- HERO SECTION -->
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-24 pb-12 px-4 relative overflow-hidden">
+    <!-- Soft Decorative Floral Blurs -->
+    <div class="absolute top-10 left-10 w-72 h-72 bg-sage/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-80 h-80 bg-terracotta/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-2xl mx-auto space-y-6 relative z-10">
+      <p class="font-sans text-xs sm:text-sm tracking-[0.3em] uppercase text-sage font-medium">We Are Getting Married</p>
+      
+      <h1 class="font-script text-6xl sm:text-8xl text-deepolive font-normal leading-tight">
+        Kinda <span class="text-terracotta">&amp;</span> Bilal
       </h1>
 
-      <p class="font-cursive italic text-2xl sm:text-3xl text-rosewood/90 max-w-xl mx-auto leading-relaxed">
-        “Two lives, two hearts, joined together in friendship, united forever in love.”
-      </p>
+      <div class="w-12 h-0.5 bg-terracotta mx-auto opacity-50"></div>
 
-      <div class="w-16 h-0.5 bg-warmgold mx-auto my-6 opacity-60"></div>
-
-      <!-- Date Banner -->
-      <div class="font-serif text-xl sm:text-2xl text-slate-700 tracking-wider uppercase">
+      <p class="font-serif italic text-xl sm:text-2xl text-slate-600">
         Saturday, September 25, 2027
+      </p>
+      <p class="text-xs uppercase tracking-widest text-slate-500">Lebanon</p>
+
+      <div class="pt-6">
+        <a href="#rsvp" class="inline-block bg-sage hover:bg-deepolive text-white text-xs font-medium tracking-widest uppercase px-8 py-4 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5">
+          Request The Pleasure Of Your Company
+        </a>
       </div>
     </div>
+  </section>
 
-    <!-- Live Love Countdown -->
-    <div class="glass-card rounded-3xl p-8 shadow-xl border border-rose-100 text-center space-y-4">
-      <h2 class="font-cursive italic text-2xl text-rosewood">Counting down to our forever</h2>
+  <!-- OUR STORY / CREATIVE CANVA CARD SECTION -->
+  <section id="story" class="py-20 px-4 bg-sagelight/60 border-y border-sage/10">
+    <div class="max-w-4xl mx-auto grid sm:grid-cols-2 gap-12 items-center">
       
-      <div class="grid grid-cols-4 gap-3 sm:gap-6 pt-2">
-        <div class="bg-blush/80 border border-rose-100 rounded-2xl p-3 sm:p-5">
-          <div id="cd-days" class="font-serif text-3xl sm:text-5xl text-deepwine font-semibold">00</div>
-          <div class="text-[10px] sm:text-xs font-medium tracking-widest uppercase text-rosewood/80 mt-1">Days</div>
+      <!-- Arch Frame Image Placeholder -->
+      <div class="arch-card bg-white p-4 shadow-xl border border-sage/20 text-center space-y-4 max-w-sm mx-auto w-full">
+        <div class="arch-card bg-sage/10 h-80 flex items-center justify-center text-sage font-serif italic text-lg">
+          [ Insert Photo Here ]
         </div>
-        <div class="bg-blush/80 border border-rose-100 rounded-2xl p-3 sm:p-5">
-          <div id="cd-hours" class="font-serif text-3xl sm:text-5xl text-deepwine font-semibold">00</div>
-          <div class="text-[10px] sm:text-xs font-medium tracking-widest uppercase text-rosewood/80 mt-1">Hours</div>
-        </div>
-        <div class="bg-blush/80 border border-rose-100 rounded-2xl p-3 sm:p-5">
-          <div id="cd-mins" class="font-serif text-3xl sm:text-5xl text-deepwine font-semibold">00</div>
-          <div class="text-[10px] sm:text-xs font-medium tracking-widest uppercase text-rosewood/80 mt-1">Mins</div>
-        </div>
-        <div class="bg-blush/80 border border-rose-100 rounded-2xl p-3 sm:p-5">
-          <div id="cd-secs" class="font-serif text-3xl sm:text-5xl text-deepwine font-semibold">00</div>
-          <div class="text-[10px] sm:text-xs font-medium tracking-widest uppercase text-rosewood/80 mt-1">Secs</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Celebration Details -->
-    <div class="grid sm:grid-cols-2 gap-6">
-      <div class="glass-card p-8 rounded-3xl border border-rose-100 space-y-3 text-center">
-        <div class="w-10 h-10 bg-rose-100 text-rosewood rounded-full flex items-center justify-center mx-auto text-lg">✨</div>
-        <h3 class="font-serif text-xl text-deepwine">The Ceremony &amp; Party</h3>
-        <p class="text-sm text-slate-600 font-light">Join us as we exchange vows and celebrate with dinner and dancing.</p>
-        <p class="text-xs text-rosewood font-medium">Starting at 6:00 PM</p>
+        <p class="font-script text-3xl text-deepolive">Two Hearts, One Journey</p>
       </div>
 
-      <div class="glass-card p-8 rounded-3xl border border-rose-100 space-y-3 text-center">
-        <div class="w-10 h-10 bg-rose-100 text-rosewood rounded-full flex items-center justify-center mx-auto text-lg">📍</div>
-        <h3 class="font-serif text-xl text-deepwine">The Venue</h3>
-        <p class="text-sm text-slate-600 font-light">Grand Celebration Hall</p>
-        <p class="text-xs text-rosewood font-medium">Lebanon</p>
-      </div>
-    </div>
-
-    <!-- RSVP Section -->
-    <div class="glass-card rounded-3xl p-8 shadow-xl border border-rose-100 space-y-6 text-center">
-      <div class="space-y-2">
-        <h2 class="font-serif text-3xl text-deepwine">Will You Join Us?</h2>
-        <p class="text-sm text-slate-600 max-w-md mx-auto font-light">
-          Please let us know if you can attend our special day.
+      <!-- Story Text -->
+      <div class="space-y-6 text-center sm:text-left">
+        <p class="text-xs tracking-[0.25em] uppercase text-terracotta font-medium">// Our Journey</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-deepolive">How Our Story Began</h2>
+        <p class="text-slate-600 leading-relaxed font-light text-sm sm:text-base">
+          From late-night conversations to building our dreams side by side, every step has brought us to this beautiful moment. We can’t wait to celebrate our union surrounded by the people we love most.
         </p>
+        <div class="font-script text-4xl text-sage pt-2">Kinda &amp; Bilal</div>
       </div>
 
-      <div id="rsvp-success" class="hidden bg-rose-50 border border-rose-200 rounded-2xl p-6 text-center space-y-2">
-        <h3 class="font-serif text-xl text-deepwine">Thank you for responding!</h3>
-        <p class="text-sm text-slate-600">We cannot wait to celebrate with you, <span id="confirmed-guest-name" class="font-semibold text-rosewood"></span>!</p>
-        <button onclick="resetRsvp()" class="text-xs text-rosewood underline pt-2">Edit your response</button>
+    </div>
+  </section>
+
+  <!-- LIVE COUNTDOWN SECTION -->
+  <section class="py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-12 border border-sage/20 shadow-xl space-y-6">
+      <h3 class="font-serif text-2xl text-deepolive">Counting Down to September 25, 2027</h3>
+      
+      <div class="grid grid-cols-4 gap-3 sm:gap-6">
+        <div class="bg-white/80 p-4 rounded-2xl border border-sage/10">
+          <span id="cd-days" class="font-serif text-3xl sm:text-5xl text-deepolive block">00</span>
+          <span class="text-[10px] uppercase tracking-widest text-sage font-medium">Days</span>
+        </div>
+        <div class="bg-white/80 p-4 rounded-2xl border border-sage/10">
+          <span id="cd-hours" class="font-serif text-3xl sm:text-5xl text-deepolive block">00</span>
+          <span class="text-[10px] uppercase tracking-widest text-sage font-medium">Hours</span>
+        </div>
+        <div class="bg-white/80 p-4 rounded-2xl border border-sage/10">
+          <span id="cd-mins" class="font-serif text-3xl sm:text-5xl text-deepolive block">00</span>
+          <span class="text-[10px] uppercase tracking-widest text-sage font-medium">Mins</span>
+        </div>
+        <div class="bg-white/80 p-4 rounded-2xl border border-sage/10">
+          <span id="cd-secs" class="font-serif text-3xl sm:text-5xl text-deepolive block">00</span>
+          <span class="text-[10px] uppercase tracking-widest text-sage font-medium">Secs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT DETAILS & TIMELINE -->
+  <section id="details" class="py-20 px-4 bg-sagelight/40 border-t border-sage/10">
+    <div class="max-w-3xl mx-auto space-y-12 text-center">
+      <div class="space-y-2">
+        <p class="text-xs tracking-[0.25em] uppercase text-terracotta font-medium">Schedule of Events</p>
+        <h2 class="font-serif text-4xl text-deepolive">The Wedding Day</h2>
       </div>
 
-      <form id="rsvp-form" onsubmit="handleRsvp(event)" class="space-y-4 max-w-md mx-auto text-left">
+      <div class="grid sm:grid-cols-2 gap-6 text-left">
+        <div class="bg-white p-8 rounded-2xl shadow-md border border-sage/10 space-y-3">
+          <div class="text-xs uppercase font-semibold text-terracotta tracking-widest">6:00 PM Sharp</div>
+          <h3 class="font-serif text-xl text-deepolive">Welcome &amp; Ceremony</h3>
+          <p class="text-sm text-slate-600 font-light">Join us for welcome drinks followed by our vow exchange ceremony.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-md border border-sage/10 space-y-3">
+          <div class="text-xs uppercase font-semibold text-terracotta tracking-widest">8:00 PM Onwards</div>
+          <h3 class="font-serif text-xl text-deepolive">Dinner &amp; Dancing</h3>
+          <p class="text-sm text-slate-600 font-light">Celebratory dinner followed by music, dancing, and memories to last a lifetime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP SECTION -->
+  <section id="rsvp" class="py-20 px-4">
+    <div class="max-w-xl mx-auto glass-card rounded-3xl p-8 sm:p-12 shadow-2xl border border-sage/20 text-center space-y-8">
+      <div class="space-y-2">
+        <h2 class="font-serif text-3xl text-deepolive">R.S.V.P</h2>
+        <p class="text-xs uppercase tracking-widest text-sage font-medium">Please respond by August 25, 2027</p>
+      </div>
+
+      <div id="rsvp-success" class="hidden bg-sagelight border border-sage/30 rounded-2xl p-6 space-y-2">
+        <h3 class="font-serif text-xl text-deepolive">Thank You!</h3>
+        <p class="text-sm text-slate-600">Your response has been saved. We look forward to celebrating with you, <span id="guest-response-name" class="font-semibold text-deepolive"></span>!</p>
+      </div>
+
+      <form id="rsvp-form" onsubmit="handleRsvp(event)" class="space-y-4 text-left">
         <div>
-          <label class="block text-xs font-medium text-slate-600 mb-1">YOUR FULL NAME</label>
-          <input type="text" id="guestName" required placeholder="e.g. Maya Haddad" class="w-full bg-white border border-rose-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-rosewood text-sm">
+          <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Your Full Name</label>
+          <input type="text" id="guestName" required placeholder="e.g. Layla Kassir" class="w-full bg-white border border-sage/20 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sage text-sm">
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-medium text-slate-600 mb-1">ATTENDANCE</label>
-            <select id="attendance" class="w-full bg-white border border-rose-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-rosewood text-sm">
+            <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Will You Attend?</label>
+            <select id="attendance" class="w-full bg-white border border-sage/20 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-sage text-sm">
               <option value="true">Joyfully Accepts</option>
               <option value="false">Regretfully Declines</option>
             </select>
           </div>
 
           <div>
-            <label class="block text-xs font-medium text-slate-600 mb-1">NUMBER OF GUESTS</label>
-            <select id="guestCount" class="w-full bg-white border border-rose-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-rosewood text-sm">
+            <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Total Guests</label>
+            <select id="guestCount" class="w-full bg-white border border-sage/20 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-sage text-sm">
               <option value="1">1 Person</option>
               <option value="2">2 Persons (+1)</option>
               <option value="3">3 Persons</option>
@@ -164,21 +200,20 @@
           </div>
         </div>
 
-        <button type="submit" class="w-full bg-rosewood hover:bg-deepwine text-white font-medium py-3 px-6 rounded-xl transition-all text-sm shadow-md mt-4">
-          Send RSVP
+        <button type="submit" class="w-full bg-deepolive hover:bg-sage text-white text-xs font-medium tracking-widest uppercase py-4 rounded-xl transition-all shadow-md mt-4">
+          Submit Response
         </button>
       </form>
     </div>
+  </section>
 
-  </main>
-
-  <footer class="py-8 text-center text-xs text-rosewood/70 font-light relative z-10">
-    Designed with love for Kinda &amp; Bilal • September 25, 2027
+  <!-- FOOTER -->
+  <footer class="py-8 text-center text-xs text-slate-400 font-light">
+    Kinda &amp; Bilal • September 25, 2027
   </footer>
 
-  <!-- Script for Interactive Features -->
   <script>
-    // Countdown Timer to Sept 25, 2027
+    // Countdown Timer Logic
     const targetDate = new Date('2027-09-25T18:00:00').getTime();
 
     function updateCountdown() {
@@ -201,20 +236,15 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Form RSVP Logic
+    // Form RSVP Submission
     function handleRsvp(e) {
       e.preventDefault();
       const name = document.getElementById('guestName').value;
       if (name) {
-        document.getElementById('confirmed-guest-name').innerText = name;
+        document.getElementById('guest-response-name').innerText = name;
         document.getElementById('rsvp-form').classList.add('hidden');
         document.getElementById('rsvp-success').classList.remove('hidden');
       }
-    }
-
-    function resetRsvp() {
-      document.getElementById('rsvp-form').classList.remove('hidden');
-      document.getElementById('rsvp-success').classList.add('hidden');
     }
   </script>
 </body>
