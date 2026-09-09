@@ -502,7 +502,7 @@
     </div>
   </section>
 
-  <!-- ==================== GUEST FAQS SECTION ==================== -->
+<!-- ==================== GUEST FAQS SECTION ==================== -->
   <section id="faqs" class="py-24 px-4 bg-white border-y border-champagne/20">
     <div class="max-w-2xl mx-auto space-y-10 text-center">
       <div class="space-y-2">
@@ -514,39 +514,65 @@
 
       <div class="space-y-4 text-left">
         
-        <div class="border border-champagne/30 rounded-2xl p-5 bg-ivory">
-          <h3 class="font-serif font-semibold text-lg text-charcoal flex items-center gap-2">
-            <i class="fa-solid fa-circle-question text-rosegold text-sm"></i>
-            Is valet parking available at the venue?
-          </h3>
-          <p class="text-xs text-softgray font-light mt-2 leading-relaxed">
-            Yes! Full valet parking and hostess reception will be available upon your arrival.
-          </p>
+        <!-- FAQ Item 1 -->
+        <div class="border border-champagne/30 rounded-2xl bg-ivory overflow-hidden transition-all duration-300 shadow-sm">
+          <button onclick="toggleFaq(this)" class="w-full p-5 flex items-center justify-between text-left focus:outline-none group">
+            <span class="font-serif font-semibold text-lg text-charcoal flex items-center gap-2 group-hover:text-rosegold transition-colors">
+              <i class="fa-solid fa-circle-question text-rosegold text-sm"></i>
+              Is valet parking available at the venue?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-cashmere border border-champagne/30 flex items-center justify-center text-rosegold text-xs transition-transform duration-300 faq-icon">
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+            <p class="text-xs text-softgray font-light pb-5 leading-relaxed border-t border-champagne/20 pt-3">
+              Yes! Full valet parking and hostess reception will be available upon your arrival.
+            </p>
+          </div>
         </div>
 
-        <div class="border border-champagne/30 rounded-2xl p-5 bg-ivory">
-          <h3 class="font-serif font-semibold text-lg text-charcoal flex items-center gap-2">
-            <i class="fa-solid fa-circle-question text-rosegold text-sm"></i>
-            Can I bring a +1 or my children?
-          </h3>
-          <p class="text-xs text-softgray font-light mt-2 leading-relaxed">
-            Please refer to your RSVP form below. You can select the number of guests allocated to your invitation.
-          </p>
+        <!-- FAQ Item 2 -->
+        <div class="border border-champagne/30 rounded-2xl bg-ivory overflow-hidden transition-all duration-300 shadow-sm">
+          <button onclick="toggleFaq(this)" class="w-full p-5 flex items-center justify-between text-left focus:outline-none group">
+            <span class="font-serif font-semibold text-lg text-charcoal flex items-center gap-2 group-hover:text-rosegold transition-colors">
+              <i class="fa-solid fa-circle-question text-rosegold text-sm"></i>
+              Can I bring a +1 or my children?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-cashmere border border-champagne/30 flex items-center justify-center text-rosegold text-xs transition-transform duration-300 faq-icon">
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+            <p class="text-xs text-softgray font-light pb-5 leading-relaxed border-t border-champagne/20 pt-3">
+              Please refer to your RSVP form below. You can select the number of guests allocated to your invitation.
+            </p>
+          </div>
         </div>
 
-        <div class="border border-champagne/30 rounded-2xl p-5 bg-ivory">
-          <h3 class="font-serif font-semibold text-lg text-charcoal flex items-center gap-2">
-            <i class="fa-solid fa-circle-question text-rosegold text-sm"></i>
-            When should I submit my RSVP?
-          </h3>
-          <p class="text-xs text-softgray font-light mt-2 leading-relaxed">
-            Kindly confirm your attendance by **June 15, 2027**, so we can finalize seating and catering arrangements.
-          </p>
+        <!-- FAQ Item 3 -->
+        <div class="border border-champagne/30 rounded-2xl bg-ivory overflow-hidden transition-all duration-300 shadow-sm">
+          <button onclick="toggleFaq(this)" class="w-full p-5 flex items-center justify-between text-left focus:outline-none group">
+            <span class="font-serif font-semibold text-lg text-charcoal flex items-center gap-2 group-hover:text-rosegold transition-colors">
+              <i class="fa-solid fa-circle-question text-rosegold text-sm"></i>
+              When should I submit my RSVP?
+            </span>
+            <span class="w-7 h-7 rounded-full bg-cashmere border border-champagne/30 flex items-center justify-center text-rosegold text-xs transition-transform duration-300 faq-icon">
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5">
+            <p class="text-xs text-softgray font-light pb-5 leading-relaxed border-t border-champagne/20 pt-3">
+              Kindly confirm your attendance by **June 15, 2027**, so we can finalize seating and catering arrangements.
+            </p>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
+
+   
 
   <!-- ==================== DIGITAL GUESTBOOK ==================== -->
   <section id="guestbook" class="py-20 px-4">
@@ -687,7 +713,27 @@
         isPlaying = false;
       }
     }
+function toggleFaq(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('.faq-icon');
+      
+      // Close other open accordions if desired (optional)
+      document.querySelectorAll('.faq-content').forEach(item => {
+        if (item !== content) {
+          item.style.maxHeight = null;
+          item.previousElementSibling.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+        }
+      });
 
+      // Toggle current
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.style.transform = 'rotate(45deg)';
+      }
+    }
     function upvoteSong(btn) {
       const countSpan = btn.querySelector('.vote-count');
       let count = parseInt(countSpan.innerText);
