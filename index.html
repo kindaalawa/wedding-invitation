@@ -1,3 +1,6 @@
+Here's the full, current code — copy all of this into your `index.html` on GitHub:
+
+```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -594,7 +597,7 @@
         </div>
         <h3 class="font-serif text-2xl text-charcoal">Response Received!</h3>
         <p class="text-xs text-softgray leading-relaxed">
-          Thank you <span id="guest-response-name" class="font-semibold text-charcoal"></span>! Your attendance response and song request have been noted. We can't wait to celebrate with you!
+          Thank you <span id="guest-response-name" class="font-semibold text-charcoal"></span>! Your response has been noted. We can't wait to celebrate with you!
         </p>
       </div>
 
@@ -605,15 +608,16 @@
           <input type="text" id="guestName" required placeholder="e.g. Dr. Maya Kassir" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Attendance</label>
-            <select id="attendance" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-              <option value="true">Joyfully Accepts</option>
-              <option value="false">Regretfully Declines</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Attendance</label>
+          <select id="attendance" onchange="updateAttendanceFields()" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+            <option value="true">Joyfully Accepts</option>
+            <option value="false">Regretfully Declines</option>
+          </select>
+        </div>
 
+        <!-- Fields only shown when attending -->
+        <div id="acceptFields" class="space-y-4">
           <div>
             <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Number of Guests</label>
             <select id="guestCount" onchange="updatePlusOneFields()" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
@@ -622,22 +626,17 @@
               <option value="3">3 Guests</option>
             </select>
           </div>
-        </div>
 
-        <!-- Dynamic Plus-One Name Fields -->
-        <div id="plusOneContainer" class="space-y-3 hidden">
-          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Name(s) Of Your Guest(s)</label>
-          <div id="plusOneInputs" class="space-y-2"></div>
-        </div>
+          <!-- Dynamic Plus-One Name Fields -->
+          <div id="plusOneContainer" class="space-y-3 hidden">
+            <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Name(s) Of Your Guest(s)</label>
+            <div id="plusOneInputs" class="space-y-2"></div>
+          </div>
 
-        <div>
-          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Song Request For The DJ 🎵</label>
-          <input type="text" id="rsvpSong" placeholder="What song will get you dancing?" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
-        </div>
-
-        <div>
-          <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Dietary Restrictions / Notes</label>
-          <input type="text" id="dietary" placeholder="e.g., Vegetarian, allergies, etc." class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+          <div>
+            <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Song Request For The DJ 🎵</label>
+            <input type="text" id="rsvpSong" placeholder="What song will get you dancing?" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+          </div>
         </div>
 
         <button type="submit" id="rsvpSubmitBtn" class="w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-4 rounded-xl transition-all font-medium shadow-md">
@@ -753,6 +752,21 @@
       }
     }
 
+    // ---------- Show/hide guest count & song fields based on attendance ----------
+    function updateAttendanceFields() {
+      const isAttending = document.getElementById('attendance').value === 'true';
+      const acceptFields = document.getElementById('acceptFields');
+      if (isAttending) {
+        acceptFields.classList.remove('hidden');
+      } else {
+        acceptFields.classList.add('hidden');
+        // Reset guest count and clear plus-one fields when declining
+        document.getElementById('guestCount').value = '1';
+        document.getElementById('rsvpSong').value = '';
+        updatePlusOneFields();
+      }
+    }
+
     // ---------- Plus-One dynamic name fields ----------
     function updatePlusOneFields() {
       const count = parseInt(document.getElementById('guestCount').value, 10);
@@ -783,14 +797,16 @@
     function handleRsvp(e) {
       e.preventDefault();
       const name = document.getElementById('guestName').value;
-      const attendance = document.getElementById('attendance').value === 'true' ? 'Joyfully Accepts' : 'Regretfully Declines';
-      const guestCount = document.getElementById('guestCount').value;
-      const song = document.getElementById('rsvpSong').value;
-      const dietary = document.getElementById('dietary').value;
+      const isAttending = document.getElementById('attendance').value === 'true';
+      const attendance = isAttending ? 'Joyfully Accepts' : 'Regretfully Declines';
+      const guestCount = isAttending ? document.getElementById('guestCount').value : '';
+      const song = isAttending ? document.getElementById('rsvpSong').value : '';
 
-      const plusOneNames = Array.from(document.querySelectorAll('.plusOneName'))
-        .map(input => input.value.trim())
-        .filter(v => v.length > 0);
+      const plusOneNames = isAttending
+        ? Array.from(document.querySelectorAll('.plusOneName'))
+            .map(input => input.value.trim())
+            .filter(v => v.length > 0)
+        : [];
 
       // Update the live song playlist on the page
       if (song) {
@@ -810,28 +826,32 @@
       }
 
       // Send the response to the Google Sheet
-      const submitBtn = document.getElementById('rsvpSubmitBtn');
-      submitBtn.disabled = true;
-      submitBtn.innerText = 'Sending...';
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.indexOf('PASTE_YOUR') === -1) {
+        const submitBtn = document.getElementById('rsvpSubmitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Sending...';
 
-      fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors', // Apps Script web apps don't return CORS headers; this is a fire-and-forget request
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({
-          timestamp: new Date().toISOString(),
-          name: name,
-          attendance: attendance,
-          guestCount: guestCount,
-          plusOnes: plusOneNames.join(', '),
-          song: song,
-          dietary: dietary
-        })
-      }).finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerText = 'Submit Response';
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Apps Script web apps don't return CORS headers; this is a fire-and-forget request
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            name: name,
+            attendance: attendance,
+            guestCount: guestCount,
+            plusOnes: plusOneNames.join(', '),
+            song: song
+          })
+        }).finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Submit Response';
+          showRsvpSuccess(name);
+        });
+      } else {
+        // No sheet configured yet — still confirm to the guest
         showRsvpSuccess(name);
-      });
+      }
     }
 
     function showRsvpSuccess(name) {
@@ -849,3 +869,4 @@
   </script>
 </body>
 </html>
+```
