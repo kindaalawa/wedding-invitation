@@ -786,7 +786,7 @@ function toggleFaq(button) {
     // ---------- RSVP submit: local UI update + send to Google Sheet ----------
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyT62oe9Y2FX6V6qRjGUd4x1nOrhd_DruDPWtzOZnZJXVI-EQZPlEXRDh6q56VSN6xA9Q/exec";
 
-    function handleRsvp(e) {
+  function handleRsvp(e) {
       e.preventDefault();
       const name = document.getElementById('guestName').value;
       const isAttending = document.getElementById('attendance').value === 'true';
@@ -803,18 +803,22 @@ function toggleFaq(button) {
       // Update the live song playlist on the page
       if (song) {
         const playlist = document.getElementById('songs-playlist');
-        const card = document.createElement('div');
-        card.className = "bg-cashmere/80 hover:bg-white p-4 rounded-xl border border-champagne/20 text-xs flex items-center justify-between transition-all";
-        card.innerHTML = `
-          <div>
-            <p class="font-serif font-semibold text-charcoal text-base">"${song}"</p>
-            <span class="font-sans text-softgray block text-[10px] uppercase tracking-wider">Suggested by ${name}</span>
-          </div>
-          <button onclick="upvoteSong(this)" class="bg-white hover:bg-rosegold hover:text-white border border-champagne/40 px-3 py-1.5 rounded-full text-xs transition-colors flex items-center gap-1.5">
-            <i class="fa-solid fa-heart text-rosegold"></i> <span class="vote-count font-semibold">1</span>
-          </button>
-        `;
-        playlist.prepend(card);
+        if (playlist) {
+          const card = document.createElement('div');
+          card.className = "bg-cashmere/80 hover:bg-white p-4 rounded-xl border border-champagne/20 text-xs flex items-center justify-between transition-all";
+          card.innerHTML = `
+            <div>
+              <p class="font-serif font-semibold text-charcoal text-base">"${song}"</p>
+              <span class="font-sans text-softgray block text-[10px] uppercase tracking-wider">Suggested by ${name}</span>
+            </div>
+            <button onclick="upvoteSong(this)" class="bg-white hover:bg-rosegold hover:text-white border border-champagne/40 px-3 py-1.5 rounded-full text-xs transition-colors flex items-center gap-1.5">
+              <i class="fa-solid fa-heart text-rosegold"></i> <span class="vote-count font-semibold">1</span>
+            </button>
+          `;
+          playlist.prepend(card);
+        } else {
+          console.warn("Element with ID 'songs-playlist' was not found on the page.");
+        }
       }
 
       // Send the response to the Google Sheet
