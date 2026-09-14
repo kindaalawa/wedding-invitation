@@ -165,10 +165,14 @@
 
       <div class="hidden lg:flex gap-7 text-[10px] font-sans font-medium tracking-widest uppercase text-softgray">
         <a href="#story" class="nav-link hover:text-rosegold transition-colors">Our Story</a>
+        <a href="#timeline" class="nav-link hover:text-rosegold transition-colors">Timeline</a>
         <a href="#gallery" class="nav-link hover:text-rosegold transition-colors">Our Memories</a>
         <a href="#countdown-section" class="nav-link hover:text-rosegold transition-colors">Countdown</a>
         <a href="#schedule" class="nav-link hover:text-rosegold transition-colors">Schedule</a>
+        <a href="#songvault" class="nav-link hover:text-rosegold transition-colors">Song Vault</a>
+        <a href="#guestmap" class="nav-link hover:text-rosegold transition-colors">Guest Map</a>
         <a href="#registry" class="nav-link hover:text-rosegold transition-colors">Registry &amp; Whish</a>
+        <a href="#tablefinder" class="nav-link hover:text-rosegold transition-colors">Find Table</a>
         <a href="#faqs" class="nav-link hover:text-rosegold transition-colors">FAQs</a>
         <a href="#guestbook" class="nav-link hover:text-rosegold transition-colors">Guestbook</a>
       </div>
@@ -187,10 +191,14 @@
     <div id="mobileMenu" class="lg:hidden max-w-6xl mx-auto">
       <div class="flex flex-col gap-4 pt-5 pb-2 text-xs font-sans font-medium tracking-widest uppercase text-softgray">
         <a href="#story" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Our Story</a>
+        <a href="#timeline" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Timeline</a>
         <a href="#gallery" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Our Memories</a>
         <a href="#countdown-section" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Countdown</a>
         <a href="#schedule" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Schedule</a>
+        <a href="#songvault" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Song Vault</a>
+        <a href="#guestmap" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Guest Map</a>
         <a href="#registry" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Registry &amp; Whish</a>
+        <a href="#tablefinder" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Find Table</a>
         <a href="#faqs" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">FAQs</a>
         <a href="#guestbook" onclick="toggleMobileMenu()" class="hover:text-rosegold transition-colors">Guestbook</a>
         <a href="#rsvp" onclick="toggleMobileMenu()" class="text-rosegold font-semibold">RSVP Now</a>
@@ -303,6 +311,40 @@
     </div>
   </section>
 
+  <!-- ==================== LOVE TIMELINE SCRUBBER ==================== -->
+  <section id="timeline" class="py-24 px-4 bg-ivory">
+    <div class="max-w-3xl mx-auto space-y-10 text-center">
+      <div class="reveal space-y-2">
+        <span class="font-sans text-[10px] tracking-widest uppercase text-rosegold font-semibold bg-cashmere px-3.5 py-1 rounded-full border border-champagne/30">
+          Drag To Explore
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Our Love Timeline</h2>
+        <p class="font-serif italic text-softgray text-sm">Slide through the moments that brought us here</p>
+      </div>
+
+      <div class="reveal glass-card rounded-3xl p-8 sm:p-10 space-y-8">
+        <div id="timelineDisplay" class="min-h-[220px] flex flex-col items-center justify-center text-center space-y-4 transition-opacity duration-300">
+          <div id="timelineIcon" class="w-16 h-16 rounded-full bg-rosegold/10 text-rosegold flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <span id="timelineYear" class="font-sans text-[10px] uppercase tracking-widest text-rosegold font-semibold">Chapter I</span>
+          <h3 id="timelineTitle" class="font-serif text-2xl sm:text-3xl text-charcoal">First Date</h3>
+          <p id="timelineText" class="font-sans text-xs sm:text-sm text-softgray font-light max-w-md">Where it all began—conversations that lasted for hours.</p>
+        </div>
+
+        <input type="range" id="timelineSlider" min="0" max="3" step="1" value="0" oninput="updateTimeline(this.value)"
+               class="w-full h-2 rounded-full appearance-none bg-cashmere accent-rosegold cursor-pointer">
+
+        <div class="flex justify-between text-[9px] font-sans uppercase tracking-widest text-softgray px-1">
+          <span>First Date</span>
+          <span>Adventures</span>
+          <span>Proposal</span>
+          <span>Engagement</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== OUR MEMORIES PHOTO GALLERY ==================== -->
   <section id="gallery" class="py-24 px-4 bg-ivory">
     <div class="max-w-5xl mx-auto space-y-12 text-center">
@@ -392,6 +434,7 @@
 
         <h3 class="font-serif text-3xl sm:text-4xl text-charcoal tracking-wide">Until We Celebrate Together</h3>
         <p class="font-serif italic text-sm text-softgray">July 7, 2027 • Koura &amp; Tripoli</p>
+        <div id="milestoneBanner" class="hidden inline-flex items-center gap-2 bg-rosegold/10 border border-rosegold/30 text-rosegold text-[11px] font-sans font-semibold tracking-wide px-4 py-2 rounded-full mt-2"></div>
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 relative z-10">
@@ -468,6 +511,74 @@
     </div>
   </section>
 
+  <!-- ==================== SONG VAULT ==================== -->
+  <section id="songvault" class="py-20 px-4 bg-ivory">
+    <div class="reveal max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-12 text-center space-y-8">
+
+      <div class="space-y-2">
+        <span class="w-12 h-12 rounded-full bg-rosegold/10 text-rosegold inline-flex items-center justify-center text-xl mb-1">
+          <i class="fa-solid fa-compact-disc"></i>
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">The Song Vault</h2>
+        <p class="text-xs text-softgray font-light max-w-md mx-auto">
+          Add a song for the DJ, and tap the play icon to preview any request on YouTube.
+        </p>
+      </div>
+
+      <div id="vault-playlist" class="space-y-3 max-h-64 overflow-y-auto text-left pr-1">
+        <div class="bg-cashmere/80 hover:bg-white p-4 rounded-xl border border-champagne/20 text-xs flex items-center justify-between transition-all">
+          <div>
+            <p class="font-serif font-semibold text-charcoal text-base">"Tamally Ma'ak" — Amr Diab</p>
+            <span class="font-sans text-softgray block text-[10px] uppercase tracking-wider">Suggested by Maya K.</span>
+          </div>
+          <a href="https://www.youtube.com/results?search_query=Tamally%20Ma%27ak%20Amr%20Diab" target="_blank" class="bg-white hover:bg-rosegold hover:text-white border border-champagne/40 w-9 h-9 rounded-full flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-play text-rosegold text-xs"></i>
+          </a>
+        </div>
+        <div class="bg-cashmere/80 hover:bg-white p-4 rounded-xl border border-champagne/20 text-xs flex items-center justify-between transition-all">
+          <div>
+            <p class="font-serif font-semibold text-charcoal text-base">"Perfect" — Ed Sheeran</p>
+            <span class="font-sans text-softgray block text-[10px] uppercase tracking-wider">Suggested by Tarek S.</span>
+          </div>
+          <a href="https://www.youtube.com/results?search_query=Perfect%20Ed%20Sheeran" target="_blank" class="bg-white hover:bg-rosegold hover:text-white border border-champagne/40 w-9 h-9 rounded-full flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-play text-rosegold text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <form id="vault-form" onsubmit="addVaultSong(event)" class="space-y-3 text-left border-t border-champagne/20 pt-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <input type="text" id="vaultUser" required placeholder="Your Name" class="bg-white border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+          <input type="text" id="vaultSongInput" required placeholder="Song Name & Artist" class="bg-white border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+        </div>
+        <button type="submit" class="glow-btn w-full bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase py-3.5 rounded-xl transition-all font-medium">
+          Add To Vault 🎧
+        </button>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ==================== GUEST MAP ==================== -->
+  <section id="guestmap" class="py-20 px-4 bg-white border-y border-champagne/20">
+    <div class="reveal max-w-2xl mx-auto text-center space-y-8">
+
+      <div class="space-y-2">
+        <span class="w-12 h-12 rounded-full bg-rosegold/10 text-rosegold inline-flex items-center justify-center text-xl mb-1">
+          <i class="fa-solid fa-earth-americas"></i>
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal">Joining From Around The World</h2>
+        <p class="text-xs text-softgray font-light max-w-md mx-auto">
+          Every RSVP adds a pin — here's where our guests are traveling from.
+        </p>
+      </div>
+
+      <div id="guestMapChips" class="flex flex-wrap gap-3 justify-center min-h-[60px]">
+        <span class="font-sans text-[10px] text-softgray uppercase tracking-widest">Be the first to check in — RSVP below!</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== GIFT REGISTRY & WHISH MONEY ==================== -->
   <section id="registry" class="py-24 px-4 bg-white border-y border-champagne/20">
     <div class="reveal max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-12 text-center space-y-8">
@@ -525,6 +636,28 @@
 
       </div>
 
+    </div>
+  </section>
+
+  <!-- ==================== FIND MY TABLE ==================== -->
+  <section id="tablefinder" class="py-20 px-4">
+    <div class="reveal max-w-md mx-auto glass-card rounded-3xl p-8 sm:p-10 text-center space-y-6">
+      <div class="space-y-2">
+        <span class="w-12 h-12 rounded-full bg-rosegold/10 text-rosegold inline-flex items-center justify-center text-xl mb-1">
+          <i class="fa-solid fa-chair"></i>
+        </span>
+        <h2 class="font-serif text-3xl text-charcoal">Find My Table</h2>
+        <p class="text-xs text-softgray font-light">Type your name exactly as you RSVP'd to see your seat.</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input type="text" id="tableLookupName" placeholder="Your Full Name" class="flex-1 bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+        <button onclick="findTable()" class="glow-btn bg-rosegold hover:bg-charcoal text-white text-xs font-sans tracking-widest uppercase px-6 py-3 rounded-xl transition-all font-medium">
+          Search
+        </button>
+      </div>
+
+      <div id="tableResult" class="hidden bg-cashmere/80 border border-champagne/30 rounded-xl p-4 text-sm font-serif text-charcoal"></div>
     </div>
   </section>
 
@@ -680,6 +813,11 @@
           </div>
 
           <div>
+            <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Traveling From (Country)</label>
+            <input type="text" id="guestCountry" placeholder="e.g. Lebanon, France, USA" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
+          </div>
+
+          <div>
             <label class="block font-sans text-[10px] uppercase tracking-widest text-softgray mb-1">Song Request For The DJ 🎵</label>
             <input type="text" id="rsvpSong" placeholder="What song will get you dancing?" class="w-full bg-cashmere/60 border border-champagne/30 rounded-xl px-4 py-3 text-charcoal text-xs focus:outline-none focus:border-rosegold">
           </div>
@@ -700,6 +838,27 @@
 
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
+    // ---------- Love Timeline scrubber ----------
+    const timelineData = [
+      { icon: 'fa-heart', chapter: 'Chapter I', title: 'First Date', text: "Where it all began—conversations that lasted for hours." },
+      { icon: 'fa-plane', chapter: 'Chapter II', title: 'Adventures & Trips', text: "Exploring new places, creating unforgettable laughter." },
+      { icon: 'fa-gem', chapter: 'Chapter III', title: 'The Proposal', text: "A heartfelt 'Yes!' to forever under the stars." },
+      { icon: 'fa-glass-cheers', chapter: 'Chapter IV', title: 'Official Engagement', text: "Celebrating our union with close family and loved ones." }
+    ];
+
+    function updateTimeline(index) {
+      const step = timelineData[index];
+      const display = document.getElementById('timelineDisplay');
+      display.style.opacity = 0;
+      setTimeout(() => {
+        document.getElementById('timelineIcon').innerHTML = `<i class="fa-solid ${step.icon}"></i>`;
+        document.getElementById('timelineYear').innerText = step.chapter;
+        document.getElementById('timelineTitle').innerText = step.title;
+        document.getElementById('timelineText').innerText = step.text;
+        display.style.opacity = 1;
+      }, 200);
+    }
+
     // ---------- Countdown ----------
     const targetDate = new Date('July 7, 2027 18:00:00').getTime();
 
@@ -708,10 +867,35 @@
       const diff = targetDate - now;
 
       if (diff > 0) {
-        document.getElementById('cd-days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById('cd-days').innerText = String(daysLeft).padStart(2, '0');
         document.getElementById('cd-hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
         document.getElementById('cd-mins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         document.getElementById('cd-secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+        updateMilestoneBanner(daysLeft);
+      } else {
+        updateMilestoneBanner(0);
+      }
+    }
+
+    function updateMilestoneBanner(daysLeft) {
+      const banner = document.getElementById('milestoneBanner');
+      let message = null;
+      if (daysLeft <= 0) {
+        message = "🎉 Today's the day — see you at the altar!";
+      } else if (daysLeft <= 7) {
+        message = `✨ Just ${daysLeft} day${daysLeft === 1 ? '' : 's'} to go — we can't wait!`;
+      } else if (daysLeft <= 30) {
+        message = `💛 30 days and counting — the countdown is real!`;
+      } else if (daysLeft <= 100) {
+        message = `💫 Under 100 days until we say "I Do"!`;
+      }
+
+      if (message) {
+        banner.innerText = message;
+        banner.classList.remove('hidden');
+      } else {
+        banner.classList.add('hidden');
       }
     }
     setInterval(updateCountdown, 1000);
@@ -757,6 +941,79 @@
         content.style.maxHeight = content.scrollHeight + 'px';
         icon.style.transform = 'rotate(45deg)';
       }
+    }
+
+    // ---------- Song Vault ----------
+    function addVaultSong(e) {
+      e.preventDefault();
+      const name = document.getElementById('vaultUser').value;
+      const song = document.getElementById('vaultSongInput').value;
+
+      if (name && song) {
+        const vault = document.getElementById('vault-playlist');
+        const card = document.createElement('div');
+        card.className = "bg-cashmere/80 hover:bg-white p-4 rounded-xl border border-champagne/20 text-xs flex items-center justify-between transition-all";
+        card.innerHTML = `
+          <div>
+            <p class="font-serif font-semibold text-charcoal text-base">"${song}"</p>
+            <span class="font-sans text-softgray block text-[10px] uppercase tracking-wider">Suggested by ${name}</span>
+          </div>
+          <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(song)}" target="_blank" class="bg-white hover:bg-rosegold hover:text-white border border-champagne/40 w-9 h-9 rounded-full flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-play text-rosegold text-xs"></i>
+          </a>
+        `;
+        vault.prepend(card);
+        document.getElementById('vault-form').reset();
+      }
+    }
+
+    // ---------- Guest Map ----------
+    function loadGuestCountries() {
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('PASTE_YOUR') !== -1) return;
+      fetch(GOOGLE_SCRIPT_URL + '?action=countries')
+        .then(res => res.json())
+        .then(data => {
+          const wrap = document.getElementById('guestMapChips');
+          const entries = Object.entries(data);
+          if (entries.length === 0) return;
+          wrap.innerHTML = '';
+          entries.forEach(([country, count]) => {
+            const chip = document.createElement('span');
+            chip.className = "bg-cashmere/80 border border-champagne/30 rounded-full px-4 py-2 text-xs font-serif text-charcoal flex items-center gap-2";
+            chip.innerHTML = `<i class="fa-solid fa-location-dot text-rosegold text-[10px]"></i> ${country} <span class="text-rosegold font-semibold">(${count})</span>`;
+            wrap.appendChild(chip);
+          });
+        })
+        .catch(() => { /* Guest map is optional — fail silently if the sheet isn't reachable yet */ });
+    }
+
+    // ---------- Find My Table ----------
+    function findTable() {
+      const name = document.getElementById('tableLookupName').value.trim();
+      const resultBox = document.getElementById('tableResult');
+      if (!name) return;
+
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('PASTE_YOUR') !== -1) {
+        resultBox.innerText = "Table lookup isn't set up yet.";
+        resultBox.classList.remove('hidden');
+        return;
+      }
+
+      resultBox.innerText = "Searching...";
+      resultBox.classList.remove('hidden');
+
+      fetch(GOOGLE_SCRIPT_URL + '?action=findTable&name=' + encodeURIComponent(name))
+        .then(res => res.json())
+        .then(data => {
+          if (data.found) {
+            resultBox.innerText = `🎉 You're seated at Table ${data.table}!`;
+          } else {
+            resultBox.innerText = "We couldn't find that name yet — check the spelling or ask the couple directly.";
+          }
+        })
+        .catch(() => {
+          resultBox.innerText = "Something went wrong looking that up — please try again shortly.";
+        });
     }
 
     // ---------- Guestbook ----------
@@ -840,6 +1097,7 @@
       const attendance = isAttending ? 'Joyfully Accepts' : 'Regretfully Declines';
       const guestCount = isAttending ? document.getElementById('guestCount').value : '';
       const song = isAttending ? document.getElementById('rsvpSong').value : '';
+      const country = isAttending ? document.getElementById('guestCountry').value : '';
 
       const plusOneNames = isAttending
         ? Array.from(document.querySelectorAll('.plusOneName'))
@@ -862,7 +1120,8 @@
             attendance: attendance,
             guestCount: guestCount,
             plusOnes: plusOneNames.join(', '),
-            song: song
+            song: song,
+            country: country
           })
         }).finally(() => {
           submitBtn.disabled = false;
@@ -908,6 +1167,8 @@
 
     // ---------- Scroll reveal ----------
     document.addEventListener('DOMContentLoaded', () => {
+      loadGuestCountries();
+
       const revealEls = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
